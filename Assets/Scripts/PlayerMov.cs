@@ -1,18 +1,19 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterController))]
 public class PlayerMov : MonoBehaviour
 {
     public float speed = 5.0f;
-    public float gravity = 9.81f;
-    private Vector3 velocity;
-    private CharacterController characterController;
+    public Vector2 moveValue;
+
+    private Rigidbody rb;
     public Transform cameraTransform;
+
     private Animator animator; // Add this
 
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>(); // Initialize the Animator
     }
 
@@ -23,23 +24,33 @@ public class PlayerMov : MonoBehaviour
 
         Vector3 direction = cameraTransform.forward * vertical + cameraTransform.right * horizontal;
         direction.y = 0;
-        direction = direction.normalized;
+      
+    }
+    private void OnMove(InputValue value)
+    {
+        moveValue = value.Get<Vector2>();
+    }
 
-        // Animation logic
-        bool isMoving = direction.magnitude >= 0.1f;
-        animator.SetBool("IsWalking", isMoving); // Set the IsWalking parameter
+    private void FixedUpdate()
+    {
+        // Get the camera's forward and right vectors
+        Vector3 cameraForward = cameraTransform.forward;
+        Vector3 cameraRight = cameraTransform.right;
 
-        if (isMoving)
+        // Ignore the vertical component of the camera's forward vector
+        cameraForward.y = 0;
+        cameraForward.Normalize();
+
+        Vector3 movement = (cameraForward * moveValue.y + cameraRight * moveValue.x).normalized;
+
+        // Only apply movement if there's input
+        if (movement != Vector3.zero)
         {
-            characterController.Move(direction * speed * Time.deltaTime);
-        }
+            // Adjust the movement vector for speed and time
+            movement *= speed * Time.fixedDeltaTime;
 
-        if (characterController.isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
+            // Move the character
+            rb.MovePosition(transform.position + movement);
         }
-
-        velocity.y -= gravity * Time.deltaTime;
-        characterController.Move(velocity * Time.deltaTime);
     }
 }
