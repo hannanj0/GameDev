@@ -1,34 +1,41 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMov : MonoBehaviour
 {
     public float speed = 5.0f;
-    public Vector2 moveValue;
+    public float runMultiplier = 2.0f; // The speed multiplier when running
 
+    private Vector3 moveValue;
     private Rigidbody rb;
     public Transform cameraTransform;
-
-    private Animator animator; // Add this
+    private Animator animator;
+    private bool isRunning = false; // Add the isRunning boolean
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>(); // Initialize the Animator
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        moveValue.x = Input.GetAxis("Horizontal");
+        moveValue.z = Input.GetAxis("Vertical");
 
-        Vector3 direction = cameraTransform.forward * vertical + cameraTransform.right * horizontal;
-        direction.y = 0;
-      
-    }
-    private void OnMove(InputValue value)
-    {
-        moveValue = value.Get<Vector2>();
+        // Set the isWalking boolean in the animator based on moveValue magnitude
+        animator.SetBool("isWalking", moveValue.sqrMagnitude > 0.01f);
+
+        // Check if the player is moving and the shift key is pressed
+        if (moveValue.sqrMagnitude > 0.01f && Input.GetKey(KeyCode.LeftShift))
+        {
+            isRunning = true;
+            animator.SetBool("isRunning", true); // Assuming you have this parameter in your animator
+        }
+        else
+        {
+            isRunning = false;
+            animator.SetBool("isRunning", false);
+        }
     }
 
     private void FixedUpdate()
@@ -41,13 +48,16 @@ public class PlayerMov : MonoBehaviour
         cameraForward.y = 0;
         cameraForward.Normalize();
 
-        Vector3 movement = (cameraForward * moveValue.y + cameraRight * moveValue.x).normalized;
+        Vector3 movement = (cameraForward * moveValue.z + cameraRight * moveValue.x).normalized;
+
+        // Adjust speed if running
+        float currentSpeed = isRunning ? speed * runMultiplier : speed;
 
         // Only apply movement if there's input
-        if (movement != Vector3.zero)
+        if (movement.sqrMagnitude > 0.01f)
         {
             // Adjust the movement vector for speed and time
-            movement *= speed * Time.fixedDeltaTime;
+            movement *= currentSpeed * Time.fixedDeltaTime;
 
             // Move the character
             rb.MovePosition(transform.position + movement);
