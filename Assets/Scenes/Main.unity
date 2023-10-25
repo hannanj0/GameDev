@@ -511,8 +511,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.5
-  health: 150
-  attackDamage: 20
+  health: 160
+  attackDamage: 15
   isBoss: 1
   patrolLocations:
   - {fileID: 255047634}
@@ -650,7 +650,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8643456576175157307, guid: 7d4be72929900e74ca879fe380c890d3, type: 3}
       propertyPath: attackDamage
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8643456576175157307, guid: 7d4be72929900e74ca879fe380c890d3, type: 3}
       propertyPath: patrolLocations.Array.size
@@ -1431,7 +1431,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8643456576175157307, guid: 7d4be72929900e74ca879fe380c890d3, type: 3}
       propertyPath: attackDamage
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8643456576175157307, guid: 7d4be72929900e74ca879fe380c890d3, type: 3}
       propertyPath: patrolLocations.Array.size

@@ -3381,6 +3381,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHunger: 0
   maxHunger: 100
+  attackDamage: 40
   playerBody: {fileID: 4957605393579145644}
 --- !u!114 &7476810951621940566
 MonoBehaviour:
@@ -3394,7 +3395,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa4db826b7727e418e4bdca62dec5d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyScript: {fileID: 0}
   playerState: {fileID: 0}
 --- !u!1 &4957605393584318338
 GameObject:
