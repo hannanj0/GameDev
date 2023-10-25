@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class EnemyState : MonoBehaviour
     public float speed;
     public float health;
     public float attackDamage;
+    public Boolean isBoss;
 
     public float EnemySpeed
     {

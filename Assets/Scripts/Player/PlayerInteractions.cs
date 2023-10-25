@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInteractions : MonoBehaviour
 {
@@ -51,11 +52,14 @@ public class PlayerInteractions : MonoBehaviour
             EnemyState enemy = other.gameObject.GetComponent<EnemyState>();
             playerState.currentHealth -= enemy.attackDamage;
             enemy.health -= playerState.attackDamage;
-            Debug.Log("1");
-            Debug.Log(enemy.health);
             if (enemy.health <= 0)
             {
-                Debug.Log("2");
+                if(enemy.isBoss){
+                    Time.timeScale = 0;
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                    SceneManager.LoadScene("WinGame");
+                }
                 other.gameObject.SetActive(false);
             }
             offCooldown = false;

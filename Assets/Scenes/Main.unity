@@ -513,6 +513,7 @@ MonoBehaviour:
   speed: 1.5
   health: 150
   attackDamage: 20
+  isBoss: 1
   patrolLocations:
   - {fileID: 255047634}
   - {fileID: 255047633}
@@ -2041,7 +2042,7 @@ Transform:
   m_GameObject: {fileID: 1830112424}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 465.78, y: 0, z: 465}
+  m_LocalPosition: {x: 470, y: 0, z: 460}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2552,10 +2553,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &2131366666
 GameObject:
   m_ObjectHideFlags: 0
