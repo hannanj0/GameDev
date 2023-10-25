@@ -39,7 +39,6 @@ public class PlayerInteractions : MonoBehaviour
         {
             if (inventory.hotbarSlots[inventory.currentSlot] != null)
             {
-                Debug.Log(playerState);
                 inventory.hotbarSlots[inventory.currentSlot].assignedItem.Use(playerState);
                 inventory.hotbarSlots[inventory.currentSlot].RemoveItem();
             }
