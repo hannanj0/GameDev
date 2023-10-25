@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerState : MonoBehaviour
 {
@@ -63,6 +64,14 @@ public class PlayerState : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N))
         {
             currentHealth -= 10;
+        }
+
+        if (currentHealth <=0)
+        {
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            SceneManager.LoadScene("GameOver");
         }
     }
 }

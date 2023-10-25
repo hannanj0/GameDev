@@ -39,12 +39,6 @@ public class PlayerInteractions : MonoBehaviour
             playerState.currentHealth -= mobEnemyScript.mobAttackPower;
             offCooldown = false;
             enemyCollisionCooldown = 0.0f;
-            //if (collision.gameObject.TryGetComponent<OtherScript>(out OtherScript otherScript))
-            //{
-            //    // Access the "score" variable from the "OtherScript"
-            //    int otherScriptScore = otherScript.score;
-            //    Debug.Log("The score from the other script is: " + otherScriptScore);
-            //}
         }
     }
 }
