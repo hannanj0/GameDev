@@ -17,6 +17,9 @@ public class PlayerState : MonoBehaviour
     public float currentHunger;
     public float maxHunger;
 
+    //Player stats
+    public float attackDamage;
+
     float distanceTravelled = 0;
     Vector3 lastPosition;
 

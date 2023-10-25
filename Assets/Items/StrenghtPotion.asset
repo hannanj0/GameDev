@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1df1284724634141b766928faa921f7, type: 3}
-  m_Name: Herb
+  m_Script: {fileID: 11500000, guid: 303f191c2aa67434d8e5e355ea14a0dc, type: 3}
+  m_Name: StrenghtPotion
   m_EditorClassIdentifier: 
-  Name: Herb
-  hotbar_image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  Name: Strength Potion
+  hotbar_image: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   type: {fileID: 0}
-  healingAmount: 20
+  strength: 33

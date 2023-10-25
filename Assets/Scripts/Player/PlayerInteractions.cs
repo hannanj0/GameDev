@@ -50,7 +50,14 @@ public class PlayerInteractions : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy") && offCooldown) {
             EnemyState enemy = other.gameObject.GetComponent<EnemyState>();
             playerState.currentHealth -= enemy.attackDamage;
-
+            enemy.health -= playerState.attackDamage;
+            Debug.Log("1");
+            Debug.Log(enemy.health);
+            if (enemy.health <= 0)
+            {
+                Debug.Log("2");
+                other.gameObject.SetActive(false);
+            }
             offCooldown = false;
             enemyCollisionCooldown = 0.0f;
         }
