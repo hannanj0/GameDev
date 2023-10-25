@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TestItem
   m_EditorClassIdentifier: 
   Name: Test
-  hotbar_image: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  hotbar_image: {fileID: 21300000, guid: 6054318fc678eef4e97655493b73c580, type: 3}

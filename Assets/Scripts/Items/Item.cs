@@ -9,4 +9,10 @@ public class Item : ScriptableObject
 
     public Sprite hotbar_image;
 
+    public Item type;
+
+    public virtual void Use(PlayerState ps){
+        Debug.Log("nAH");
+    }
+
 }
