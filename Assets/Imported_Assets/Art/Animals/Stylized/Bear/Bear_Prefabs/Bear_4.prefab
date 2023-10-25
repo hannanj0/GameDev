@@ -1920,10 +1920,10 @@ GameObject:
   - component: {fileID: 7538040505316307751}
   - component: {fileID: 698009200635281328}
   - component: {fileID: 283881760154939795}
-  - component: {fileID: 4636580019362597356}
+  - component: {fileID: 2245767151877218225}
   m_Layer: 0
   m_Name: Bear_4
-  m_TagString: MobEnemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1990,7 +1990,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2132,7 +2132,7 @@ CapsuleCollider:
   m_Height: 0.74
   m_Direction: 1
   m_Center: {x: -0.46, y: 0.41, z: -0.67}
---- !u!114 &4636580019362597356
+--- !u!114 &2245767151877218225
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2141,12 +2141,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7962199819078159310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cd2c1509c71a6445a50c05cc838c993, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bf2bb1bff0467b408bd521befeff1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mobSpeed: 3
-  mobHealth: 100
-  mobAttackPower: 20
 --- !u!1 &8002475675295336084
 GameObject:
   m_ObjectHideFlags: 0

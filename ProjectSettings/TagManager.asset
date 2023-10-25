@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - MobEnemy
+  - BossEnemy
+  - Enemy
   layers:
   - Default
   - TransparentFX

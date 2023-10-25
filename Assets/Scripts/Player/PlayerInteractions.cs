@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerInteractions : MonoBehaviour
 {
     GameObject player;
-    public MobEnemyState mobEnemyScript;
     public PlayerState playerState;
 
     private float enemyCollisionCooldown = 0.0f;
@@ -34,9 +33,10 @@ public class PlayerInteractions : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("MobEnemy") && offCooldown) {
-            Debug.Log("ok");
-            playerState.currentHealth -= mobEnemyScript.mobAttackPower;
+        if (other.gameObject.CompareTag("Enemy") && offCooldown) {
+            EnemyState enemy = other.gameObject.GetComponent<EnemyState>();
+            playerState.currentHealth -= enemy.attackDamage;
+
             offCooldown = false;
             enemyCollisionCooldown = 0.0f;
         }

@@ -3197,7 +3197,7 @@ GameObject:
   - component: {fileID: 3755498998288355155}
   - component: {fileID: 4295036688793142150}
   - component: {fileID: 3546543295745724463}
-  - component: {fileID: 7933700357950359900}
+  - component: {fileID: 7476810951621940566}
   m_Layer: 0
   m_Name: HumanMale_Character_Free
   m_TagString: Untagged
@@ -3363,7 +3363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  moveValue: {x: 0, y: 0}
+  runMultiplier: 2
   cameraTransform: {fileID: 3441651941580636116}
 --- !u!114 &3546543295745724463
 MonoBehaviour:
@@ -3382,7 +3382,7 @@ MonoBehaviour:
   currentHunger: 0
   maxHunger: 100
   playerBody: {fileID: 4957605393579145644}
---- !u!114 &7933700357950359900
+--- !u!114 &7476810951621940566
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3394,6 +3394,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa4db826b7727e418e4bdca62dec5d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyScript: {fileID: 0}
+  playerState: {fileID: 0}
 --- !u!1 &4957605393584318338
 GameObject:
   m_ObjectHideFlags: 0
