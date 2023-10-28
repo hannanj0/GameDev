@@ -7,6 +7,8 @@ TagManager:
   - MobEnemy
   - BossEnemy
   - Enemy
+  - Item
+  - Weapon
   layers:
   - Default
   - TransparentFX

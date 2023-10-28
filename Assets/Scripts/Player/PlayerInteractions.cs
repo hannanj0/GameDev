@@ -45,26 +45,8 @@ public class PlayerInteractions : MonoBehaviour
             }
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy") && offCooldown) {
-            EnemyState enemy = other.gameObject.GetComponent<EnemyState>();
-            playerState.currentHealth -= enemy.attackDamage;
-            enemy.health -= playerState.attackDamage;
-            if (enemy.health <= 0)
-            {
-                if(enemy.isBoss){
-                    Time.timeScale = 0;
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
-                    SceneManager.LoadScene("WinGame");
-                }
-                other.gameObject.SetActive(false);
-            }
-            offCooldown = false;
-            enemyCollisionCooldown = 0.0f;
-        }
         if (other.gameObject.CompareTag("Item"))
         {
             GameItem I = other.GetComponent<GameItem>();
@@ -72,5 +54,26 @@ public class PlayerInteractions : MonoBehaviour
             inventory.Add(I.item);
             other.gameObject.SetActive(false);
         }
+
+        if (other.gameObject.CompareTag("Enemy") && offCooldown)
+        {
+            Debug.Log("player collided");
+            EnemyState enemy = other.gameObject.GetComponent<EnemyState>();
+            playerState.currentHealth -= enemy.attackDamage;
+        }
+        offCooldown = false;
+        enemyCollisionCooldown = 0.0f;
     }
+
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    Debug.Log("player collided");
+    //    if (other.gameObject.CompareTag("Enemy") && offCooldown) {
+    //        EnemyState enemy = other.gameObject.GetComponent<EnemyState>();
+    //        playerState.currentHealth -= enemy.attackDamage;
+    //    }
+    //    offCooldown = false;
+    //    enemyCollisionCooldown = 0.0f;
+    //}
 }
