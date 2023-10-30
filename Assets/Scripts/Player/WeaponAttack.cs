@@ -48,6 +48,10 @@ public class WeaponAttack : MonoBehaviour
             enemyColor = enemyMeshRenderer.materials[0].color;
             FlashEnemyStart();
 
+            // Update enemy health bar.
+            EnemyHealthBar enemyHealthBar = other.transform.Find("HealthBarContainer/HealthBar").GetComponent<EnemyHealthBar>();
+            enemyHealthBar.UpdateHealthBar(enemy.health, enemy.maxHealth);
+
 
             // Destroy enemy when their health reaches 0 or less.
             if (enemy.health <= 0)
