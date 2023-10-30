@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89feeea3e9bfa794d9858e555262b3cd, type: 3}
   m_Name: Bread
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Bread
   hotbar_image: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  type: {fileID: 0}
+  consumable: 1
   satiation: 20

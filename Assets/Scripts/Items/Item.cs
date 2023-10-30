@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class Item : ScriptableObject
     public string Name;
 
     public Sprite hotbar_image;
-    public Item type;
+    public Boolean consumable;
 
     public virtual void Use(PlayerState ps){
         Debug.Log("nAH");

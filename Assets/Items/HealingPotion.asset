@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1df1284724634141b766928faa921f7, type: 3}
   m_Name: HealingPotion
   m_EditorClassIdentifier: 
-  Name: 
+  Name: HealingPotion
   hotbar_image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  type: {fileID: 0}
+  consumable: 1
   healingAmount: 20

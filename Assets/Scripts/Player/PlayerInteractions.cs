@@ -40,9 +40,12 @@ public class PlayerInteractions : MonoBehaviour
         {
             if (!inventory.hotbarSlots[inventory.currentSlot].isEmpty)
             {
-                Debug.Log("Passed");
-                inventory.hotbarSlots[inventory.currentSlot].assignedItem.Use(playerState);
-                inventory.hotbarSlots[inventory.currentSlot].RemoveItem();
+                if (inventory.hotbarSlots[inventory.currentSlot].assignedItem.consumable)
+                {
+                    inventory.hotbarSlots[inventory.currentSlot].assignedItem.Use(playerState);
+                    inventory.hotbarSlots[inventory.currentSlot].RemoveItem();
+                }
+             
             }
         }
     }
