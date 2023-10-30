@@ -25,6 +25,9 @@ public class PlayerState : MonoBehaviour
 
     public GameObject playerBody;
 
+    private float healthDecreaseInterval = 5f;
+    private float healthDecreaseTimer;
+
     // awake looks and checks that it is the only instance in the game, if not, it will destroy it
 
     private void Awake() 
@@ -46,6 +49,7 @@ public class PlayerState : MonoBehaviour
     {
         currentHealth = maxHealth;
         currentHunger = maxHunger;
+        healthDecreaseTimer = healthDecreaseInterval;
     }
 
     // Update is called once per frame
@@ -55,11 +59,17 @@ public class PlayerState : MonoBehaviour
         distanceTravelled += Vector3.Distance(playerBody.transform.position, lastPosition);
         lastPosition = playerBody.transform.position;
 
-        // when distance travlled reaches 5, user will have travelled a certain distance in order to lose hunger
-        if (distanceTravelled >= 5)
+        
+        if (currentHunger > 0 && distanceTravelled >= 5)
         {
             distanceTravelled = 0;
             currentHunger -= 1;
+
+            // ensures the hunger bar does not go into negative value
+            if (currentHunger < 0)
+            {
+                currentHunger = 0;
+            }
         }
 
 
@@ -69,12 +79,24 @@ public class PlayerState : MonoBehaviour
             currentHealth -= 10;
         }
 
+        // the game ends when health reaches 0, this is the loss condition
         if (currentHealth <=0)
         {
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             SceneManager.LoadScene("GameOver");
+        }
+
+        // when the hunger reaches 0, the health will slowly deteriorate
+        if (currentHunger == 0)
+        {
+            healthDecreaseTimer -= Time.deltaTime;
+            if (healthDecreaseTimer <= 0)
+            {
+                currentHealth -= 5;
+                healthDecreaseTimer = healthDecreaseInterval;
+            }
         }
     }
 }
