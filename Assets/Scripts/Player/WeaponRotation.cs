@@ -4,7 +4,7 @@ using System.Collections;
 public class WeaponRotation : MonoBehaviour
 {
     public Vector3 targetRotation;
-    public float rotationSpeed = 250.0f; // Adjust the rotation speed as needed
+    public float rotationSpeed = 250.0f; // Speed of rotation of weapon.
     public bool isAttacking;
 
     private Quaternion initialRotation;
@@ -20,7 +20,7 @@ public class WeaponRotation : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isAttacking)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0)) && !isAttacking)
         {
             isAttacking = true;
             StartCoroutine(RotateToTargetRotation());

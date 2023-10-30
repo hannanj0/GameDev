@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenu;
+    //public GameObject pauseMenu;
 
     private bool gameIsPaused = false;
 
@@ -35,7 +35,7 @@ public class PauseMenu : MonoBehaviour
     {
         
         Time.timeScale = 1;
-        pauseMenu.SetActive(false);
+        //pauseMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         gameIsPaused = false;
@@ -44,7 +44,7 @@ public class PauseMenu : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0;
-        pauseMenu.SetActive(true);
+        //pauseMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         gameIsPaused = true;
