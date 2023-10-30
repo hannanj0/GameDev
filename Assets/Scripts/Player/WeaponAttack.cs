@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class WeaponAttack : MonoBehaviour
 {
+    private float enemyAttackCooldown = 0.0f;
+    private float enemyAttackCooldownDuration = 0.70f;
+    private bool offCooldown;
+
     private bool playerAttacked;
     private SkinnedMeshRenderer enemyMeshRenderer;
     private Color enemyColor;
@@ -31,17 +35,33 @@ public class WeaponAttack : MonoBehaviour
         weaponRotation = swordPivot.GetComponent<WeaponRotation>();
     }
 
+    void Update()
+    {
+        if (!offCooldown)
+        {
+            enemyAttackCooldown += Time.deltaTime;
+            if (enemyAttackCooldown >= enemyAttackCooldownDuration)
+            {
+                offCooldown = true;
+                enemyAttackCooldown = 0.0f;
+            }
+        }
+    }
+
     // Trigger events dealing damage to enemies.
     private void OnTriggerEnter(Collider other)
     {
         // Player attacks an enemy with their weapon. playerAttacked boolean to negate multiple trigger events.
-        if (this.gameObject.CompareTag("Weapon") && other.gameObject.CompareTag("Enemy") && weaponRotation.isAttacking && !playerAttacked)
+        if (this.gameObject.CompareTag("Weapon") && other.gameObject.CompareTag("Enemy") && weaponRotation.isAttacking && !playerAttacked && offCooldown)
         {
             // Deal damage to enemy.
             EnemyState enemy = other.gameObject.GetComponent<EnemyState>();
             enemy.health -= playerState.attackDamage;
+
+            // Tools to manage attack triggers.
+            offCooldown = false;
+            enemyAttackCooldown = 0.0f;
             playerAttacked = true;
-            Debug.Log("damaged enemy");
 
             // Flash enemy red for damage indication. https://www.youtube.com/watch?v=3aWgstSctMw
             enemyMeshRenderer = other.transform.Find("Meshes/Body").GetComponent<SkinnedMeshRenderer>();

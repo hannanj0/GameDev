@@ -41,7 +41,7 @@ public class WeaponRotation : MonoBehaviour
 
         // Ensure we reach the exact target rotation
         transform.localRotation = finalRotation;
-
+        //isAttacking = false;
         // Wait for a brief moment (you can adjust this duration)
         yield return new WaitForSeconds(0.1f);
 
