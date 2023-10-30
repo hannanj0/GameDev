@@ -10,6 +10,8 @@ public class EnemyState : MonoBehaviour
     public float attackDamage;
     public Boolean isBoss;
 
+
+
     public float EnemySpeed
     {
         get { return speed; }
@@ -30,6 +32,15 @@ public class EnemyState : MonoBehaviour
 
     public Transform[] patrolLocations;
     public int targetLocation = 0;
+
+    [SerializeField] EnemyHealthBar healthBar;
+
+    private void Awake() 
+    {
+        healthBar = GetComponentInChildren<EnemyHealthBar>();
+    }
+    
+
 
     // Start is called before the first frame update
     void Start()
