@@ -5,6 +5,9 @@ using UnityEngine;
 public class GameItem : MonoBehaviour
 {
     public Item item;
+    public string inGameName;
+    public string description;
+    
 }
 
 

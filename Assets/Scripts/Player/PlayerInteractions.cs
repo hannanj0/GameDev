@@ -38,8 +38,9 @@ public class PlayerInteractions : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (inventory.hotbarSlots[inventory.currentSlot] != null)
+            if (!inventory.hotbarSlots[inventory.currentSlot].isEmpty)
             {
+                Debug.Log("Passed");
                 inventory.hotbarSlots[inventory.currentSlot].assignedItem.Use(playerState);
                 inventory.hotbarSlots[inventory.currentSlot].RemoveItem();
             }

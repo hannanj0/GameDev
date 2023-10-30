@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 19370008}
   - component: {fileID: 3370008}
   - component: {fileID: 2370008}
+  - component: {fileID: 8145005924890561749}
   m_Layer: 0
   m_Name: Tree_Oak3Dry
   m_TagString: Untagged
@@ -93,6 +94,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &8145005924890561749
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170008}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Height: 24.36942
+  m_Direction: 1
+  m_Center: {x: 0.5, y: 11.277042, z: 0}
 --- !u!21 &2170008
 Material:
   serializedVersion: 8
