@@ -5,8 +5,12 @@ public class ThirdPersonCameraController : MonoBehaviour
     public Transform player;
     public Transform cameraTarget;
     public float rotationSpeed = 1;
-    public float distanceFromTarget = 1;
-    public float cameraHeightOffset = 2.5f; // Added this variable for height adjustment
+    public float distanceFromTarget = 2;
+    public float cameraHeightOffset = 2.5f;
+    public Vector2 pitchMinMax = new Vector2(-35, 80); // Adjust the max value to prevent flipping
+
+    private float yaw;
+    private float pitch;
 
     void Start()
     {
@@ -14,19 +18,26 @@ public class ThirdPersonCameraController : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void Update()
+    void LateUpdate()
     {
-        // Rotate Camera with Mouse
-        float horizontal = Input.GetAxis("Mouse X") * rotationSpeed;
-        player.Rotate(0, horizontal, 0);
+        // Horizontal rotation
+        yaw += Input.GetAxis("Mouse X") * rotationSpeed;
+        player.rotation = Quaternion.Euler(0, yaw, 0);
 
-        float desiredYAngle = player.eulerAngles.y;
-        Quaternion rotation = Quaternion.Euler(0, desiredYAngle, 0);
-        transform.position = player.position - (rotation * Vector3.forward * distanceFromTarget);
+        // Vertical rotation
+        pitch += Input.GetAxis("Mouse Y") * rotationSpeed;
+        pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
+
+        // Calculate rotation and position
+        Vector3 cameraPositionOffset = new Vector3(0, cameraHeightOffset, -distanceFromTarget);
         
-        // Adjust the height of the camera based on the cameraHeightOffset
-        transform.position = new Vector3(transform.position.x, player.position.y + cameraHeightOffset, transform.position.z);
+        // Apply rotation to camera
+        transform.eulerAngles = new Vector3(-pitch, yaw, 0); // Ensure pitch is applied negatively for a correct "look down" orientation
         
-        transform.LookAt(cameraTarget);
+        // Apply calculated offset from the rotated angle
+        transform.position = player.position + Quaternion.Euler(-pitch, yaw, 0) * cameraPositionOffset;
+
+        // Look at the camera target
+        transform.LookAt(cameraTarget.position);
     }
 }
