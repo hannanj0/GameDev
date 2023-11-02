@@ -75,6 +75,7 @@ public class WeaponAttack : MonoBehaviour
             // Destroy enemy when their health reaches 0 or less.
             if (enemy.Health() <= 0)
             {
+                Debug.Log(enemy.IsBoss());
                 // If final boss is killed, player wins - load win menu.
                 if (enemy.IsBoss())
                 {

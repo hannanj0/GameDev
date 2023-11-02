@@ -11,9 +11,6 @@ public class EnemyState : MonoBehaviour
     protected float attackDamage;
     protected Boolean isBoss;
 
-    public Transform[] patrolLocations;
-    public int targetLocation = 0;
-
     [SerializeField] EnemyHealthBar healthBar;
 
     public float Speed() { return speed; }
