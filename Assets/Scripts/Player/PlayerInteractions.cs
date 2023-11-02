@@ -13,6 +13,7 @@ public class PlayerInteractions : MonoBehaviour
     private float timeSinceAttacked = 0.0f;
     private bool isBeingAttacked;
     private Inventory inventory;
+    private ItemDescription background;
 
     // Start is called before the first frame update
     void Start()
@@ -20,9 +21,12 @@ public class PlayerInteractions : MonoBehaviour
         isBeingAttacked = false;
         Transform inventoryPlayer = transform.Find("Inventory");
         playerState = GetComponent<PlayerState>();
-        if (inventoryPlayer != null) { inventory = inventoryPlayer.GetComponent<Inventory>(); }
 
-        if (inventoryPlayer == null) { Debug.LogError("No inventory"); }
+        inventory = inventoryPlayer.GetComponent<Inventory>();
+        playerState = GetComponent<PlayerState>();
+
+        Transform backgroundChild = transform.Find("ItemInformation/BackgroundColour");
+        background = backgroundChild.GetComponent<ItemDescription>();
     }
 
     // Update is called once per frame
@@ -59,6 +63,8 @@ public class PlayerInteractions : MonoBehaviour
             Debug.Log("Item Picked Up");
             inventory.Add(I.item);
             other.gameObject.SetActive(false);
+
+            background.DisplayDescription(I);
         }
 
         if (other.gameObject.CompareTag("Enemy"))
