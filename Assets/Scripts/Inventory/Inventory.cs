@@ -28,7 +28,6 @@ public class Inventory : MonoBehaviour
             {
                 inventory.Add(item);
                 slot.AssignItem(item);
-                Debug.Log(inventory);
                 break;
             }
         }
