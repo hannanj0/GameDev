@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     public Transform cameraTransform;
     private bool isRunning = false;
+    private bool isSprinting = true; // Added variable to track sprinting
 
     void Start()
     {
@@ -26,11 +27,8 @@ public class PlayerMovement : MonoBehaviour
         moveDirection.y = 0;
         moveDirection.Normalize();
 
-        // Convert world moveDirection to local direction relative to the player
-        Vector3 localDirection = transform.InverseTransformDirection(moveDirection);
-
-        // Check if the player is running
-        if (directionRelativeToCamera.magnitude > 0.1f && Input.GetKey(KeyCode.LeftShift))
+        // Check if the player is allowed to sprint
+        if (isSprinting && directionRelativeToCamera.magnitude > 0.1f && Input.GetKey(KeyCode.LeftShift))
         {
             isRunning = true;
         }
@@ -49,5 +47,11 @@ public class PlayerMovement : MonoBehaviour
 
         // Move the character
         rb.MovePosition(transform.position + movement);
+    }
+
+    // Function to update sprinting based on hunger
+    public void UpdateSprinting(bool canSprint)
+    {
+        isSprinting = canSprint;
     }
 }

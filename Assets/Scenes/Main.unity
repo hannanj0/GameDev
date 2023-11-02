@@ -3312,6 +3312,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5587766706869071069, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1990600686}
     - target: {fileID: 5706939517588920427, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -3823,6 +3827,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1934546938}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1990600686 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7073333632250302483, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
+  m_PrefabInstance: {fileID: 1711270836}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2131366666
 GameObject:
   m_ObjectHideFlags: 0
