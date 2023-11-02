@@ -5,46 +5,30 @@ using UnityEngine;
 
 public class EnemyState : MonoBehaviour
 {
-    public float speed;
-    public float maxHealth;
-    public float health;
-    public float attackDamage;
-    public Boolean isBoss;
+    protected float speed;
+    protected float maxHealth;
+    protected float health;
+    protected float attackDamage;
+    protected Boolean isBoss;
 
     public Transform[] patrolLocations;
     public int targetLocation = 0;
 
     [SerializeField] EnemyHealthBar healthBar;
 
+    public float Speed() { return speed; }
+    public float MaxHealth() { return maxHealth;}
+    public float Health() { return health;}
+    public float AttackDamage() {  return attackDamage;}
+    public bool IsBoss() { return isBoss;}
+
+    public void TakeDamage(float damage) 
+    {
+        health -= damage;
+    }
+
     private void Awake()
     {
         healthBar = GetComponentInChildren<EnemyHealthBar>();
-    }
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        maxHealth = 100.0f;
-        health = maxHealth;
-        transform.position = patrolLocations[0].position;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, patrolLocations[targetLocation].position, speed * Time.deltaTime);
-        transform.LookAt(patrolLocations[targetLocation]);
-
-        if (transform.position == patrolLocations[targetLocation].position && targetLocation == 0)
-        {
-            targetLocation = 1;
-        }
-        else if (transform.position == patrolLocations[targetLocation].position && targetLocation == 1)
-        {
-            targetLocation = 0;
-        }
-
     }
 }

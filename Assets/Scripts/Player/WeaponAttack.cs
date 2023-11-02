@@ -10,13 +10,12 @@ public class WeaponAttack : MonoBehaviour
     private bool offCooldown;
 
     private bool playerAttacked;
-    private SkinnedMeshRenderer enemyMeshRenderer;
+    private MeshRenderer enemyMeshRenderer;
     private Color enemyColor;
     float flashDuration = 0.1f;
 
     public PlayerState playerState;
     public WeaponRotation weaponRotation;
-
 
     void Start()
     {
@@ -56,7 +55,7 @@ public class WeaponAttack : MonoBehaviour
         {
             // Deal damage to enemy.
             EnemyState enemy = other.gameObject.GetComponent<EnemyState>();
-            enemy.health -= playerState.attackDamage;
+            enemy.TakeDamage(playerState.attackDamage);
 
             // Tools to manage attack triggers.
             offCooldown = false;
@@ -64,20 +63,20 @@ public class WeaponAttack : MonoBehaviour
             playerAttacked = true;
 
             // Flash enemy red for damage indication. https://www.youtube.com/watch?v=3aWgstSctMw
-            enemyMeshRenderer = other.transform.Find("Meshes/Body").GetComponent<SkinnedMeshRenderer>();
+            enemyMeshRenderer = other.gameObject.GetComponent<MeshRenderer>();
             enemyColor = enemyMeshRenderer.materials[0].color;
             FlashEnemyStart();
 
             // Update enemy health bar.
             EnemyHealthBar enemyHealthBar = other.transform.Find("HealthBarContainer/HealthBar").GetComponent<EnemyHealthBar>();
-            enemyHealthBar.UpdateHealthBar(enemy.health, enemy.maxHealth);
+            enemyHealthBar.UpdateHealthBar(enemy.Health(), enemy.MaxHealth());
 
 
             // Destroy enemy when their health reaches 0 or less.
-            if (enemy.health <= 0)
+            if (enemy.Health() <= 0)
             {
                 // If final boss is killed, player wins - load win menu.
-                if (enemy.isBoss)
+                if (enemy.IsBoss())
                 {
                     Time.timeScale = 0;
                     Cursor.lockState = CursorLockMode.None;

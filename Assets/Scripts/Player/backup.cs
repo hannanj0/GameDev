@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerInteractions : MonoBehaviour
+public class Backup : MonoBehaviour
 {
     GameObject player;
     private PlayerState playerState;
@@ -34,7 +34,6 @@ public class PlayerInteractions : MonoBehaviour
             if (timeSinceAttacked >= damageTakenCooldown)
             {
                 playerState.currentHealth -= enemyState.AttackDamage();
-                Debug.Log(enemyState.AttackDamage());
                 timeSinceAttacked = 0.0f;
             }
         }
@@ -47,7 +46,7 @@ public class PlayerInteractions : MonoBehaviour
                     inventory.hotbarSlots[inventory.currentSlot].assignedItem.Use(playerState);
                     inventory.hotbarSlots[inventory.currentSlot].RemoveItem();
                 }
-             
+
             }
         }
     }
@@ -63,7 +62,6 @@ public class PlayerInteractions : MonoBehaviour
 
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("DAMAGED");
             enemyState = other.gameObject.GetComponent<EnemyState>();
             isBeingAttacked = true;
             playerState.currentHealth -= enemyState.AttackDamage();
