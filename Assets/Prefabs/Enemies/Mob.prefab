@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1969315360130101900}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.35, y: 0, z: -2.41}
+  m_LocalPosition: {x: 4.06, y: 0, z: -0.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 2402035782287141470}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.87, y: 0, z: 9.81}
+  m_LocalPosition: {x: -8.57, y: 0, z: 3.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -397,11 +397,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf2bb1bff0467b408bd521befeff1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  maxHealth: 0
-  health: 100
-  attackDamage: 10
-  isBoss: 0
   patrolLocations: []
   targetLocation: 0
   healthBar: {fileID: 8702749494107618514}
@@ -528,7 +523,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 360.298, y: 1.97}
+  m_AnchoredPosition: {x: 360.298, y: 3.97}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6148545853868880647

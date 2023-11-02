@@ -9,6 +9,12 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     public Transform cameraTransform;
     private bool isRunning = false;
+    private bool canSprint = true;
+
+    public void UpdateSprinting(bool canSprint)
+    {
+        this.canSprint = canSprint;
+    }
 
     void Start()
     {
@@ -30,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 localDirection = transform.InverseTransformDirection(moveDirection);
 
         // Check if the player is running
-        if (directionRelativeToCamera.magnitude > 0.1f && Input.GetKey(KeyCode.LeftShift))
+        if (directionRelativeToCamera.magnitude > 0.1f && Input.GetKey(KeyCode.LeftShift) && canSprint)
         {
             isRunning = true;
         }
