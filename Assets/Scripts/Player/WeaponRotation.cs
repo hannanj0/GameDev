@@ -17,17 +17,6 @@ public class WeaponRotation : MonoBehaviour
     private void Awake()
     {
         controls = new PlayerControls();
-        controls.Gameplay.attack.performed += ctx => OnAttack();
-    }
-
-    private void OnEnable()
-    {
-        controls.Gameplay.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Gameplay.Disable();
     }
 
     private void Start()

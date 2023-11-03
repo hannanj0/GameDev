@@ -8,19 +8,21 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform cameraTransform;
 
+    private Vector2 moveInput;
     private Vector3 moveDirection;
-    private Rigidbody rb;
 
     private bool isRunning = false;
     private bool canSprint = true;
 
+    private Rigidbody rb;
     private PlayerControls controls;
-    private Vector2 moveInput;
+    private PauseMenu pauseMenu;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         controls = new PlayerControls();
+        pauseMenu = GetComponent<PauseMenu>();
 
         controls.Gameplay.Move.performed += context => {
             moveInput = context.ReadValue<Vector2>();

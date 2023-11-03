@@ -1973,7 +1973,7 @@ GameObject:
   - component: {fileID: 1441820772}
   - component: {fileID: 1441820771}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Menus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2719,7 +2719,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<u>How to beat our game:</u>\r\nTaverse forwards through a deadly path
+  m_text: "<u>How to beat our game:</u>\r\nTraverse forwards through a deadly path
     of enemies and beat the enemy boss to win the game!\r\nYou should find and use
     valuable items on your journey to keep you healthy and stop you from starving!\r"
   m_isRightToLeft: 0

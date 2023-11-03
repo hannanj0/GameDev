@@ -46,7 +46,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""useItemAction"",
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""f121efee-85db-4770-8ee8-1ae77633fd35"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseItem"",
                     ""type"": ""Button"",
                     ""id"": ""21e7c0e9-9ef0-4e02-bc61-28381fc7c5cf"",
                     ""expectedControlType"": ""Button"",
@@ -55,7 +64,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""hotbarAction"",
+                    ""name"": ""HotBarSelect"",
                     ""type"": ""Button"",
                     ""id"": ""8b917506-0cc3-4a7b-b450-101850ac2998"",
                     ""expectedControlType"": ""Button"",
@@ -64,9 +73,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""attack"",
+                    ""name"": ""Pause"",
                     ""type"": ""Button"",
-                    ""id"": ""f121efee-85db-4770-8ee8-1ae77633fd35"",
+                    ""id"": ""44d8c38c-3669-4f3e-b7ce-47bac9da9ae6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -108,9 +117,31 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""up"",
+                    ""id"": ""0ebfdbae-cb11-4bb8-863f-fc9afa56da8d"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""11f38a56-1cbc-41d8-9829-4d4fbb5929b0"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": ""down"",
                     ""id"": ""e07790dc-b735-458e-9019-fb84a129bee0"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -130,6 +161,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""left"",
+                    ""id"": ""4aa1a907-d4fc-4604-8d85-feff9551ac96"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": ""right"",
                     ""id"": ""90b8ca25-bca1-4e7e-9452-0767ff7ffd6b"",
                     ""path"": ""<Keyboard>/d"",
@@ -141,13 +183,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""right"",
+                    ""id"": ""095275e4-df0e-47bd-9935-d371fb15bca4"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""2c66d7a5-e34b-4c4f-9726-a4b56304cd7d"",
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""useItemAction"",
+                    ""action"": ""UseItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -158,7 +211,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""hotbarAction"",
+                    ""action"": ""HotBarSelect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -169,7 +222,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""hotbarAction"",
+                    ""action"": ""HotBarSelect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -180,7 +233,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""hotbarAction"",
+                    ""action"": ""HotBarSelect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -191,7 +244,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""hotbarAction"",
+                    ""action"": ""HotBarSelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a6ada672-0eea-445c-9797-a731a1521137"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -202,22 +266,40 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""attack"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Keyboard & Mouse"",
+            ""bindingGroup"": ""Keyboard & Mouse"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_Sprint = m_Gameplay.FindAction("Sprint", throwIfNotFound: true);
-        m_Gameplay_useItemAction = m_Gameplay.FindAction("useItemAction", throwIfNotFound: true);
-        m_Gameplay_hotbarAction = m_Gameplay.FindAction("hotbarAction", throwIfNotFound: true);
-        m_Gameplay_attack = m_Gameplay.FindAction("attack", throwIfNotFound: true);
+        m_Gameplay_Attack = m_Gameplay.FindAction("Attack", throwIfNotFound: true);
+        m_Gameplay_UseItem = m_Gameplay.FindAction("UseItem", throwIfNotFound: true);
+        m_Gameplay_HotBarSelect = m_Gameplay.FindAction("HotBarSelect", throwIfNotFound: true);
+        m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -281,18 +363,20 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Move;
     private readonly InputAction m_Gameplay_Sprint;
-    private readonly InputAction m_Gameplay_useItemAction;
-    private readonly InputAction m_Gameplay_hotbarAction;
-    private readonly InputAction m_Gameplay_attack;
+    private readonly InputAction m_Gameplay_Attack;
+    private readonly InputAction m_Gameplay_UseItem;
+    private readonly InputAction m_Gameplay_HotBarSelect;
+    private readonly InputAction m_Gameplay_Pause;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
         public GameplayActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
         public InputAction @Sprint => m_Wrapper.m_Gameplay_Sprint;
-        public InputAction @useItemAction => m_Wrapper.m_Gameplay_useItemAction;
-        public InputAction @hotbarAction => m_Wrapper.m_Gameplay_hotbarAction;
-        public InputAction @attack => m_Wrapper.m_Gameplay_attack;
+        public InputAction @Attack => m_Wrapper.m_Gameplay_Attack;
+        public InputAction @UseItem => m_Wrapper.m_Gameplay_UseItem;
+        public InputAction @HotBarSelect => m_Wrapper.m_Gameplay_HotBarSelect;
+        public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -308,15 +392,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
-            @useItemAction.started += instance.OnUseItemAction;
-            @useItemAction.performed += instance.OnUseItemAction;
-            @useItemAction.canceled += instance.OnUseItemAction;
-            @hotbarAction.started += instance.OnHotbarAction;
-            @hotbarAction.performed += instance.OnHotbarAction;
-            @hotbarAction.canceled += instance.OnHotbarAction;
-            @attack.started += instance.OnAttack;
-            @attack.performed += instance.OnAttack;
-            @attack.canceled += instance.OnAttack;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+            @UseItem.started += instance.OnUseItem;
+            @UseItem.performed += instance.OnUseItem;
+            @UseItem.canceled += instance.OnUseItem;
+            @HotBarSelect.started += instance.OnHotBarSelect;
+            @HotBarSelect.performed += instance.OnHotBarSelect;
+            @HotBarSelect.canceled += instance.OnHotBarSelect;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -327,15 +414,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
-            @useItemAction.started -= instance.OnUseItemAction;
-            @useItemAction.performed -= instance.OnUseItemAction;
-            @useItemAction.canceled -= instance.OnUseItemAction;
-            @hotbarAction.started -= instance.OnHotbarAction;
-            @hotbarAction.performed -= instance.OnHotbarAction;
-            @hotbarAction.canceled -= instance.OnHotbarAction;
-            @attack.started -= instance.OnAttack;
-            @attack.performed -= instance.OnAttack;
-            @attack.canceled -= instance.OnAttack;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+            @UseItem.started -= instance.OnUseItem;
+            @UseItem.performed -= instance.OnUseItem;
+            @UseItem.canceled -= instance.OnUseItem;
+            @HotBarSelect.started -= instance.OnHotBarSelect;
+            @HotBarSelect.performed -= instance.OnHotBarSelect;
+            @HotBarSelect.canceled -= instance.OnHotBarSelect;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -353,12 +443,22 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
+    private int m_KeyboardMouseSchemeIndex = -1;
+    public InputControlScheme KeyboardMouseScheme
+    {
+        get
+        {
+            if (m_KeyboardMouseSchemeIndex == -1) m_KeyboardMouseSchemeIndex = asset.FindControlSchemeIndex("Keyboard & Mouse");
+            return asset.controlSchemes[m_KeyboardMouseSchemeIndex];
+        }
+    }
     public interface IGameplayActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
-        void OnUseItemAction(InputAction.CallbackContext context);
-        void OnHotbarAction(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnUseItem(InputAction.CallbackContext context);
+        void OnHotBarSelect(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

@@ -24,7 +24,16 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "useItemAction",
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "f121efee-85db-4770-8ee8-1ae77633fd35",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UseItem",
                     "type": "Button",
                     "id": "21e7c0e9-9ef0-4e02-bc61-28381fc7c5cf",
                     "expectedControlType": "Button",
@@ -33,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "hotbarAction",
+                    "name": "HotBarSelect",
                     "type": "Button",
                     "id": "8b917506-0cc3-4a7b-b450-101850ac2998",
                     "expectedControlType": "Button",
@@ -42,9 +51,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "attack",
+                    "name": "Pause",
                     "type": "Button",
-                    "id": "f121efee-85db-4770-8ee8-1ae77633fd35",
+                    "id": "44d8c38c-3669-4f3e-b7ce-47bac9da9ae6",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -86,9 +95,31 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "up",
+                    "id": "0ebfdbae-cb11-4bb8-863f-fc9afa56da8d",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "11f38a56-1cbc-41d8-9829-4d4fbb5929b0",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "down",
                     "id": "e07790dc-b735-458e-9019-fb84a129bee0",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -108,6 +139,17 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "left",
+                    "id": "4aa1a907-d4fc-4604-8d85-feff9551ac96",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "right",
                     "id": "90b8ca25-bca1-4e7e-9452-0767ff7ffd6b",
                     "path": "<Keyboard>/d",
@@ -119,13 +161,24 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "right",
+                    "id": "095275e4-df0e-47bd-9935-d371fb15bca4",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "2c66d7a5-e34b-4c4f-9726-a4b56304cd7d",
                     "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "useItemAction",
+                    "action": "UseItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -136,7 +189,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "hotbarAction",
+                    "action": "HotBarSelect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -147,7 +200,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "hotbarAction",
+                    "action": "HotBarSelect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -158,7 +211,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "hotbarAction",
+                    "action": "HotBarSelect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -169,7 +222,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "hotbarAction",
+                    "action": "HotBarSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a6ada672-0eea-445c-9797-a731a1521137",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -180,12 +244,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "attack",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Keyboard & Mouse",
+            "bindingGroup": "Keyboard & Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }

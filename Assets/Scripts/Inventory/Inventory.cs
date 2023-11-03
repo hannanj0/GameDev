@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class Inventory : MonoBehaviour
 {
     public PlayerControls controls;  // Using the generated C# class
@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
     private void Awake()
     {
         controls = new PlayerControls();  // Initialize the controls
-        controls.Gameplay.hotbarAction.performed += OnHotbarKey;  // Update reference to Gameplay
+        controls.Gameplay.HotBarSelect.performed += OnHotbarKey;  // Update reference to Gameplay
     }
 
     private void OnEnable()
@@ -25,7 +25,7 @@ public class Inventory : MonoBehaviour
         controls.Gameplay.Disable();
     }
 
-    void OnHotbarKey(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    void OnHotbarKey(InputAction.CallbackContext context)
     {
         Debug.Log(context.control.name);
         string key = context.control.name;
