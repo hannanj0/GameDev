@@ -7,7 +7,8 @@ public class MainMenu : MonoBehaviour
 {
 
     public GameObject mainMenuScreen;
-    public GameObject instructionsScreen;
+    public GameObject instructionsPage1;
+    public GameObject instructionsPage2;
 
     void Start()
     {
@@ -20,16 +21,49 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadSceneAsync(1);
     }
 
-    public void LoadInstructions()
-    {
-        mainMenuScreen.SetActive(false);
-        instructionsScreen.SetActive(true);
-    }
-
-    public void BackToMainMenu()
+    public void LoadMainMenu()
     {
         mainMenuScreen.SetActive(true);
-        instructionsScreen.SetActive(false);
+
+        if (instructionsPage1.activeSelf)
+        {
+            instructionsPage1.SetActive(false);
+        }
+
+        if (instructionsPage2.activeSelf)
+        {
+            instructionsPage2.SetActive(false);
+        }
+    }
+
+    public void LoadInstructionsPage1()
+    {
+        instructionsPage1.SetActive(true);
+
+        if (mainMenuScreen.activeSelf)
+        {
+            mainMenuScreen.SetActive(false);
+        }
+
+        if (instructionsPage2.activeSelf) 
+        {
+            instructionsPage2.SetActive(false); 
+        }
+    }
+
+    public void LoadInstructionsPage2()
+    {
+        instructionsPage2.SetActive(true);
+
+        if (mainMenuScreen.activeSelf)
+        {
+            mainMenuScreen.SetActive(false);
+        }
+
+        if (instructionsPage1.activeSelf)
+        {
+            instructionsPage1.SetActive(false);
+        }
     }
 
     public void QuitGame()
