@@ -1,60 +1,62 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PlayerInteractions : MonoBehaviour
 {
     GameObject player;
-    private PlayerState playerState;
-    private EnemyState enemyState;
+    public PlayerState playerState;
 
-    private float damageTakenCooldown = 2.0f;
-    private float timeSinceAttacked = 0.0f;
-    private bool isBeingAttacked;
+    private float enemyCollisionCooldown = 0.0f;
+    private float enemyCollisionCooldownDuration = 2.0f;
+    private bool offCooldown;
     private Inventory inventory;
-    private ItemDescription background;
+    private InputAction useItemAction;
 
     // Start is called before the first frame update
     void Start()
     {
-        isBeingAttacked = false;
+        offCooldown = true;
         Transform inventoryPlayer = transform.Find("Inventory");
         playerState = GetComponent<PlayerState>();
+        if (inventoryPlayer != null) { inventory = inventoryPlayer.GetComponent<Inventory>(); }
 
-        inventory = inventoryPlayer.GetComponent<Inventory>();
-        playerState = GetComponent<PlayerState>();
+        if (inventoryPlayer == null) { Debug.LogError("No inventory"); }
 
-        Transform backgroundChild = transform.Find("ItemInformation/BackgroundColour");
-        background = backgroundChild.GetComponent<ItemDescription>();
+        // Set up input action for "UseItem"
+        useItemAction = new InputAction("UseItem", binding: "<Keyboard>/f");
+        useItemAction.performed += UseItem;
+        useItemAction.Enable();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isBeingAttacked)
+        if (!offCooldown)
         {
-            timeSinceAttacked += Time.deltaTime;
-            if (timeSinceAttacked >= damageTakenCooldown)
+            enemyCollisionCooldown += Time.deltaTime;
+            if (enemyCollisionCooldown >= enemyCollisionCooldownDuration)
             {
-                playerState.currentHealth -= enemyState.AttackDamage();
-                Debug.Log(enemyState.AttackDamage());
-                timeSinceAttacked = 0.0f;
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            if (!inventory.hotbarSlots[inventory.currentSlot].isEmpty)
-            {
-                if (inventory.hotbarSlots[inventory.currentSlot].assignedItem.consumable)
-                {
-                    inventory.hotbarSlots[inventory.currentSlot].assignedItem.Use(playerState);
-                    inventory.hotbarSlots[inventory.currentSlot].RemoveItem();
-                }
-             
+                offCooldown = true;
+                enemyCollisionCooldown = 0.0f;
             }
         }
     }
+
+    private void UseItem(InputAction.CallbackContext context)
+    {
+        Debug.Log(context.control.name);
+        if (!inventory.hotbarSlots[inventory.currentSlot].isEmpty)
+        {
+            if (inventory.hotbarSlots[inventory.currentSlot].assignedItem.consumable)
+            {
+                inventory.hotbarSlots[inventory.currentSlot].assignedItem.Use(playerState);
+                inventory.hotbarSlots[inventory.currentSlot].RemoveItem();
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Item"))
@@ -63,25 +65,22 @@ public class PlayerInteractions : MonoBehaviour
             Debug.Log("Item Picked Up");
             inventory.Add(I.item);
             other.gameObject.SetActive(false);
-
-            background.DisplayDescription(I);
         }
 
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") && offCooldown)
         {
-            Debug.Log("DAMAGED");
-            enemyState = other.gameObject.GetComponent<EnemyState>();
-            isBeingAttacked = true;
-            playerState.currentHealth -= enemyState.AttackDamage();
+            Debug.Log("player collided");
+            EnemyState enemy = other.gameObject.GetComponent<EnemyState>();
+            playerState.currentHealth -= enemy.AttackDamage();
         }
+        offCooldown = false;
+        enemyCollisionCooldown = 0.0f;
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnDestroy()
     {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            isBeingAttacked = false;
-            timeSinceAttacked = 0.0f;
-        }
+        // Clean up and disable the action when this object is destroyed
+        useItemAction.performed -= UseItem;
+        useItemAction.Disable();
     }
 }

@@ -1,15 +1,34 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.InputSystem;  // Import the new input system
 
 public class WeaponRotation : MonoBehaviour
 {
     public Vector3 targetRotation;
-    public float rotationSpeed = 250.0f; // Speed of rotation of weapon.
+    public float rotationSpeed = 250.0f;
     public bool isAttacking;
 
     private Quaternion initialRotation;
     private Quaternion finalRotation;
     private float lerpTime = 0f;
+
+    private PlayerControls controls;  // Declare controls
+
+    private void Awake()
+    {
+        controls = new PlayerControls();
+        controls.Gameplay.attack.performed += ctx => OnAttack();
+    }
+
+    private void OnEnable()
+    {
+        controls.Gameplay.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Gameplay.Disable();
+    }
 
     private void Start()
     {
@@ -18,9 +37,9 @@ public class WeaponRotation : MonoBehaviour
         finalRotation = Quaternion.Euler(targetRotation);
     }
 
-    private void Update()
+    private void OnAttack()  // OnAttack method
     {
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0)) && !isAttacking)
+        if (!isAttacking)
         {
             isAttacking = true;
             StartCoroutine(RotateToTargetRotation());

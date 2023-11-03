@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ThirdPersonCameraController : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class ThirdPersonCameraController : MonoBehaviour
 
     private float yaw;
     private float pitch;
+    private Vector2 currentMouseDelta = Vector2.zero;
 
     void Start()
     {
@@ -21,23 +23,29 @@ public class ThirdPersonCameraController : MonoBehaviour
         Cursor.visible = false;
     }
 
+    void Update()
+    {
+        // Capture the mouse movement
+        currentMouseDelta = Mouse.current.delta.ReadValue();
+    }
+
     void LateUpdate()
     {
         if (!pauseMenu.GameIsPaused())
         {
             // Horizontal rotation
-            yaw += Input.GetAxis("Mouse X") * rotationSpeed;
+            yaw += currentMouseDelta.x * rotationSpeed * Time.deltaTime;
             player.rotation = Quaternion.Euler(0, yaw, 0);
 
             // Vertical rotation
-            pitch += Input.GetAxis("Mouse Y") * rotationSpeed;
+            pitch -= currentMouseDelta.y * rotationSpeed * Time.deltaTime; // Notice we subtract to maintain the orientation
             pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
 
             // Calculate rotation and position
             Vector3 cameraPositionOffset = new Vector3(0, cameraHeightOffset, -distanceFromTarget);
 
             // Apply rotation to camera
-            transform.eulerAngles = new Vector3(-pitch, yaw, 0); // Ensure pitch is applied negatively for a correct "look down" orientation
+            transform.eulerAngles = new Vector3(-pitch, yaw, 0);
 
             // Apply calculated offset from the rotated angle
             transform.position = player.position + Quaternion.Euler(-pitch, yaw, 0) * cameraPositionOffset;
