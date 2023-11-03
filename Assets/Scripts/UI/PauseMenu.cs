@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    //public GameObject pauseMenu;
+    public GameObject pauseMenu;
 
-    //private bool gameIsPaused = false;
+    private bool gameIsPaused = false;
+
+    public bool GameIsPaused() {  return gameIsPaused; }
 
     // Start is called before the first frame update
     void Start()
@@ -14,40 +16,40 @@ public class PauseMenu : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Escape))
-    //    {
-    //        if (gameIsPaused)
-    //        {
-    //            ResumeGame();
-    //        }
+    //Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (gameIsPaused)
+            {
+                ResumeGame();
+            }
 
-    //        else
-    //        {
-    //            PauseGame();
-    //        }
-    //    }
-    //}
+            else
+            {
+                PauseGame();
+            }
+        }
+    }
 
     public void ResumeGame()
     {
         
         Time.timeScale = 1;
-        //pauseMenu.SetActive(false);
+        pauseMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        //gameIsPaused = false;
+        gameIsPaused = false;
     }
 
     public void PauseGame()
     {
         Time.timeScale = 0;
-        //pauseMenu.SetActive(true);
+        pauseMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        //gameIsPaused = true;
+        gameIsPaused = true;
     }
 
     public void QuitGame()

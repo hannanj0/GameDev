@@ -5,11 +5,14 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5.0f;
     public float runMultiplier = 2.0f;
 
+    public Transform cameraTransform;
+
     private Vector3 moveDirection;
     private Rigidbody rb;
-    public Transform cameraTransform;
+   
     private bool isRunning = false;
     private bool canSprint = true;
+
 
     public void UpdateSprinting(bool canSprint)
     {
@@ -31,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = cameraTransform.TransformDirection(directionRelativeToCamera);
         moveDirection.y = 0;
         moveDirection.Normalize();
+
 
         // Convert world moveDirection to local direction relative to the player
         Vector3 localDirection = transform.InverseTransformDirection(moveDirection);
