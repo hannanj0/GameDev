@@ -26,10 +26,11 @@ public class WeaponRotation : MonoBehaviour
         finalRotation = Quaternion.Euler(targetRotation);
     }
 
-    private void OnAttack()  // OnAttack method
+    public void BeginAttack()  // OnAttack method
     {
         if (!isAttacking)
         {
+            Debug.Log("attack");
             isAttacking = true;
             StartCoroutine(RotateToTargetRotation());
         }

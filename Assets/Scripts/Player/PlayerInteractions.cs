@@ -6,13 +6,15 @@ using UnityEngine.InputSystem;
 public class PlayerInteractions : MonoBehaviour
 {
     GameObject player;
-    public PlayerState playerState;
 
     private float enemyCollisionCooldown = 0.0f;
     private float enemyCollisionCooldownDuration = 2.0f;
     private bool offCooldown;
+
+    private PlayerState playerState;
     private Inventory inventory;
     private InputAction useItemAction;
+    private WeaponRotation weaponRotation;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,8 @@ public class PlayerInteractions : MonoBehaviour
         offCooldown = true;
         Transform inventoryPlayer = transform.Find("Inventory");
         playerState = GetComponent<PlayerState>();
+        weaponRotation = transform.Find("WeaponSlot/SwordPivot").GetComponent<WeaponRotation>();
+
         if (inventoryPlayer != null) { inventory = inventoryPlayer.GetComponent<Inventory>(); }
 
         if (inventoryPlayer == null) { Debug.LogError("No inventory"); }
@@ -75,6 +79,11 @@ public class PlayerInteractions : MonoBehaviour
         }
         offCooldown = false;
         enemyCollisionCooldown = 0.0f;
+    }
+
+    private void OnAttack()
+    {
+        weaponRotation.BeginAttack();
     }
 
     private void OnDestroy()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class WeaponAttack : MonoBehaviour
 {
@@ -45,6 +46,11 @@ public class WeaponAttack : MonoBehaviour
                 enemyAttackCooldown = 0.0f;
             }
         }
+    }
+
+    void OnAttack()
+    {
+        weaponRotation.BeginAttack();
     }
 
     // Trigger events dealing damage to enemies.
