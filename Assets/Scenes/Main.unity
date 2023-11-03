@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2082,6 +2082,14 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5557094477474657324, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
+      propertyPath: m_Actions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 6302e087e4cc4434e882ea9659e85d26, type: 3}
+    - target: {fileID: 5557094477474657324, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: Gameplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 5557094477474657324, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
       propertyPath: m_NotificationBehavior
       value: 2
       objectReference: {fileID: 0}
@@ -2091,35 +2099,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5557094477474657324, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_ActionId
-      value: a52b3ef2-f752-4200-a258-367bd5abe2fd
+      value: 0d9291ff-eb96-4759-b0fb-067117ac4529
       objectReference: {fileID: 0}
     - target: {fileID: 5557094477474657324, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_ActionId
-      value: f65c4733-4d71-47e4-96a1-c083db12a3da
+      value: a45b335a-18fb-4735-95f8-6b2d5e9a7541
       objectReference: {fileID: 0}
     - target: {fileID: 5557094477474657324, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_ActionId
-      value: 411a85e8-b4d6-4974-b8b2-ad9f5a71b71d
+      value: 21e7c0e9-9ef0-4e02-bc61-28381fc7c5cf
       objectReference: {fileID: 0}
     - target: {fileID: 5557094477474657324, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_ActionId
-      value: b4a27632-b1f3-4877-9d76-14259ccf8d92
+      value: 8b917506-0cc3-4a7b-b450-101850ac2998
       objectReference: {fileID: 0}
     - target: {fileID: 5557094477474657324, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_ActionName
-      value: 'Player/Move[/Keyboard/w,/Keyboard/d,/Keyboard/a,/Keyboard/s,/Keyboard/upArrow,/Keyboard/rightArrow,/Keyboard/leftArrow,/Keyboard/downArrow]'
+      value: 'Gameplay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
       objectReference: {fileID: 0}
     - target: {fileID: 5557094477474657324, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_ActionName
-      value: Player/Look
+      value: 'Gameplay/Sprint[/Keyboard/shift]'
       objectReference: {fileID: 0}
     - target: {fileID: 5557094477474657324, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_ActionName
-      value: 'Player/Attack[/Mouse/leftButton]'
+      value: 'Gameplay/useItemAction[/Keyboard/f]'
       objectReference: {fileID: 0}
     - target: {fileID: 5557094477474657324, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_ActionName
-      value: 'Camera/Camera[/Mouse/leftButton]'
+      value: 'Gameplay/hotbarAction[/Keyboard/1,/Keyboard/2,/Keyboard/3,/Keyboard/4]'
       objectReference: {fileID: 0}
     - target: {fileID: 5587766706869071069, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
       propertyPath: playerMovement

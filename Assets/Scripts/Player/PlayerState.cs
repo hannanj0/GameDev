@@ -73,11 +73,11 @@ public class PlayerState : MonoBehaviour
         }
 
 
-        // if user presses N key, we will take -10 damage
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            currentHealth -= 10;
-        }
+        // // if user presses N key, we will take -10 damage
+        // if (Input.GetKeyDown(KeyCode.N))
+        // {
+        //     currentHealth -= 10;
+        // }
 
         // the game ends when health reaches 0, this is the loss condition
         if (currentHealth <=0)
