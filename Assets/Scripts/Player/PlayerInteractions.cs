@@ -14,6 +14,7 @@ public class PlayerInteractions : MonoBehaviour
     private float enemyAttackCooldownDuration = 2.0f; // Duration the enemy has to wait before attacking again.
 
     private PlayerState playerState; // Player stats inside script.
+    private EnemyState enemyState;
     private Inventory inventory; // Player manages their inventory.
     private InputAction useItemAction;
     private WeaponRotation weaponRotation; // Player rotates their weapon to attack.
@@ -49,6 +50,7 @@ public class PlayerInteractions : MonoBehaviour
             enemyAttackCooldown += Time.deltaTime;
             if (enemyAttackCooldown >= enemyAttackCooldownDuration)
             {
+                playerState.currentHealth -= enemyState.AttackDamage();
                 canBeAttacked = true;
                 enemyAttackCooldown = 0.0f;
             }
@@ -72,6 +74,27 @@ public class PlayerInteractions : MonoBehaviour
     /// Handles trigger colliders - items and enemies.
     /// </summary>
     /// <param name="other"> Other entity colliding with the player. </param>
+    private void OnCollisionEnter(Collision other)
+    {
+        // Take damage from the enemy when the player can be attacked again.
+        if (other.gameObject.CompareTag("Enemy") && canBeAttacked)
+        {
+            enemyState = other.gameObject.GetComponent<EnemyState>();
+            playerState.currentHealth -= enemyState.AttackDamage();
+            canBeAttacked = false;
+        }
+        // The player cannot be attacked for the AttackCooldownDuration since they just got attacked.
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            canBeAttacked = true;
+            enemyAttackCooldown = 0.0f;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         //
@@ -82,16 +105,6 @@ public class PlayerInteractions : MonoBehaviour
             inventory.Add(I.item);
             other.gameObject.SetActive(false);
         }
-
-        // Take damage from the enemy when the player can be attacked again.
-        if (other.gameObject.CompareTag("Enemy") && canBeAttacked)
-        {
-            EnemyState enemy = other.gameObject.GetComponent<EnemyState>();
-            playerState.currentHealth -= enemy.AttackDamage();
-        }
-        // The player cannot be attacked for the AttackCooldownDuration since they just got attacked.
-        canBeAttacked = false;
-        enemyAttackCooldown = 0.0f;
     }
 
     /// <summary>
