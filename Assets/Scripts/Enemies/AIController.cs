@@ -73,7 +73,7 @@ public class AIController : MonoBehaviour
     if (!m_CaughtPlayer)
     {
         float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerPosition);
-        float minDistanceToPlayer = 2.5f; // Adjust this value as needed
+        float minDistanceToPlayer = 3f; // Adjust this value as needed
 
         if (distanceToPlayer > minDistanceToPlayer)
         {
