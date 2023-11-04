@@ -56,6 +56,13 @@ Implementing the flashing red colour in WeaponAttack.cs is more closely followed
 
 5. General C# Documentation Guidance.
    - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments assisted with proper C# documentation.
+
+#### Hugos's attributions
+Note: Most of these are sources used for inspiration and understanding concepts and bugs better, so no code is copied directly.
+Implementing the flashing red colour in WeaponAttack.cs is more closely followed on the other hand.
+1. PlayerMovement.cs
+   - https://www.youtube.com/watch?v=vFV0uJ0KE2Q assisted with using the new input system with movement.
+   - https://www.youtube.com/watch?v=3aWgstSctMw assisted with making the enemy flash red.
     
 ## Getting Started
 
