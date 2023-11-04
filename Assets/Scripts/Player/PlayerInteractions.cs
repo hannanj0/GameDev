@@ -4,25 +4,25 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
-/// The PlayerInteractions script is a Unity MonoBehaviour class that handles interactions and behaviors for a player character in the game.
-/// It manages player input, item usage, collisions with enemies and items, and more.
+/// The PlayerInteractions script manages the player's interactions in the game.
+/// It manages item usage, the inventory and taking damage.
 /// </summary>
 public class PlayerInteractions : MonoBehaviour
 {
-    private bool offCooldown;
-    private float enemyCollisionCooldown = 0.0f;
-    private float enemyCollisionCooldownDuration = 2.0f;
+    private bool canBeAttacked; // Cooldown to check if the player can be attacked.
+    private float enemyAttackCooldown = 0.0f; // Counter to see how often the enemy can attack the player.
+    private float enemyAttackCooldownDuration = 2.0f; // Duration the enemy has to wait before attacking again.
 
-    private PlayerState playerState;
-    private Inventory inventory;
+    private PlayerState playerState; // Player stats inside script.
+    private Inventory inventory; // Player manages their inventory.
     private InputAction useItemAction;
-    private WeaponRotation weaponRotation;
+    private WeaponRotation weaponRotation; // Player rotates their weapon to attack.
 
     
     void Start()
     {
         // Initialise variables.
-        offCooldown = true;
+        canBeAttacked = true;
 
         Transform inventoryPlayer = transform.Find("Inventory");
         playerState = GetComponent<PlayerState>();
@@ -39,18 +39,18 @@ public class PlayerInteractions : MonoBehaviour
     }
 
     /// <summary>
-    /// Update the boolean to indicate whether the player can take damage.
-    /// The player cannot be attacked for 2 seconds after being attacked.
+    /// Update the boolean to indicate whether the player can be attacked.
+    /// If the duration is reached, they can be attacked. After, being attacked, the cooldown applies again.
     /// </summary>
     void Update()
     {
-        if (!offCooldown)
+        if (!canBeAttacked)
         {
-            enemyCollisionCooldown += Time.deltaTime;
-            if (enemyCollisionCooldown >= enemyCollisionCooldownDuration)
+            enemyAttackCooldown += Time.deltaTime;
+            if (enemyAttackCooldown >= enemyAttackCooldownDuration)
             {
-                offCooldown = true;
-                enemyCollisionCooldown = 0.0f;
+                canBeAttacked = true;
+                enemyAttackCooldown = 0.0f;
             }
         }
     }
@@ -83,15 +83,15 @@ public class PlayerInteractions : MonoBehaviour
             other.gameObject.SetActive(false);
         }
 
-        // Take damage from the enemy when player's protection runs out (every 2 seconds).
-        if (other.gameObject.CompareTag("Enemy") && offCooldown)
+        // Take damage from the enemy when the player can be attacked again.
+        if (other.gameObject.CompareTag("Enemy") && canBeAttacked)
         {
-            Debug.Log("player collided");
             EnemyState enemy = other.gameObject.GetComponent<EnemyState>();
             playerState.currentHealth -= enemy.AttackDamage();
         }
-        offCooldown = false;
-        enemyCollisionCooldown = 0.0f;
+        // The player cannot be attacked for the AttackCooldownDuration since they just got attacked.
+        canBeAttacked = false;
+        enemyAttackCooldown = 0.0f;
     }
 
     /// <summary>

@@ -8,14 +8,18 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class WeaponRotation : MonoBehaviour
 {
-    public Vector3 targetRotation; // The weapon will rotate to this target rotation.
-    public float rotationSpeed = 250.0f; // The speed the weapon will rotate by.
     public bool isAttacking; // Check whether the player is attacking.
+    public float rotationSpeed = 250.0f; // The speed the weapon will rotate by.
+    public Vector3 targetRotation; // The weapon will rotate to this target rotation.
+
+    private float currentRotation = 0f; // Used to ensure smoothness in rotations. Interpolation from initial rotation to final, vice versa.
 
     private Quaternion initialRotation; // An initial rotation for the weapon.
     private Quaternion finalRotation; // A final rotation for the weapon
-    private float normalisedAttackingTime = 0f; // Used to ensure smoothness in rotations. Interpolation time.
 
+    /// <summary>
+    /// Initialise variables. No attacking when the game behins. Set initial and target rotation to rotate to.
+    /// </summary>
     private void Start()
     {
         isAttacking = false;
@@ -23,6 +27,9 @@ public class WeaponRotation : MonoBehaviour
         finalRotation = Quaternion.Euler(targetRotation);
     }
 
+    /// <summary>
+    /// When the user attacks (and previously was not attacking), begin the attack and Coroutine rotation.
+    /// </summary>
     public void BeginAttack()
     {
         if (!isAttacking)
@@ -33,35 +40,36 @@ public class WeaponRotation : MonoBehaviour
     }
 
     /// <summary>
-    /// Coroutine to smoothly rotate weapon to a target rotation and back.
+    /// Coroutine to smoothly rotate weapon to a target rotation and back using a normalised time tracker and Slerp.
     /// </summary>
     private IEnumerator RotateToTargetRotation()
     {
-        float rotationDuration = Quaternion.Angle(transform.localRotation, finalRotation);
-        normalisedAttackingTime = 0f;
+        // Rotate to target location which is when normalised currentRotation reaches 1 (final rotation).
+        currentRotation = 0f;
+        float rotationAngle = Quaternion.Angle(transform.localRotation, finalRotation);
 
-        while (normalisedAttackingTime < 1)
+        while (currentRotation < 1)
         {
-            normalisedAttackingTime += Time.deltaTime * rotationSpeed / rotationDuration;
-            transform.localRotation = Quaternion.Slerp(initialRotation, finalRotation, normalisedAttackingTime);
+            currentRotation += Time.deltaTime * rotationSpeed / rotationAngle;
+            transform.localRotation = Quaternion.Slerp(initialRotation, finalRotation, currentRotation);
             yield return null;
         }
 
-        // Make sure the final rotation is exactly reached, pause for 0.1 seconds.
+        // Make sure the final rotation is exactly reached. Pause rotation for 0.1 seconds.
         transform.localRotation = finalRotation;
         yield return new WaitForSeconds(0.1f);
 
-        // Rotate back to the initial rotation
-        normalisedAttackingTime = 0f;
+        // Rotate back to the initial rotation. Reset currentRotation to interpolate between start and end point again.
+        currentRotation = 0f;
 
-        while (normalisedAttackingTime < 1)
+        while (currentRotation < 1)
         {
-            normalisedAttackingTime += Time.deltaTime * rotationSpeed / rotationDuration;
-            transform.localRotation = Quaternion.Slerp(finalRotation, initialRotation, normalisedAttackingTime);
+            currentRotation += Time.deltaTime * rotationSpeed / rotationAngle;
+            transform.localRotation = Quaternion.Slerp(finalRotation, initialRotation, currentRotation);
             yield return null;
         }
 
-        // Make sure the initial rotation is exactly reached, stop attacking.
+        // Make sure the initial rotation is exactly reached. Stop attacking.
         transform.localRotation = initialRotation;
         isAttacking = false;
     }

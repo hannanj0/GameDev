@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// The MobEnemyState script is a type of EnemyState, keeping track of mob enemies' states.
-/// The speed, maximum health, current health, attack damage and boolean for isBoss are initialised.
+/// The MobEnemyState script is a type of EnemyState, keeping track of mob enemies' stats.
 /// </summary>
 public class MobEnemyState : EnemyState
 {
@@ -13,10 +12,10 @@ public class MobEnemyState : EnemyState
     /// </summary>
     void Start()
     {
-        speed = 3.0f;      
-        maxHealth = 100.0f;  
-        health = maxHealth;  
-        attackDamage = 10.0f;
-        isBoss = false;       
+        speed = 3.0f; // Mob movement speed.
+        maxHealth = 100.0f;  // Mob maximum health.
+        health = maxHealth;  // Set the current health to the max health when enemies are initialised.
+        attackDamage = 10.0f; // Mob attack damage.
+        isBoss = false; // Mobs are not bosses.       
     }
 }

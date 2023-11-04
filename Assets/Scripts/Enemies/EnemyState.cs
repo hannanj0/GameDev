@@ -11,13 +11,13 @@ using UnityEngine;
 /// </summary>
 public class EnemyState : MonoBehaviour
 {
-    protected float speed;
-    protected float maxHealth;
-    protected float health;
-    protected float attackDamage;
-    protected Boolean isBoss;
+    protected float speed; // Enemy speed.
+    protected float maxHealth; // Enemy maximum health.
+    protected float health; // Enemy current health.
+    protected float attackDamage; // Enemy attack damage.
+    protected Boolean isBoss; // Check if enemy is a boss.
 
-    [SerializeField] EnemyHealthBar healthBar;
+    [SerializeField] EnemyHealthBar healthBar; // Enemy health bar UI
 
     // Getter methods for attributes
     public float Speed() { return speed; }

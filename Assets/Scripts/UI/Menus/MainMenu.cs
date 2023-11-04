@@ -8,9 +8,9 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class MainMenu : MonoBehaviour
 {
-    public GameObject mainMenuScreen;
-    public GameObject instructionsPage1;
-    public GameObject instructionsPage2;
+    public GameObject mainMenuScreen; // Main menu screen object to hide and set visible.
+    public GameObject instructionsPage1; // Instructions page 1 object to hide and set visible.
+    public GameObject instructionsPage2; // Instructions page 2 object to hide and set visible.
 
     /// <summary>
     /// Load the game and set time to flow at the normal rate.

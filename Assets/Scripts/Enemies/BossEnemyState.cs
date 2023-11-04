@@ -13,10 +13,10 @@ public class BossEnemyState : EnemyState
     /// </summary>
     void Start()
     {
-        speed = 1.5f;
-        maxHealth = 150.0f;
-        health = maxHealth;
-        attackDamage = 20.0f;
-        isBoss = true;
+        speed = 1.5f; // Boss movement speed.
+        maxHealth = 150.0f; // Boss maximum health.
+        health = maxHealth; // Initially set their current health to their max health.
+        attackDamage = 20.0f; // Boss attack damage.
+        isBoss = true; // Bosses are bosses. Used to check win condition.
     }
 }

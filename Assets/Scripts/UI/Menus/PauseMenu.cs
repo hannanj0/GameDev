@@ -8,10 +8,10 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenu;
-    public GameObject pauseMenuScreen;
-    public GameObject instructionsPage1;
-    public GameObject instructionsPage2;
+    public GameObject pauseMenu; // PauseMenu object to hide and set visible.
+    public GameObject pauseMenuScreen; // Pause menu screen object to hide and set visible.
+    public GameObject instructionsPage1; // Instructions page 1 object to hide and set visible.
+    public GameObject instructionsPage2; // Instructions page 2 object to hide and set visible.
 
     private bool gameIsPaused = false;
 
