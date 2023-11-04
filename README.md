@@ -37,8 +37,8 @@ Here are some key concepts and features included in our prototype:
 
 #### Tanur's attributions
 1. WeaponAttack.cs
-  - https://discussions.unity.com/t/adding-a-cooldown-time-to-a-attack/140231/3 assisted with configuring our game's attack and cooldowns.
-  - https://www.youtube.com/watch?v=3aWgstSctMw assisted with making the enemy flash red.
+   - https://discussions.unity.com/t/adding-a-cooldown-time-to-a-attack/140231/3 assisted with configuring our game's attack and cooldowns.
+   - https://www.youtube.com/watch?v=3aWgstSctMw assisted with making the enemy flash red.
 
 2. WeaponRotation.cs
    Below are some resources I consulted which helped with Slerp usage, understanding normalised angle rotations and ensuring smooth rotations for the player's sword:
@@ -49,7 +49,7 @@ Here are some key concepts and features included in our prototype:
    - https://discussions.unity.com/t/quaternion-slerp-in-a-coroutine/33180
   
 3. PauseMenu.cs
-  - https://www.youtube.com/watch?v=9dYDBomQpBQ helpful for pausing the game.
+   - https://www.youtube.com/watch?v=9dYDBomQpBQ helpful for pausing the game.
 
 4. General C# Documentation Guidance.
    - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments assisted with proper C# documentation.
