@@ -43,6 +43,7 @@ Implementing the flashing red colour in WeaponAttack.cs is more closely followed
    - https://www.youtube.com/watch?v=3aWgstSctMw assisted with making the enemy flash red.
 
 2. WeaponRotation.cs
+   
    Below are some resources I consulted which helped with Slerp usage, understanding normalised angle rotations and ensuring smooth rotations for the player's sword:
    - https://www.youtube.com/shorts/jAN2IoWdPzM?feature=share
    - https://stackoverflow.com/questions/53106326/quaternion-slerp-not-smoothly-rotating-for-some-reason
@@ -50,10 +51,10 @@ Implementing the flashing red colour in WeaponAttack.cs is more closely followed
    - https://www.reddit.com/r/Unity3D/comments/lqmb8p/quaternion_lerpslerp_snapping_instead_of_rotating/
    - https://discussions.unity.com/t/quaternion-slerp-in-a-coroutine/33180
   
-3. PauseMenu.cs
+4. PauseMenu.cs
    - https://www.youtube.com/watch?v=9dYDBomQpBQ helpful for adapting my pause menu script and its functionality.
 
-4. General C# Documentation Guidance.
+5. General C# Documentation Guidance.
    - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments assisted with proper C# documentation.
     
 ## Getting Started
