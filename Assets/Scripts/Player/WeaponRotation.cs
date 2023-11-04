@@ -56,7 +56,7 @@ public class WeaponRotation : MonoBehaviour
 
         while (normalisedAttackingTime < 1)
         {
-            lerpTime += Time.deltaTime * rotationSpeed / rotationDuration;
+            normalisedAttackingTime += Time.deltaTime * rotationSpeed / rotationDuration;
             transform.localRotation = Quaternion.Slerp(finalRotation, initialRotation, normalisedAttackingTime);
             yield return null;
         }
