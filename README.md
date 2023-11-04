@@ -34,8 +34,10 @@ Here are some key concepts and features included in our prototype:
 ### Assets
 
 ### Code
-
+    
 #### Tanur's attributions
+Note: Most of these are sources used for inspiration and understanding concepts and bugs better, so no code is copied directly.
+Implementing the flashing red colour in WeaponAttack.cs is more closely followed on the other hand.
 1. WeaponAttack.cs
    - https://discussions.unity.com/t/adding-a-cooldown-time-to-a-attack/140231/3 assisted with configuring our game's attack and cooldowns.
    - https://www.youtube.com/watch?v=3aWgstSctMw assisted with making the enemy flash red.
@@ -49,7 +51,7 @@ Here are some key concepts and features included in our prototype:
    - https://discussions.unity.com/t/quaternion-slerp-in-a-coroutine/33180
   
 3. PauseMenu.cs
-   - https://www.youtube.com/watch?v=9dYDBomQpBQ helpful for pausing the game.
+   - https://www.youtube.com/watch?v=9dYDBomQpBQ helpful for adapting my pause menu script and its functionality.
 
 4. General C# Documentation Guidance.
    - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments assisted with proper C# documentation.
