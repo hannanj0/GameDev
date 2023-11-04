@@ -66,36 +66,48 @@ public class AIController : MonoBehaviour
     }
 
     private void Chasing()
-    {
-        m_PlayerNear = false;
-        playerLastPosition = Vector3.zero;
+{
+    m_PlayerNear = false;
+    playerLastPosition = Vector3.zero;
 
-        if (!m_CaughtPlayer)
+    if (!m_CaughtPlayer)
+    {
+        float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerPosition);
+        float minDistanceToPlayer = 2.5f; // Adjust this value as needed
+
+        if (distanceToPlayer > minDistanceToPlayer)
         {
             Move(speedRun);
             navMeshAgent.SetDestination(m_PlayerPosition);
         }
-        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+        else
         {
-            if (m_WaitTime <= 0 && !m_CaughtPlayer && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f)
+            Stop();
+        }
+    }
+
+    if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+    {
+        if (m_WaitTime <= 0 && !m_CaughtPlayer && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f)
+        {
+            m_IsPatrol = true;
+            m_PlayerNear = false;
+            Move(speedWalk);
+            m_TimeToRotate = timeToRotate;
+            m_WaitTime = startWaitTime;
+            navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+        }
+        else
+        {
+            if (Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 2.5f)
             {
-                m_IsPatrol = true;
-                m_PlayerNear = false;
-                Move(speedWalk);
-                m_TimeToRotate = timeToRotate;
-                m_WaitTime = startWaitTime;
-                navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
-            }
-            else
-            {
-                if (Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 2.5f)
-                {
-                    Stop();
-                    m_WaitTime -= Time.deltaTime;
-                }
+                Stop();
+                m_WaitTime -= Time.deltaTime;
             }
         }
     }
+}
+
 
     private void Patroling()
     {
