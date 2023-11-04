@@ -38,7 +38,7 @@ public class ThirdPersonCameraController : MonoBehaviour
             player.rotation = Quaternion.Euler(0, yaw, 0);
 
             // Vertical rotation
-            pitch -= currentMouseDelta.y * rotationSpeed * Time.deltaTime; // Notice we subtract to maintain the orientation
+            pitch += currentMouseDelta.y * rotationSpeed * Time.deltaTime; // Notice we subtract to maintain the orientation
             pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
 
             // Calculate rotation and position
