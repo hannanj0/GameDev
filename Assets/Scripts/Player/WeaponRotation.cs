@@ -1,23 +1,20 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.InputSystem;  // Import the new input system
+using UnityEngine.InputSystem;
 
+/// <summary>
+/// The WeaponRotation script controls the rotation of hand-held weapons (currently a sword).
+/// The weapon can rotate from its initial position to a target position and back.
+/// </summary>
 public class WeaponRotation : MonoBehaviour
 {
-    public Vector3 targetRotation;
-    public float rotationSpeed = 250.0f;
-    public bool isAttacking;
+    public Vector3 targetRotation; // The weapon will rotate to this target rotation.
+    public float rotationSpeed = 250.0f; // The speed the weapon will rotate by.
+    public bool isAttacking; // Check whether the player is attacking.
 
-    private Quaternion initialRotation;
-    private Quaternion finalRotation;
-    private float lerpTime = 0f;
-
-    private PlayerControls controls;  // Declare controls
-
-    private void Awake()
-    {
-        controls = new PlayerControls();
-    }
+    private Quaternion initialRotation; // An initial rotation for the weapon.
+    private Quaternion finalRotation; // A final rotation for the weapon
+    private float normalisedAttackingTime = 0f; // Used to ensure smoothness in rotations. Interpolation time.
 
     private void Start()
     {
@@ -26,45 +23,45 @@ public class WeaponRotation : MonoBehaviour
         finalRotation = Quaternion.Euler(targetRotation);
     }
 
-    public void BeginAttack()  // OnAttack method
+    public void BeginAttack()
     {
         if (!isAttacking)
         {
-            Debug.Log("attack");
             isAttacking = true;
             StartCoroutine(RotateToTargetRotation());
         }
     }
 
+    /// <summary>
+    /// Coroutine to smoothly rotate weapon to a target rotation and back.
+    /// </summary>
     private IEnumerator RotateToTargetRotation()
     {
-        float journeyLength = Quaternion.Angle(transform.localRotation, finalRotation);
-        lerpTime = 0f;
+        float rotationDuration = Quaternion.Angle(transform.localRotation, finalRotation);
+        normalisedAttackingTime = 0f;
 
-        while (lerpTime < 1)
+        while (normalisedAttackingTime < 1)
         {
-            lerpTime += Time.deltaTime * rotationSpeed / journeyLength;
-            transform.localRotation = Quaternion.Slerp(initialRotation, finalRotation, lerpTime);
+            normalisedAttackingTime += Time.deltaTime * rotationSpeed / rotationDuration;
+            transform.localRotation = Quaternion.Slerp(initialRotation, finalRotation, normalisedAttackingTime);
             yield return null;
         }
 
-        // Ensure we reach the exact target rotation
+        // Make sure the final rotation is exactly reached, pause for 0.1 seconds.
         transform.localRotation = finalRotation;
-        //isAttacking = false;
-        // Wait for a brief moment (you can adjust this duration)
         yield return new WaitForSeconds(0.1f);
 
         // Rotate back to the initial rotation
-        lerpTime = 0f;
+        normalisedAttackingTime = 0f;
 
-        while (lerpTime < 1)
+        while (normalisedAttackingTime < 1)
         {
-            lerpTime += Time.deltaTime * rotationSpeed / journeyLength;
-            transform.localRotation = Quaternion.Slerp(finalRotation, initialRotation, lerpTime);
+            lerpTime += Time.deltaTime * rotationSpeed / rotationDuration;
+            transform.localRotation = Quaternion.Slerp(finalRotation, initialRotation, normalisedAttackingTime);
             yield return null;
         }
 
-        // Ensure we reach the exact initial rotation
+        // Make sure the initial rotation is exactly reached, stop attacking.
         transform.localRotation = initialRotation;
         isAttacking = false;
     }

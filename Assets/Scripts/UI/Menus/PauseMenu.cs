@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// The PauseMenu script controls the pause menu through buttons to resume, quit and show game instructions.
+/// </summary>
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
@@ -12,25 +15,32 @@ public class PauseMenu : MonoBehaviour
 
     private bool gameIsPaused = false;
 
+    /// <summary>
+    /// Check whether the game is paused or not.
+    /// </summary>
+    /// <returns> Boolean indicating paused or unpaused state. </returns>
+    public bool GameIsPaused() { return gameIsPaused; }
 
-    public bool GameIsPaused() {  return gameIsPaused; }
-
+    /// <summary>
+    /// Toggle between pausing the game and resuming the game.
+    /// </summary>
     public void OnPause()
     {
         if (gameIsPaused)
         {
             ResumeGame();
         }
-
         else
         {
             PauseGame();
         }
     }
 
-    public void ResumeGame()
+    /// <summary>
+    /// Resume the game by allowing time to continue, showing the cursor and setting the boolean.
+    /// </summary>
+    private void ResumeGame()
     {
-        
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
@@ -38,7 +48,8 @@ public class PauseMenu : MonoBehaviour
         gameIsPaused = false;
     }
 
-    public void PauseGame()
+    /// Pauses the game by pausing time, hiding the cursor, and setting the boolean.
+    private void PauseGame()
     {
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
@@ -47,6 +58,9 @@ public class PauseMenu : MonoBehaviour
         gameIsPaused = true;
     }
 
+    /// <summary>
+    /// Load the pause menu and check to hide instruction pages.
+    /// </summary>
     public void LoadPauseMenu()
     {
         pauseMenuScreen.SetActive(true);
@@ -62,6 +76,9 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Load the first instructions page and check to hide the pause menu and second instructions page.
+    /// </summary>
     public void LoadInstructionsPage1()
     {
         instructionsPage1.SetActive(true);
@@ -77,6 +94,9 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Load the second instructions page and check to hide the pause menu and first instructions page.
+    /// </summary>
     public void LoadInstructionsPage2()
     {
         instructionsPage2.SetActive(true);
@@ -92,6 +112,9 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    /// <summary>
+    ///  Quit the game.
+    /// </summary>
     public void QuitGame()
     {
         Application.Quit();

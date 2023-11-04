@@ -3,23 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// The PlayerInteractions script is a Unity MonoBehaviour class that handles interactions and behaviors for a player character in the game.
+/// It manages player input, item usage, collisions with enemies and items, and more.
+/// </summary>
 public class PlayerInteractions : MonoBehaviour
 {
-    GameObject player;
-
+    private bool offCooldown;
     private float enemyCollisionCooldown = 0.0f;
     private float enemyCollisionCooldownDuration = 2.0f;
-    private bool offCooldown;
 
     private PlayerState playerState;
     private Inventory inventory;
     private InputAction useItemAction;
     private WeaponRotation weaponRotation;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
+        // Initialise variables.
         offCooldown = true;
+
         Transform inventoryPlayer = transform.Find("Inventory");
         playerState = GetComponent<PlayerState>();
         weaponRotation = transform.Find("WeaponSlot/SwordPivot").GetComponent<WeaponRotation>();
@@ -34,7 +38,10 @@ public class PlayerInteractions : MonoBehaviour
         useItemAction.Enable();
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Update the boolean to indicate whether the player can take damage.
+    /// The player cannot be attacked for 2 seconds after being attacked.
+    /// </summary>
     void Update()
     {
         if (!offCooldown)
@@ -61,8 +68,13 @@ public class PlayerInteractions : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles trigger colliders - items and enemies.
+    /// </summary>
+    /// <param name="other"> Other entity colliding with the player. </param>
     private void OnTriggerEnter(Collider other)
     {
+        //
         if (other.gameObject.CompareTag("Item"))
         {
             GameItem I = other.GetComponent<GameItem>();
@@ -71,6 +83,7 @@ public class PlayerInteractions : MonoBehaviour
             other.gameObject.SetActive(false);
         }
 
+        // Take damage from the enemy when player's protection runs out (every 2 seconds).
         if (other.gameObject.CompareTag("Enemy") && offCooldown)
         {
             Debug.Log("player collided");
@@ -81,6 +94,9 @@ public class PlayerInteractions : MonoBehaviour
         enemyCollisionCooldown = 0.0f;
     }
 
+    /// <summary>
+    /// Initiate player's attack rotation.
+    /// </summary>
     private void OnAttack()
     {
         weaponRotation.BeginAttack();
