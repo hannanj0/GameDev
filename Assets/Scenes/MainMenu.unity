@@ -1196,7 +1196,8 @@ MonoBehaviour:
   m_text: "<u>Which buttons to press:</u>\r\n- Use [WASD] or the [Arrow Keys] to
     move your character.\r\n- Use your [Mouse] to move the camera.\r\n- [Left Click]
     to perform an attack.\r\n- Hold [Shift] to sprint.\r\n- Use [1, 2, 3, 4] to select
-    items from your inventory\r\n- Press [F] to use a selected item from your inventory.\r"
+    items from your inventory\r\n- Press [F] to use a selected item from your inventory.\n\r\r\r\r-
+    Press [TAB] to open the crafting menu."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
