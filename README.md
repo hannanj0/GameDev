@@ -60,7 +60,7 @@ Implementing the flashing red colour in WeaponAttack.cs is more closely followed
 
 #### Hugos's attributions
 
-Note: Most of these are sources used for inspiration and understanding concepts and bugs better, so no code is copied directly. Implementing the flashing red colour in WeaponAttack.cs is more closely followed on the other hand.
+Note: Most of these are sources used for inspiration and understanding concepts and bugs better, so no code is copied directly. Implementing these features are standard in most games, so implementation tends to be similar.
 
 1. PlayerMovement.cs
 
