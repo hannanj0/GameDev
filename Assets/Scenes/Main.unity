@@ -3883,7 +3883,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "<u>Enemies you will face:</u>\r\n-  3x Grey Cube Mob Enemies which will
-    test your strengt. (Fast Speed, Moderate Attack Damage, Moderate Health)\r\n-
+    test your strength. (Fast Speed, Moderate Attack Damage, Moderate Health)\r\n-
     1x Black Cube Boss Enemy which will test your resolve! (Slower Speed, Higher
     Attack Damage, Higher Health)\r"
   m_isRightToLeft: 0
