@@ -22,6 +22,7 @@ Here are some key concepts and features included in our prototype:
 - Player stats to keep track of player health, hunger level, attack damage, and movement speed.
 - An inventory system to pick up items discovered on the player's journey.
 - Pickups: food items, health items, attack-enhancing items.
+- A crafting system which currently allows the crafting of health potions.
 - Enemies: 1 type of mob enemy in a grey colour, plus a more difficult but slower black-coloured boss.
 - A combat system which uses the player's sword to rotate and attack enemies and also monitors the player for enemy collisions (attacks).
 - A forest environment with a linear path leading to the boss. This makes navigation easier.
@@ -33,7 +34,7 @@ Here are some key concepts and features included in our prototype:
 
 ### Assets
 
-### Code
+### Code Snippets
     
 #### Tanur's attributions
 Note: Most of these are sources used for inspiration and understanding concepts and bugs better, so no code is copied directly.
@@ -52,25 +53,20 @@ Implementing the flashing red colour in WeaponAttack.cs is more closely followed
    - https://discussions.unity.com/t/quaternion-slerp-in-a-coroutine/33180
   
 4. PauseMenu.cs
-   - https://www.youtube.com/watch?v=9dYDBomQpBQ helpful for adapting my pause menu script and its functionality.
+   - https://www.youtube.com/watch?v=9dYDBomQpBQ helpful for the foundations of my pause menu object and its functionality.
 
 5. General C# Documentation Guidance.
    - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments assisted with proper C# documentation.
 
 #### Hugos's attributions
-Note: Most of these are sources used for inspiration and understanding concepts and bugs better, so no code is copied directly.
-Implementing the flashing red colour in WeaponAttack.cs is more closely followed on the other hand.
 1. PlayerMovement.cs
    - https://www.youtube.com/watch?v=vFV0uJ0KE2Q assisted with using the new input system with movement.
-   - https://www.youtube.com/watch?v=3aWgstSctMw assisted with making the enemy flash red.
     
 ## Getting Started
 
 Here's how to get the game running on your local machine.
 
 ### Installation
-
-A step-by-step guide on how to install and set up your project:
 
 1. Clone this repository:
    ```sh
