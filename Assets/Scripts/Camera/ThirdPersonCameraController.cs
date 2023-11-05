@@ -6,6 +6,7 @@ public class ThirdPersonCameraController : MonoBehaviour
     public Transform player;
     public Transform cameraTarget;
 
+    public PlayerInteractions playerInteractions;
     public PauseMenu pauseMenu;
 
     public float rotationSpeed = 1;
@@ -31,7 +32,7 @@ public class ThirdPersonCameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        if (!pauseMenu.GameIsPaused())
+        if (!pauseMenu.GameIsPaused() && !playerInteractions.CraftingMenuOpen())
         {
             // Horizontal rotation
             yaw += currentMouseDelta.x * rotationSpeed * Time.deltaTime;

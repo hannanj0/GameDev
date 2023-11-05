@@ -11,6 +11,7 @@ using UnityEngine.UIElements;
 /// </summary>
 public class PlayerInteractions : MonoBehaviour
 {
+    private bool craftingMenuOpen;
     private bool canBeAttacked; // Cooldown to check if the player can be attacked.
     private float enemyAttackCooldown = 0.0f; // Counter to see how often the enemy can attack the player.
     private float enemyAttackCooldownDuration = 2.0f; // Duration the enemy has to wait before attacking again.
@@ -24,9 +25,11 @@ public class PlayerInteractions : MonoBehaviour
     private ItemDescription background;
     private Canvas craftingTable;
 
+    public bool CraftingMenuOpen() {  return craftingMenuOpen; }
 
     void Start()
     {
+        craftingMenuOpen = false;
         // Initialise variables.
         canBeAttacked = true;
 
@@ -88,11 +91,15 @@ public class PlayerInteractions : MonoBehaviour
         {
             UnityEngine.Cursor.lockState = CursorLockMode.None;
             UnityEngine.Cursor.visible = true;
+            craftingMenuOpen = true;
+            Time.timeScale = 0.0f;
         }
         else
         {
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             UnityEngine.Cursor.visible = false;
+            craftingMenuOpen = false;
+            Time.timeScale = 1.0f;
         }
     }
 

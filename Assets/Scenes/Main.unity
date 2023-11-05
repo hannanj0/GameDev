@@ -2011,6 +2011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1386047282}
   cameraTarget: {fileID: 691645519}
+  playerInteractions: {fileID: 1386047292}
   pauseMenu: {fileID: 1386047291}
   rotationSpeed: 5
   distanceFromTarget: 4
@@ -3217,6 +3218,17 @@ MonoBehaviour:
   pauseMenuScreen: {fileID: 1321050425}
   instructionsPage1: {fileID: 356264563}
   instructionsPage2: {fileID: 322461740}
+--- !u!114 &1386047292 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2975548135451067544, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
+  m_PrefabInstance: {fileID: 1711270836}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298560206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa4db826b7727e418e4bdca62dec5d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1398646896
 GameObject:
   m_ObjectHideFlags: 0
