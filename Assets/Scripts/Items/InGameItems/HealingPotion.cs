@@ -5,7 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Item", menuName = "Create HealingPotion")]
 public class HealingPotion : Item
 {
-    public int healingAmount = 20;
+    public float healingAmount;
+    /// <summary>
+    /// Heals the player equal to healingAmount
+    /// Ensures that the healing does not go over maxHealth
+    /// </summary>
     public override void Use(PlayerState ps)
     {
         if (ps.currentHealth == ps.maxHealth)
@@ -14,7 +18,6 @@ public class HealingPotion : Item
         }
         else if (ps.currentHealth + healingAmount > ps.maxHealth)
         {
-            Debug.Log(ps.currentHealth);
             ps.currentHealth = ps.maxHealth;
         }
         else

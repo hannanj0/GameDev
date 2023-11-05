@@ -6,7 +6,10 @@ using UnityEngine;
 public class Food : Item
 {
     public float satiation;
-
+    /// <summary>
+    /// Feeds the player equal to satiation 
+    /// Ensures that the hunger value does not go above maxHunger
+    /// </summary>
     public override void Use (PlayerState ps)
     {
         if (ps.currentHunger == ps.maxHunger)

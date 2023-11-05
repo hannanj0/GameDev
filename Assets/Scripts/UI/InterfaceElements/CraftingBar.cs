@@ -14,7 +14,10 @@ public class CraftingBar : MonoBehaviour
     private TextMeshProUGUI CIName;
     private Inventory inventory;
 
-
+    /// <summary>
+    /// Initialises the fields
+    /// Sets the name and the amount in the UI
+    /// </summary>
     void Start()
     {
         Transform Mat1 = transform.Find("Material1");
@@ -49,6 +52,12 @@ public class CraftingBar : MonoBehaviour
 
         CIName.text = CraftedItem.CR.CraftedItem.name;
     }
+    /// <summary>
+    /// Crafts the item
+    /// Checks if both of the items needed to craft the final item are avalible
+    /// Removes the items first so that if the inventory is initially full the item can still be crafted and assigned
+    /// Lastly addds the item to the inventory
+    /// </summary>
     public void Craft()
     {
         Boolean m1 = false;
@@ -58,9 +67,6 @@ public class CraftingBar : MonoBehaviour
 
         for(int i = 0; i < inventory.hotbarSlots.Length; i++)
         {
-            Debug.Log(Material1.Item);
-            Debug.Log(Material2.Item);
-            Debug.Log(inventory.hotbarSlots[i]);
             if (inventory.hotbarSlots[i].assignedItem == Material1.Item)
             {
                 m1 = true;
@@ -78,7 +84,5 @@ public class CraftingBar : MonoBehaviour
                 inventory.Add(CraftedItem.item);
             }
         }
-        Debug.Log(m1);
-        Debug.Log(m2);
     }
 }

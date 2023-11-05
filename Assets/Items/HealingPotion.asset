@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: HealingPotion
   m_EditorClassIdentifier: 
   Name: HealingPotion
-  hotbar_image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   consumable: 1
   healingAmount: 20
