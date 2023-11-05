@@ -5,7 +5,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
-
+/// <summary>
+/// A script for the hotbar slot in the game
+/// Used for selecting items in your hotbar to use them
+/// Displays the items the player currently has
+/// </summary>
 public class HotbarSlot : MonoBehaviour
 {
     public Item assignedItem;
@@ -14,7 +18,9 @@ public class HotbarSlot : MonoBehaviour
     public Boolean isEmpty = true;
     public TextMeshProUGUI textMesh;
 
-
+    /// <summary>
+    /// Initialises the fields
+    /// </summary>
     void Start()
     {
         hotbarImage = GetComponent<Image>();
@@ -23,28 +29,37 @@ public class HotbarSlot : MonoBehaviour
         textMesh = itemName.GetComponent<TextMeshProUGUI>();
         Debug.Log(textMesh);
     }
+    /// <summary>
+    /// Called when the hotbar is selected
+    /// </summary>
     public void Select()
     {
         imageColor.a = 1f;
         hotbarImage.color = imageColor;
     }
+    /// <summary>
+    /// Called when another hotbar is selected
+    /// </summary>
     public void Deselect()
     {
         imageColor.a = 100/255f;
         hotbarImage.color = imageColor;
     }
+    /// <summary>
+    /// Assigns the item to the hotbar
+    /// </summary>
     public void AssignItem(Item item)
     {
         assignedItem = item;
-        //hotbarImage.sprite = item.hotbar_image;
         textMesh.text = item.Name;
-        Debug.Log(textMesh.text);
         isEmpty = false;
     }
+    /// <summary>
+    /// Removes the item from the hotbar
+    /// </summary>
     public void RemoveItem()
     {
         assignedItem = null;
-        //hotbarImage.sprite = null;
         textMesh.text = null;
         isEmpty = true;
     }

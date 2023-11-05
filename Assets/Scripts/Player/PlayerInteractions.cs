@@ -49,7 +49,7 @@ public class PlayerInteractions : MonoBehaviour
         useItemAction = new InputAction("UseItem", binding: "<Keyboard>/f");
         useItemAction.performed += UseItem;
         useItemAction.Enable();
-
+        // Set up input action for "OpenCraftingMenu"
         openCMenu = new InputAction("OpenCraftingMenu", binding:"<Keyboard>/tab");
         openCMenu.performed += OpenCraftingMenu;
         openCMenu.Enable();
@@ -71,10 +71,12 @@ public class PlayerInteractions : MonoBehaviour
             }
             }
     }
-
+    /// <summary>
+    /// Uses an item
+    /// If the slot is not empty uses the item and then removes it
+    /// </summary>
     private void UseItem(InputAction.CallbackContext context)
     {
-        Debug.Log(context.control.name);
         if (!inventory.hotbarSlots[inventory.currentSlot].isEmpty)
         {
             if (inventory.hotbarSlots[inventory.currentSlot].assignedItem.consumable)
@@ -84,6 +86,12 @@ public class PlayerInteractions : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// Opens the crafting menu
+    /// When the butten assigned to input action is pressed the canvas containing the crafting menu is enabled
+    /// The cursor is made visiable and not locked and the game is paused
+    /// When the button is pressed again the canvas becomes disabled and the cursor is locked and made invisible and the game resumes running
+    /// </summary>
     private void OpenCraftingMenu(InputAction.CallbackContext context)
     {
         craftingTable.enabled = !craftingTable.enabled;
@@ -129,7 +137,10 @@ public class PlayerInteractions : MonoBehaviour
             inContact = false;
         }
     }
-
+    /// <summary>
+    /// Used to pick up an item
+    /// If the object has the item tag it is picked up
+    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         //

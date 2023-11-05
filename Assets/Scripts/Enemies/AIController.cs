@@ -3,36 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/// <summary>
+/// The AIController script is used to determine how the enemies react in the environment in accordance to the player, and whether or not to chase them or not, depending on if they can see them, otherwise they will continue to patrol their own particular area
+/// </summary>
 public class AIController : MonoBehaviour
 {
-    public NavMeshAgent navMeshAgent;
-    public float startWaitTime = 4;
-    public float timeToRotate = 2;
-    public float speedWalk = 6;
-    public float speedRun = 9;
+    public NavMeshAgent navMeshAgent; // This is a reference to the NavMeshAgent for AI nagivation
+    public float startWaitTime = 4; // Time waiting before starting the patrolling
+    public float timeToRotate = 2; // Time it takes to rotate when in patrol
+    public float speedWalk = 6; // Walking speed of AI
+    public float speedRun = 9; // Chasing speed of AI
 
-    public float viewRadius = 15;
-    public float viewAngle = 90;
-    public LayerMask playerMask;
-    public LayerMask obstacleMask;
-    public float meshResolution = 1f;
-    public int edgeIterations = 4;
-    public float edgeDistance = 0.5f;
+    public float viewRadius = 15; // This radius is used for detecting the player
+    public float viewAngle = 90; // This is the angle used for detecting the player
+    public LayerMask playerMask; // The layer mask for detecting what is a "player" (the user)
+    public LayerMask obstacleMask; // The layer mask for detecting what is an "obstacle" (the trees)
+    public float meshResolution = 1f; // Used for FOV calculations
+    public int edgeIterations = 4; // Used to detect edges in FOV mesh
+    public float edgeDistance = 0.5f; // Used to detect edges in FOV mesh
 
-    public Transform[] waypoints;
-    int m_CurrentWaypointIndex;
+    public Transform[] waypoints; // Array of waypoints for patrols
+    int m_CurrentWaypointIndex; // Tracks the current waypoint during patrol
 
-    Vector3 playerLastPosition = Vector3.zero;
-    Vector3 m_PlayerPosition;
+    Vector3 playerLastPosition = Vector3.zero; // This stores the players last known position
+    Vector3 m_PlayerPosition; // This is the current player position
 
-    float m_WaitTime;
-    float m_TimeToRotate;
-    bool m_PlayerInRange;
-    bool m_PlayerNear;
-    bool m_IsPatrol;
-    bool m_CaughtPlayer;
+    float m_WaitTime; // The time to wait before moving
+    float m_TimeToRotate; // The time to rotate
+    bool m_PlayerInRange; // Determines whether the player is in range or not
+    bool m_PlayerNear; // Determines if the player is near or not
+    bool m_IsPatrol; // Determines when enemy is in patrol mode or not
+    bool m_CaughtPlayer; // If player has been caught or not
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// This initialises the variables and starts the patrol mode for enemy, the current waypoint index and sets the enemy speed and destination
+    /// </summary>
     void Start()
     {
         m_PlayerPosition = Vector3.zero;
@@ -50,7 +55,9 @@ public class AIController : MonoBehaviour
         navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// This checks the environment and decides whether to chase the player or continue with patrolling
+    /// </summary>
     void Update()
     {
         EnvironmentView();
@@ -65,6 +72,9 @@ public class AIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// When chasing, it calculates the distance between the enemy and the player, setting the movement to running speed and stops when the player is close. Also, if the player gains distance, there will be a point where the enemy will return back to patrolling
+    /// </summary>
     private void Chasing()
 {
     m_PlayerNear = false;
@@ -73,7 +83,7 @@ public class AIController : MonoBehaviour
     if (!m_CaughtPlayer)
     {
         float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerPosition);
-        float minDistanceToPlayer = 3f; // Adjust this value as needed
+        float minDistanceToPlayer = 3f;
 
         if (distanceToPlayer > minDistanceToPlayer)
         {
@@ -108,7 +118,9 @@ public class AIController : MonoBehaviour
     }
 }
 
-
+    /// <summary>
+    /// When in patrol mode, the enemy will move, wait and rotate, and move to the next waypoint
+    /// </summary>
     private void Patroling()
     {
         if (m_PlayerNear)
@@ -146,18 +158,27 @@ public class AIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This is so that the enemy moves at the particular speed required
+    /// </summary>
     void Move(float speed)
     {
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speed;
     }
 
+    /// <summary>
+    /// Stops the enemy moving
+    /// </summary>
     void Stop()
     {
         navMeshAgent.isStopped = true;
         navMeshAgent.speed = 0;
     }
 
+    /// <summary>
+    /// Moves to the next point, with a debug log warning if necessary
+    /// </summary>
     public void NextPoint()
     {
         if (waypoints.Length > 0)
@@ -171,12 +192,17 @@ public class AIController : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Handles when the enemy catches the player
+    /// </summary>
     void CaughtPlayer()
     {
         m_CaughtPlayer = true;
     }
 
+    /// <summary>
+    /// When the enemy is looking for the player, within the patrolling period
+    /// </summary>
     void LookingPlayer(Vector3 player)
     {
         navMeshAgent.SetDestination(player);
@@ -198,6 +224,9 @@ public class AIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This is to detect whether the player is in the viewing range of the enemy, and if it is, then the enemy will switch to chasing mode in order to pursue the player
+    /// </summary>
     void EnvironmentView()
     {
         Collider[] playerInRange = Physics.OverlapSphere(transform.position, viewRadius, playerMask);

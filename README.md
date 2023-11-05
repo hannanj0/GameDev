@@ -60,7 +60,7 @@ Implementing the flashing red colour in WeaponAttack.cs is more closely followed
 
 #### Hugos's attributions
 
-Note: Most of these are sources used for inspiration and understanding concepts and bugs better, so no code is copied directly. Implementing the flashing red colour in WeaponAttack.cs is more closely followed on the other hand.
+Note: Most of these are sources used for inspiration and understanding concepts and bugs better, so no code is copied directly. Implementing these features are standard in most games, so implementation tends to be similar.
 
 1. PlayerMovement.cs
 
@@ -79,7 +79,39 @@ Note: Most of these are sources used for inspiration and understanding concepts 
 
 4. General C# Documentation Guidance.
    - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments assisted with proper C# documentation.
-    
+
+#### Hannan's attributions
+Note: Most of these are sources used for inspiration and understanding concepts and bugs better, so no code is copied directly.
+Implementing the advanced enemy movement AI in AIController.cs is more closely followed on the other hand.
+
+1. MainMenu.cs
+   - https://www.youtube.com/watch?v=-GWjA6dixV4 - Helped my understanding of creating a main menu scene, and switching to the main scene via the code and configuring the build settings in order for this to work.
+
+2. HealthBar.cs + HungerBar.cs + PlayerState.cs
+   
+   The following were used as inspiration to create the Status bars for the player:
+   - https://www.youtube.com/watch?v=k2H3cJL1M9A 
+   - https://www.youtube.com/watch?v=_lREXfAMUcE
+   - https://discussions.unity.com/t/health-bar-goes-down-with-time/191485 - Helpful for implementation of hunger bar decreasing over time.
+  
+4. AIController.cs
+   - https://www.youtube.com/watch?v=6Ai0xg6xTUk - This helped with ensuring the enemy is looking the correct way with the eyes
+   - https://www.youtube.com/watch?v=ieyHlYp5SLQ - This assisted with the enemy patrolling, viewing angles and when to chase the player as well as avoiding obstacles
+   - I also used the module resources to help with the NavMesh stuff needed for the patrolling and movement of enemy AI
+
+5. General C# Documentation Guidance.
+   - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments assisted with proper C# documentation.
+
+#### Tamer's attributions
+These guides were used as inspiration and the knowledge was combined with our own knowledge to create any features needed
+1. Inventory
+   - https://www.youtube.com/watch?v=AoD_F1fSFFg
+2. Crafting
+   - https://www.youtube.com/watch?v=KR4qUFGuKyQ
+   - https://www.youtube.com/watch?v=EUaLIWJxBks
+  
+At some points, Generative AI was used to help with any errors encountered as a last resort.
+
 ## Getting Started
 
 Here's how to get the game running on your local machine.

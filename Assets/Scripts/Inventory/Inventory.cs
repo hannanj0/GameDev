@@ -8,7 +8,9 @@ public class Inventory : MonoBehaviour
     public HotbarSlot[] hotbarSlots;
     public int currentSlot = 0;
     public Item currentItem;
-
+    /// <summary>
+    /// Methods that are used for the input system
+    /// </summary>
     private void Awake()
     {
         controls = new PlayerControls();  // Initialize the controls
@@ -36,7 +38,9 @@ public class Inventory : MonoBehaviour
             SelectSlot(slotIndex - 1);
         }
     }
-
+    /// <summary>
+    /// Adds the item to the inventory and the hotbar
+    /// </summary>
     public void Add(Item item)
     {
         for (int i = 0; i < hotbarSlots.Length; i++)
@@ -51,7 +55,9 @@ public class Inventory : MonoBehaviour
             }
         }
     }
-
+    /// <summary>
+    /// Used to select a slot and deselect the previous one
+    /// </summary>
     void SelectSlot(int newSlot)
     {
         hotbarSlots[currentSlot].Deselect();
