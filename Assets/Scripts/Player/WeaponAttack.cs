@@ -27,6 +27,7 @@ public class WeaponAttack : MonoBehaviour
     void Start()
     {
         playerAttacked = false;
+        canAttack = true;
     }
 
     /// <summary>

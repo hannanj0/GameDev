@@ -64,7 +64,6 @@ public class PlayerInteractions : MonoBehaviour
             if (enemyAttackCooldown >= enemyAttackCooldownDuration)
             {
                 playerState.currentHealth -= enemyState.AttackDamage();
-                canBeAttacked = true;
                 enemyAttackCooldown = 0.0f;
             }
         }
