@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1698,7 +1698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 631740621}
   m_Layer: 0
-  m_Name: Boss Enemies
+  m_Name: BossEnemies
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1874,7 +1874,7 @@ GameObject:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: DirectionalLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2359,7 +2359,7 @@ GameObject:
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3141,7 +3141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1151169407}
   m_Layer: 0
-  m_Name: Mob Enemies
+  m_Name: MobEnemies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4381,7 +4381,7 @@ GameObject:
   - component: {fileID: 1614273510}
   - component: {fileID: 1614273509}
   m_Layer: 0
-  m_Name: Forest Terrain (0)
+  m_Name: ForestTerrain(0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5100,7 +5100,7 @@ GameObject:
   - component: {fileID: 1921458201}
   - component: {fileID: 1921458200}
   m_Layer: 0
-  m_Name: Arid Biome (+z1)
+  m_Name: AridBiome(+z1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
