@@ -101,7 +101,14 @@ Implementing the advanced enemy movement AI in AIController.cs is more closely f
 
 5. General C# Documentation Guidance.
    - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments assisted with proper C# documentation.
-    
+
+#### Tamer's attributions
+These guides were used as inspiration and the knowledge was combined with our own knowledge to create any features needed
+1. Inventory
+   - https://www.youtube.com/watch?v=AoD_F1fSFFg
+2. Crafting
+   - https://www.youtube.com/watch?v=KR4qUFGuKyQ
+   - https://www.youtube.com/watch?v=EUaLIWJxBks
 ## Getting Started
 
 Here's how to get the game running on your local machine.
