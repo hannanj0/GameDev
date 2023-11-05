@@ -28,6 +28,11 @@ public class PlayerState : MonoBehaviour
     private float healthDecreaseInterval = 5f;
     private float healthDecreaseTimer;
 
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+    }
+
     // awake looks and checks that it is the only instance in the game, if not, it will destroy it
 
     private void Awake() 

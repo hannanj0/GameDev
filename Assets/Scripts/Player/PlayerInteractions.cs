@@ -11,13 +11,13 @@ using UnityEngine.UIElements;
 /// </summary>
 public class PlayerInteractions : MonoBehaviour
 {
-    private bool craftingMenuOpen;
-    private bool canBeAttacked; // Cooldown to check if the player can be attacked.
+    private bool inContact; // check if the player is in contact with an enemy.
+    private bool craftingMenuOpen; // Check if the crafting menu is open.
     private float enemyAttackCooldown = 0.0f; // Counter to see how often the enemy can attack the player.
-    private float enemyAttackCooldownDuration = 2.0f; // Duration the enemy has to wait before attacking again.
+    private float enemyAttackCooldownDuration = 1.5f; // Duration the enemy has to wait before attacking again.
 
     private PlayerState playerState; // Player stats inside script.
-    private EnemyState enemyState;
+    private EnemyState enemyState; // EnemyState script to read their damage.
     private Inventory inventory; // Player manages their inventory.
     private InputAction useItemAction;
     private InputAction openCMenu;
@@ -29,9 +29,9 @@ public class PlayerInteractions : MonoBehaviour
 
     void Start()
     {
-        craftingMenuOpen = false;
         // Initialise variables.
-        canBeAttacked = true;
+        inContact = false;
+        craftingMenuOpen = false;
 
         Transform inventoryPlayer = transform.Find("Inventory");
         inventory = inventoryPlayer.GetComponent<Inventory>();
@@ -56,20 +56,20 @@ public class PlayerInteractions : MonoBehaviour
     }
 
     /// <summary>
-    /// Update the boolean to indicate whether the player can be attacked.
-    /// If the duration is reached, they can be attacked. After, being attacked, the cooldown applies again.
+    /// Update the timer and keep track of the player taking damage.
+    /// The player is attacked every enemyAttackCooldownDuration if they are in contact with an enemy.
     /// </summary>
     void Update()
     {
-        if (!canBeAttacked)
-        {
             enemyAttackCooldown += Time.deltaTime;
             if (enemyAttackCooldown >= enemyAttackCooldownDuration)
             {
-                playerState.currentHealth -= enemyState.AttackDamage();
-                enemyAttackCooldown = 0.0f;
+                if (inContact)
+                {
+                    playerState.TakeDamage(enemyState.AttackDamage());
+                    enemyAttackCooldown = 0.0f;
             }
-        }
+            }
     }
 
     private void UseItem(InputAction.CallbackContext context)
@@ -104,19 +104,30 @@ public class PlayerInteractions : MonoBehaviour
     }
 
     /// <summary>
-    /// Registers a collision with the enemy if the player can be attacked. Reduce player health.
+    /// Registers a collision with the enemy, they are in contact so they can be attacked.
     /// </summary>
     /// <param name="other"> Other entity colliding with the player. </param>
     private void OnCollisionEnter(Collision other)
     {
         // Take damage from the enemy when the player can be attacked again.
-        if (other.gameObject.CompareTag("Enemy") && canBeAttacked)
+        if (other.gameObject.CompareTag("Enemy") && !inContact)
         {
             enemyState = other.gameObject.GetComponent<EnemyState>();
-            playerState.currentHealth -= enemyState.AttackDamage();
-            canBeAttacked = false;
+            inContact = true;
         }
         // The player cannot be attacked for the AttackCooldownDuration since they just got attacked.
+    }
+
+    /// <summary>
+    /// Registers a collision exit with the enemy. They are no longer in contact.
+    /// </summary>
+    /// <param name="other"> Other entity colliding with the player. </param>
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            inContact = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
