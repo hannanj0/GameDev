@@ -80,6 +80,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenCraftingMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""eb1b79c2-fe04-412d-92ac-dcba25e76514"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -269,6 +278,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5106a192-4a0c-4545-b2f9-1eee5e1e16f7"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenCraftingMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -300,6 +320,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay_UseItem = m_Gameplay.FindAction("UseItem", throwIfNotFound: true);
         m_Gameplay_HotBarSelect = m_Gameplay.FindAction("HotBarSelect", throwIfNotFound: true);
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
+        m_Gameplay_OpenCraftingMenu = m_Gameplay.FindAction("OpenCraftingMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -367,6 +388,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_UseItem;
     private readonly InputAction m_Gameplay_HotBarSelect;
     private readonly InputAction m_Gameplay_Pause;
+    private readonly InputAction m_Gameplay_OpenCraftingMenu;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -377,6 +399,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @UseItem => m_Wrapper.m_Gameplay_UseItem;
         public InputAction @HotBarSelect => m_Wrapper.m_Gameplay_HotBarSelect;
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
+        public InputAction @OpenCraftingMenu => m_Wrapper.m_Gameplay_OpenCraftingMenu;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -404,6 +427,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @OpenCraftingMenu.started += instance.OnOpenCraftingMenu;
+            @OpenCraftingMenu.performed += instance.OnOpenCraftingMenu;
+            @OpenCraftingMenu.canceled += instance.OnOpenCraftingMenu;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -426,6 +452,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @OpenCraftingMenu.started -= instance.OnOpenCraftingMenu;
+            @OpenCraftingMenu.performed -= instance.OnOpenCraftingMenu;
+            @OpenCraftingMenu.canceled -= instance.OnOpenCraftingMenu;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -460,5 +489,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnUseItem(InputAction.CallbackContext context);
         void OnHotBarSelect(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnOpenCraftingMenu(InputAction.CallbackContext context);
     }
 }

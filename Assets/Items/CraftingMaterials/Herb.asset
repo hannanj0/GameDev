@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c51e0d64e9b12d4586276b82cb0bd0e, type: 3}
   m_Name: Herb
   m_EditorClassIdentifier: 
-  Name: 
-  hotbar_image: {fileID: 21300000, guid: 6054318fc678eef4e97655493b73c580, type: 3}
-  type: {fileID: 0}
+  Name: Herb
+  hotbar_image: {fileID: 0}
+  consumable: 0

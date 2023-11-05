@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// The PlayerInteractions script manages the player's interactions in the game.
@@ -17,26 +19,37 @@ public class PlayerInteractions : MonoBehaviour
     private EnemyState enemyState;
     private Inventory inventory; // Player manages their inventory.
     private InputAction useItemAction;
+    private InputAction openCMenu;
     private WeaponRotation weaponRotation; // Player rotates their weapon to attack.
+    private ItemDescription background;
+    private Canvas craftingTable;
 
-    
+
     void Start()
     {
         // Initialise variables.
         canBeAttacked = true;
 
         Transform inventoryPlayer = transform.Find("Inventory");
-        playerState = GetComponent<PlayerState>();
+        inventory = inventoryPlayer.GetComponent<Inventory>();
+
         weaponRotation = transform.Find("WeaponSlot/SwordPivot").GetComponent<WeaponRotation>();
 
-        if (inventoryPlayer != null) { inventory = inventoryPlayer.GetComponent<Inventory>(); }
+        playerState = GetComponent<PlayerState>();
 
-        if (inventoryPlayer == null) { Debug.LogError("No inventory"); }
+        Transform backgroundChild = transform.Find("ItemInformation/BackgroundColour");
+        background = backgroundChild.GetComponent<ItemDescription>();
 
+        Transform craftingPlayer = transform.Find("Crafting");
+        craftingTable = craftingPlayer.GetComponent<Canvas>();
         // Set up input action for "UseItem"
         useItemAction = new InputAction("UseItem", binding: "<Keyboard>/f");
         useItemAction.performed += UseItem;
         useItemAction.Enable();
+
+        openCMenu = new InputAction("OpenCraftingMenu", binding:"<Keyboard>/tab");
+        openCMenu.performed += OpenCraftingMenu;
+        openCMenu.Enable();
     }
 
     /// <summary>
@@ -67,6 +80,20 @@ public class PlayerInteractions : MonoBehaviour
                 inventory.hotbarSlots[inventory.currentSlot].assignedItem.Use(playerState);
                 inventory.hotbarSlots[inventory.currentSlot].RemoveItem();
             }
+        }
+    }
+    private void OpenCraftingMenu(InputAction.CallbackContext context)
+    {
+        craftingTable.enabled = !craftingTable.enabled;
+        if (craftingTable.enabled)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+            UnityEngine.Cursor.visible = true;
+        }
+        else
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.visible = false;
         }
     }
 
@@ -108,6 +135,8 @@ public class PlayerInteractions : MonoBehaviour
             Debug.Log("Item Picked Up");
             inventory.Add(I.item);
             other.gameObject.SetActive(false);
+
+            background.DisplayDescription(I);
         }
     }
 
