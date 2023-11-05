@@ -10,7 +10,7 @@ public class WeaponRotation : MonoBehaviour
 {
     public PauseMenu pauseMenu;
 
-    public bool isAttacking; // Check whether the player is attacking.
+    private bool isAttacking; // Check whether the player is attacking.
     public float rotationSpeed = 250.0f; // The speed the weapon will rotate by.
     public Vector3 targetRotation; // The weapon will rotate to this target rotation.
 
@@ -18,6 +18,8 @@ public class WeaponRotation : MonoBehaviour
 
     private Quaternion initialRotation; // An initial rotation for the weapon.
     private Quaternion finalRotation; // A final rotation for the weapon
+
+    public bool IsAttacking() { return isAttacking; }
 
     /// <summary>
     /// Initialise variables. No attacking when the game behins. Set initial and target rotation to rotate to.

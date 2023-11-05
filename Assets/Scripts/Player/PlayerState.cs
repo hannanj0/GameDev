@@ -18,7 +18,7 @@ public class PlayerState : MonoBehaviour
     public float maxHunger;
 
     //Player stats
-    public float attackDamage;
+    private float attackDamage;
 
     float distanceTravelled = 0;
     Vector3 lastPosition;
@@ -28,14 +28,23 @@ public class PlayerState : MonoBehaviour
     private float healthDecreaseInterval = 5f;
     private float healthDecreaseTimer;
 
+    public float AttackDamage()
+    {
+        return attackDamage;
+    }
+
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
     }
 
-    // awake looks and checks that it is the only instance in the game, if not, it will destroy it
+    public void IncreaseDamage(float damage)
+    {
+        attackDamage += damage;
+    }
 
-    private void Awake() 
+    // awake looks and checks that it is the only instance in the game, if not, it will destroy it
+    private void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -47,11 +56,12 @@ public class PlayerState : MonoBehaviour
         }
     }
 
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
+        attackDamage = 40.0f;
         currentHealth = maxHealth;
         currentHunger = maxHunger;
         healthDecreaseTimer = healthDecreaseInterval;
@@ -64,7 +74,7 @@ public class PlayerState : MonoBehaviour
         distanceTravelled += Vector3.Distance(playerBody.transform.position, lastPosition);
         lastPosition = playerBody.transform.position;
 
-        
+
         if (currentHunger > 0 && distanceTravelled >= 7)
         {
             distanceTravelled = 0;
@@ -77,15 +87,8 @@ public class PlayerState : MonoBehaviour
             }
         }
 
-
-        // // if user presses N key, we will take -10 damage
-        // if (Input.GetKeyDown(KeyCode.N))
-        // {
-        //     currentHealth -= 10;
-        // }
-
         // the game ends when health reaches 0, this is the loss condition
-        if (currentHealth <=0)
+        if (currentHealth <= 0)
         {
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;

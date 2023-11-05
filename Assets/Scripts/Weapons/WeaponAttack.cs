@@ -9,10 +9,6 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class WeaponAttack : MonoBehaviour
 {
-    private float weaponAttackCooldown = 0.0f; // Player has a timer for how long they can attack.
-    private float weaponAttackCooldownDuration = 0.70f; // Player can only attack after this time has elapsed.
-    private bool canAttack; // Boolean to check whether the player can attack yet or not.
-
     private bool playerAttacked; // Track whether the player was previously attacking.
     private MeshRenderer enemyMeshRenderer; // Enemy's mesh renderer to make the enemy flash red.
     private Color enemyColor; // Red colour to flash enemy material - visual feedback for attacks.
@@ -27,7 +23,6 @@ public class WeaponAttack : MonoBehaviour
     void Start()
     {
         playerAttacked = false;
-        canAttack = true;
     }
 
     /// <summary>
@@ -45,22 +40,6 @@ public class WeaponAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// If the player cannot attack yet, they are on cooldown. Count till they can attack again and indicate this with offCooldown=true.
-    /// </summary>
-    void Update()
-    {
-        if (!canAttack)
-        {
-            weaponAttackCooldown += Time.deltaTime;
-            if (weaponAttackCooldown >= weaponAttackCooldownDuration)
-            {
-                canAttack = true;
-                weaponAttackCooldown = 0.0f;
-            }
-        }
-    }
-
-    /// <summary>
     /// Trigger collider events to deal damage to enemies and provide visual feedback through enemy health bar UI and flashing red enemy.
     /// </summary>
     /// <param name="other"> Other entity colliding with the player's sword. </param>
@@ -68,26 +47,22 @@ public class WeaponAttack : MonoBehaviour
     {
         // Player's weapon must collide with an enemy. Damaging an enemy can only take place if an attack is initiated (meaning their weapon is rotating).
         // Before user input to attack, an attack must not have previously been in effect, and they must be off cooldown to attack again.
-        if (this.gameObject.CompareTag("Weapon") && other.gameObject.CompareTag("Enemy") && weaponRotation.isAttacking && !playerAttacked && canAttack)
+        if (this.gameObject.CompareTag("Weapon") && other.gameObject.CompareTag("Enemy") && weaponRotation.IsAttacking() && !playerAttacked)
         {
             // Deal damage to the enemy.
             EnemyState enemy = other.gameObject.GetComponent<EnemyState>();
-            enemy.TakeDamage(playerState.attackDamage);
+            enemy.TakeDamage(playerState.AttackDamage());
 
-            // The player is now on cooldown after dealing damage (can't attack anymore). Start counting. The player just attacked so set variable true.
-            canAttack = false;
-            weaponAttackCooldown = 0.0f;
             playerAttacked = true;
 
             // Flash enemy red for damage indication.
             enemyMeshRenderer = other.gameObject.GetComponent<MeshRenderer>();
             enemyColor = enemyMeshRenderer.materials[0].color;
-            FlashEnemyStart();
 
             // Update enemy health bar UI.
             EnemyHealthBar enemyHealthBar = other.transform.Find("HealthBarContainer/HealthBar").GetComponent<EnemyHealthBar>();
             enemyHealthBar.UpdateHealthBar(enemy.Health(), enemy.MaxHealth());
-
+            FlashEnemyStart();
 
             // Destroy enemy when their health reaches 0 or less.
             if (enemy.Health() <= 0)
@@ -101,6 +76,7 @@ public class WeaponAttack : MonoBehaviour
                     SceneManager.LoadScene("WinGame");
                 }
                 other.gameObject.SetActive(false);
+                playerAttacked = false;
             }
         }
     }
@@ -131,7 +107,7 @@ public class WeaponAttack : MonoBehaviour
     /// <summary>
     /// Stops flashing the red colour, sets the enemy's material back to its original colour.
     /// </summary>
-    void FlashEnemyFinish() 
+    void FlashEnemyFinish()
     {
         enemyMeshRenderer.materials[0].color = enemyColor;
     }
