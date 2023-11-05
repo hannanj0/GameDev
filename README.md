@@ -59,8 +59,26 @@ Implementing the flashing red colour in WeaponAttack.cs is more closely followed
    - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments assisted with proper C# documentation.
 
 #### Hugos's attributions
+
+Note: Most of these are sources used for inspiration and understanding concepts and bugs better, so no code is copied directly. Implementing the flashing red colour in WeaponAttack.cs is more closely followed on the other hand.
+
 1. PlayerMovement.cs
-   - https://www.youtube.com/watch?v=vFV0uJ0KE2Q assisted with using the new input system with movement.
+
+    - [https://www.youtube.com/watch?v=vFV0uJ0KE2Q](https://www.youtube.com/watch?v=vFV0uJ0KE2Q) assisted with using the new input system with movement.
+    - https://www.youtube.com/watch?v=q-VfsQQlji0 - overview video on creation of a basic movement system
+      
+2. ThirdPersonCameraController.cs
+
+	- https://www.youtube.com/watch?v=04EpnVbMKpU - fundamentals of implementing the camera system with new input system, relative positioning of the camera
+	- https://www.youtube.com/watch?v=qnjKoTmko3Q - quick overview of how camera systems are made and work.
+ 
+3. Playercontrols.cs (inputactions)
+
+	- https://www.youtube.com/watch?v=Yjee_e4fICc - explained how to configure and use for other scenarios
+	- Videos on QMplus (guided on the initial creation)
+
+4. General C# Documentation Guidance.
+   - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments assisted with proper C# documentation.
     
 ## Getting Started
 
