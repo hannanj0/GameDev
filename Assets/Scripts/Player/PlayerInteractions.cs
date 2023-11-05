@@ -64,7 +64,7 @@ public class PlayerInteractions : MonoBehaviour
             enemyAttackCooldown += Time.deltaTime;
             if (enemyAttackCooldown >= enemyAttackCooldownDuration)
             {
-                if (inContact)
+                if (inContact && enemyState.Health() > 0)
                 {
                     playerState.TakeDamage(enemyState.AttackDamage());
                     enemyAttackCooldown = 0.0f;
