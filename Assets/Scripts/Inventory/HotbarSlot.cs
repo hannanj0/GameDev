@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 /// <summary>
 /// A script for the hotbar slot in the game
 /// Used for selecting items in your hotbar to use them

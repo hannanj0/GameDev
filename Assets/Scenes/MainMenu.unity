@@ -320,7 +320,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "<u>Enemies you will face:</u>\r\n-  3x Grey Cube Mob Enemies which will
-    test your stregth. (Fast Speed, Moderate Attack Damage, Moderate Health)\r\n-
+    test your strength. (Fast Speed, Moderate Attack Damage, Moderate Health)\r\n-
     1x Black Cube Boss Enemy which will test your resolve! (Slower Speed, Higher
     Attack Damage, Higher Health)\r"
   m_isRightToLeft: 0
@@ -1606,9 +1606,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<u>Items you can find:</u>\r\n- 1x Bread to keep your stomach happy! (Replenishes
-    Hunger Bar)\r\n- 1x Strength potion to battle your fierce foes. (Enhances Attack
-    Damage)\r\n- 1x Wild Herbs to mediate your wounds. (Replenishes Health Bar)\r\r"
+  m_text: '<u>Items you can find:</u>
+
+    - 1x Bread to keep your stomach happy!
+    (Replenishes Hunger Bar)
+
+    - 1x Strength potion to battle your fierce foes.
+    (Enhances Attack Damage)
+
+    - 1x Wild Herbs component to craft a Healing Potion
+    (1/2).
+
+    - 1x Glass Bottle component to craft a Healing Potion (2/2).'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
