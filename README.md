@@ -110,7 +110,7 @@ These guides were used as inspiration and the knowledge was combined with our ow
    - https://www.youtube.com/watch?v=KR4qUFGuKyQ
    - https://www.youtube.com/watch?v=EUaLIWJxBks
   
-## At some points, Generative AI was used to help with any errors encountered as a last resort.
+At some points, Generative AI was used to help with any errors encountered as a last resort.
 
 ## Getting Started
 
