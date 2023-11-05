@@ -3857,6 +3857,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3723505779192059843, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1386047291}
+    - target: {fileID: 3723505779192059843, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
       propertyPath: weaponRotation
       value: 
       objectReference: {fileID: 548139738}
@@ -4002,6 +4006,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5024696107131831299, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1386047291}
     - target: {fileID: 5132254234148484188, guid: eed0fd49608197c46bfc25c2fb75247f, type: 3}
       propertyPath: m_Layer
       value: 6

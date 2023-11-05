@@ -8,6 +8,8 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class WeaponRotation : MonoBehaviour
 {
+    public PauseMenu pauseMenu;
+
     public bool isAttacking; // Check whether the player is attacking.
     public float rotationSpeed = 250.0f; // The speed the weapon will rotate by.
     public Vector3 targetRotation; // The weapon will rotate to this target rotation.
@@ -32,7 +34,7 @@ public class WeaponRotation : MonoBehaviour
     /// </summary>
     public void BeginAttack()
     {
-        if (!isAttacking)
+        if (!isAttacking && Time.timeScale == 1.0f && !pauseMenu.GameIsPaused())
         {
             isAttacking = true;
             StartCoroutine(RotateToTargetRotation());

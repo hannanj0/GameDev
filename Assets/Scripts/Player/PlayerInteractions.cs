@@ -119,19 +119,6 @@ public class PlayerInteractions : MonoBehaviour
         // The player cannot be attacked for the AttackCooldownDuration since they just got attacked.
     }
 
-    /// <summary>
-    /// Register the exit of the collision with an enemy. They can be attacked again after no longer colliding.
-    /// </summary>
-    /// <param name="other"> Other entity colliding with the player. </param>
-    private void OnCollisionExit(Collision other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            canBeAttacked = true;
-            enemyAttackCooldown = 0.0f;
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         //

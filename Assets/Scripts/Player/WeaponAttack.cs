@@ -61,14 +61,6 @@ public class WeaponAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// User input triggers the attack rotation in the relevant script.
-    /// </summary>
-    void OnAttack()
-    {
-        weaponRotation.BeginAttack();
-    }
-
-    /// <summary>
     /// Trigger collider events to deal damage to enemies and provide visual feedback through enemy health bar UI and flashing red enemy.
     /// </summary>
     /// <param name="other"> Other entity colliding with the player's sword. </param>
