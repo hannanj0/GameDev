@@ -8,17 +8,46 @@ public class EnemyHealthBar : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private Camera camera;
     [SerializeField] private Transform target;
-    [SerializeField] private Vector3 offset;
+    [SerializeField] private Vector3 barOffset; // The offset of the health bar
+    [SerializeField] private float visibilityDistance = 10f; // Sets the distance for the health bar to be visible
+
+    private void Start()
+    {
+        SetHealthBarVisibility(false);
+    }
 
     public void UpdateHealthBar(float currentValue, float maxValue)
     {
-        slider.value = currentValue / maxValue;
+        if (slider != null)
+        {
+            slider.value = currentValue / maxValue;
+            SetHealthBarVisibility(true);
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.rotation = camera.transform.rotation;
-        transform.position = target.position + offset;
+        if (camera != null && target != null)
+        {
+            float distanceToPlayer = Vector3.Distance(target.position, camera.transform.position);
+
+            if (distanceToPlayer <= visibilityDistance)
+            {
+                transform.rotation = camera.transform.rotation;
+                transform.position = target.position + barOffset;
+            }
+            else
+            {
+                SetHealthBarVisibility(false);
+            }
+        }
+    }
+
+    private void SetHealthBarVisibility(bool visible)
+    {
+        if (slider != null)
+        {
+            slider.gameObject.SetActive(visible);
+        }
     }
 }

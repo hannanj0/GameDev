@@ -1075,6 +1075,14 @@ PrefabInstance:
       propertyPath: offset.y
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8702749494107618514, guid: 5db89231c75b6b343b789cd517d5f666, type: 3}
+      propertyPath: barOffset.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702749494107618514, guid: 5db89231c75b6b343b789cd517d5f666, type: 3}
+      propertyPath: visibilityDistance
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -2442,6 +2450,14 @@ PrefabInstance:
       propertyPath: offset.y
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8702749494107618514, guid: 5db89231c75b6b343b789cd517d5f666, type: 3}
+      propertyPath: barOffset.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702749494107618514, guid: 5db89231c75b6b343b789cd517d5f666, type: 3}
+      propertyPath: visibilityDistance
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -3360,6 +3376,14 @@ PrefabInstance:
     - target: {fileID: 8702749494107618514, guid: 5db89231c75b6b343b789cd517d5f666, type: 3}
       propertyPath: offset.y
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702749494107618514, guid: 5db89231c75b6b343b789cd517d5f666, type: 3}
+      propertyPath: barOffset.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702749494107618514, guid: 5db89231c75b6b343b789cd517d5f666, type: 3}
+      propertyPath: visibilityDistance
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1090304225095711627, guid: 5db89231c75b6b343b789cd517d5f666, type: 3}
@@ -6073,6 +6097,14 @@ PrefabInstance:
     - target: {fileID: 8702749494107618514, guid: 5db89231c75b6b343b789cd517d5f666, type: 3}
       propertyPath: offset.y
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702749494107618514, guid: 5db89231c75b6b343b789cd517d5f666, type: 3}
+      propertyPath: barOffset.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702749494107618514, guid: 5db89231c75b6b343b789cd517d5f666, type: 3}
+      propertyPath: visibilityDistance
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
