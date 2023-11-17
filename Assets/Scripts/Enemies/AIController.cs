@@ -15,7 +15,7 @@ public class AIController : MonoBehaviour
     public float speedRun = 9; // Chasing speed of AI
 
     public float viewRadius = 15; // This radius is used for detecting the player
-    public float viewAngle = 90; // This is the angle used for detecting the player
+    public float viewAngle = 360; // This is the angle used for detecting the player
     public LayerMask playerMask; // The layer mask for detecting what is a "player" (the user)
     public LayerMask obstacleMask; // The layer mask for detecting what is an "obstacle" (the trees)
     public float meshResolution = 1f; // Used for FOV calculations
