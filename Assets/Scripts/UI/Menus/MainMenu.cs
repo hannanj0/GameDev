@@ -12,13 +12,56 @@ public class MainMenu : MonoBehaviour
     public GameObject instructionsPage1; // Instructions page 1 object to hide and set visible.
     public GameObject instructionsPage2; // Instructions page 2 object to hide and set visible.
 
+    public GameObject newGameDialog;
+    public GameObject loadGameDialog;
+    public GameObject noSavesFoundDialog;
+    public GameObject quitGameDialog;
+
+    public void NewGame()
+    {
+        mainMenuScreen.SetActive(false);
+        newGameDialog.SetActive(true);
+    }
+
     /// <summary>
     /// Load the game and set time to flow at the normal rate.
     /// </summary>
-    public void PlayGame()
+    public void NewGame_Yes()
     {
         Time.timeScale = 1;
         SceneManager.LoadSceneAsync(1);
+    }
+
+    public void NewGame_No()
+    {
+        newGameDialog.SetActive(false);
+        mainMenuScreen.SetActive(true);
+    }
+
+    public void LoadGame()
+    {
+        mainMenuScreen.SetActive(false);
+        loadGameDialog.SetActive(true);
+    }
+
+    public void LoadGame_Yes()
+    {
+        loadGameDialog.SetActive(false);
+        //if save files not found
+        noSavesFoundDialog.SetActive(true);
+    }
+
+    public void LoadGame_No()
+    {
+        loadGameDialog.SetActive(false);
+        //if save files not found
+        noSavesFoundDialog.SetActive(true);
+    }
+
+    public void ConfirmNoSavesFound()
+    {
+        noSavesFoundDialog.SetActive(false);
+        mainMenuScreen.SetActive(true);
     }
 
     /// <summary>
@@ -75,12 +118,21 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Quit the game.
-    /// </summary>
     public void QuitGame()
     {
+        mainMenuScreen.SetActive(false);
+        quitGameDialog.SetActive(true);
+    }
+
+    public void QuitGame_Yes()
+    {
         Application.Quit();
+    }
+
+    public void QuitGame_No()
+    {
+        quitGameDialog.SetActive(false);
+        mainMenuScreen.SetActive(true);
     }
 }
 

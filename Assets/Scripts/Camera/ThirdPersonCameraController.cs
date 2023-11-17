@@ -9,7 +9,7 @@ public class ThirdPersonCameraController : MonoBehaviour
     public PlayerInteractions playerInteractions;
     public PauseMenu pauseMenu;
 
-    public float rotationSpeed = 1;
+    public float rotationSpeed = 0.2f;
     public float distanceFromTarget = 2;
     public float cameraHeightOffset = 2.5f;
     public Vector2 pitchMinMax = new Vector2(-35, 80); // Adjust the max value to prevent flipping
