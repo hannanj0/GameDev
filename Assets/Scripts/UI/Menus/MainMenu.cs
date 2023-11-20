@@ -11,11 +11,14 @@ public class MainMenu : MonoBehaviour
     public GameObject mainMenuScreen; // Main menu screen object to hide and set visible.
     public GameObject instructionsPage1; // Instructions page 1 object to hide and set visible.
     public GameObject instructionsPage2; // Instructions page 2 object to hide and set visible.
+    public GameObject settingsPage;
 
     public GameObject newGameDialog;
     public GameObject loadGameDialog;
     public GameObject noSavesFoundDialog;
     public GameObject quitGameDialog;
+
+    private string levelToLoad;
 
     public void NewGame()
     {
@@ -47,15 +50,23 @@ public class MainMenu : MonoBehaviour
     public void LoadGame_Yes()
     {
         loadGameDialog.SetActive(false);
-        //if save files not found
-        noSavesFoundDialog.SetActive(true);
+
+        // save file found
+        if (PlayerPrefs.HasKey("SavedGame"))
+        {
+            levelToLoad = PlayerPrefs.GetString("SavedGame");
+            SceneManager.LoadSceneAsync(levelToLoad);
+        }
+        else
+        {
+            noSavesFoundDialog.SetActive(true);
+        }
     }
 
     public void LoadGame_No()
     {
         loadGameDialog.SetActive(false);
-        //if save files not found
-        noSavesFoundDialog.SetActive(true);
+        mainMenuScreen.SetActive(true);
     }
 
     public void ConfirmNoSavesFound()
@@ -79,6 +90,11 @@ public class MainMenu : MonoBehaviour
         if (instructionsPage2.activeSelf)
         {
             instructionsPage2.SetActive(false);
+        }
+
+        if (settingsPage.activeSelf)
+        {
+            settingsPage.SetActive(false);
         }
     }
 
@@ -116,6 +132,12 @@ public class MainMenu : MonoBehaviour
         {
             instructionsPage1.SetActive(false);
         }
+    }
+
+    public void LoadSettings()
+    {
+        mainMenuScreen.SetActive(false);
+        settingsPage.SetActive(true);
     }
 
     public void QuitGame()
