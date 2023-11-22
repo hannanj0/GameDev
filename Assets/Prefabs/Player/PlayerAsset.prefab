@@ -1794,6 +1794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hungerCount: {fileID: 347579511916134232}
   playerState: {fileID: 8609615923552936193}
+  playerMovement: {fileID: 0}
 --- !u!1 &2491815040745180904
 GameObject:
   m_ObjectHideFlags: 0
@@ -2017,7 +2018,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -6150,7 +6151,7 @@ GameObject:
   - component: {fileID: 3529749705236509439}
   - component: {fileID: 5796372670583752902}
   - component: {fileID: 7945808334714476329}
-  - component: {fileID: 4434120868749639008}
+  - component: {fileID: 2373488262094589906}
   - component: {fileID: 3423122077846721122}
   - component: {fileID: 4931256081916931671}
   - component: {fileID: 3961963879873853271}
@@ -6307,7 +6308,7 @@ CapsuleCollider:
   m_Height: 0.63686514
   m_Direction: 1
   m_Center: {x: -0.24, y: 0.2984326, z: 0.01}
---- !u!114 &4434120868749639008
+--- !u!114 &2373488262094589906
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6316,7 +6317,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8609615923552936193}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79e2e0ab04a71f7449280861e83724ef, type: 3}
+  m_Script: {fileID: 11500000, guid: e2e4087bc8087a847ae1d050bb788700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
@@ -6338,7 +6339,6 @@ MonoBehaviour:
   maxHealth: 100
   currentHunger: 0
   maxHunger: 100
-  attackDamage: 40
   playerBody: {fileID: 8609615923552936193}
 --- !u!114 &4931256081916931671
 MonoBehaviour:
@@ -6352,7 +6352,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa4db826b7727e418e4bdca62dec5d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerState: {fileID: 3423122077846721122}
 --- !u!136 &3961963879873853271
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6741,6 +6740,7 @@ MonoBehaviour:
   hotbarImage: {fileID: 0}
   imageColor: {r: 0, g: 0, b: 0, a: 0}
   isEmpty: 1
+  textMesh: {fileID: 0}
 --- !u!224 &7134351259705753470 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7756553001096730130, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
@@ -6867,6 +6867,7 @@ MonoBehaviour:
   hotbarImage: {fileID: 0}
   imageColor: {r: 0, g: 0, b: 0, a: 0}
   isEmpty: 1
+  textMesh: {fileID: 0}
 --- !u!224 &8749962491326356480 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7756553001096730130, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
@@ -6993,6 +6994,7 @@ MonoBehaviour:
   hotbarImage: {fileID: 0}
   imageColor: {r: 0, g: 0, b: 0, a: 0}
   isEmpty: 1
+  textMesh: {fileID: 0}
 --- !u!224 &5490936139167479186 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7756553001096730130, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
@@ -7136,3 +7138,4 @@ MonoBehaviour:
   hotbarImage: {fileID: 0}
   imageColor: {r: 0, g: 0, b: 0, a: 0}
   isEmpty: 1
+  textMesh: {fileID: 0}
