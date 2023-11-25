@@ -13,10 +13,12 @@ public class PlayerMovement : MonoBehaviour
     private bool canSprint = true;
     private Rigidbody rb;
     private PlayerControls controls;
+    private Animator animator; // Added Animator variable
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>(); // Initialize the Animator variable
         controls = new PlayerControls();
 
         // Subscribe to the input system events
@@ -39,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         UpdateMoveDirection();
+        UpdateAnimation(); // Call UpdateAnimation method
     }
 
     private void FixedUpdate()
@@ -64,24 +67,31 @@ public class PlayerMovement : MonoBehaviour
     private void OnSprintCanceled(InputAction.CallbackContext context)
     {
         isRunning = false;
-        // Debug.Log("Sprinting stopped");
     }
 
     private void UpdateMoveDirection()
     {
-        // Convert move input to a world space direction based on the camera's orientation
         Vector3 directionRelativeToCamera = new Vector3(moveInput.x, 0, moveInput.y).normalized;
         moveDirection = cameraTransform.TransformDirection(directionRelativeToCamera);
         moveDirection.y = 0; // Ensure that the player remains grounded
     }
 
+    private void UpdateAnimation()
+    {
+        // Convert global movement direction to local space
+        Vector3 localMoveDirection = transform.InverseTransformDirection(moveDirection);
+
+        // Update the Animator parameters with local direction
+        animator.SetFloat("MoveX", localMoveDirection.x);
+        animator.SetFloat("MoveZ", localMoveDirection.z);
+        animator.SetBool("isRunning", isRunning);
+    }
+
+
     private void UpdatePosition()
     {
-        // Determine if the player can sprint
         isRunning = isRunning && canSprint && moveDirection.magnitude > 0.1f;
         float currentSpeed = isRunning ? speed * runMultiplier : speed;
-
-        // Calculate the movement vector and move the player
         Vector3 movement = moveDirection * currentSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + movement);
     }
