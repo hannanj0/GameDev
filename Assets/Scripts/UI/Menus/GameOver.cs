@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class GameOver : MonoBehaviour
 {
+    public GameObject mainMenuDialog;
+    public GameObject quitGameDialog;
+
     /// <summary>
     /// Resets the game, allowing the user to retry.
     /// The flow of time is resumed.
@@ -18,19 +21,33 @@ public class GameOver : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    /// <summary>
-    /// Load the main menu.
-    /// </summary>
     public void LoadMainMenu()
+    {
+        mainMenuDialog.SetActive(true);
+    }
+
+    public void LoadMainMenu_Yes()
     {
         SceneManager.LoadScene(0);
     }
 
-    /// <summary>
-    /// Quit the game.
-    /// </summary>
+    public void LoadMainMenu_No()
+    {
+        mainMenuDialog.SetActive(false);
+    }
+
     public void QuitGame()
     {
+        quitGameDialog.SetActive(true);
+    }
+
+    public void QuitGame_Yes()
+    {
         Application.Quit();
+    }
+
+    public void QuitGame_No()
+    {
+        quitGameDialog.SetActive(false);
     }
 }
