@@ -31,7 +31,7 @@ public class WeaponAttack : MonoBehaviour
     void Awake()
     {
         // Player and SwordPivot object refereces. 
-        GameObject player = GameObject.Find("Player");
+        GameObject player = GameObject.Find("PlayerAsset");
         GameObject swordPivot = GameObject.Find("SwordPivot");
 
         // Player stats and weapon rotation script references.
@@ -70,10 +70,7 @@ public class WeaponAttack : MonoBehaviour
                 // If final boss is killed, player wins - load win menu.
                 if (enemy.IsBoss())
                 {
-                    Time.timeScale = 0;
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
-                    SceneManager.LoadScene("WinGame");
+                    playerState.BossKilled();
                 }
                 other.gameObject.SetActive(false);
                 playerAttacked = false;

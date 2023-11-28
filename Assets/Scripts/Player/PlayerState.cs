@@ -8,6 +8,9 @@ public class PlayerState : MonoBehaviour
 
     public static PlayerState Instance { get; set; }
 
+    private int bossesKilled;
+    private int totalGameBosses;
+
     // Player Health
     public float currentHealth;
     public float maxHealth;
@@ -27,6 +30,25 @@ public class PlayerState : MonoBehaviour
 
     private float healthDecreaseInterval = 5f;
     private float healthDecreaseTimer;
+
+    public int BossesKilled() { return bossesKilled; }
+
+    public void BossKilled()
+    {
+        bossesKilled += 1;
+        if (bossesKilled == totalGameBosses)
+        {
+            Invoke("WinGame", 1.0f);
+        }
+    }
+
+    public void WinGame()
+    {
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        SceneManager.LoadScene("WinGame");
+    }
 
     public float AttackDamage()
     {
@@ -61,6 +83,8 @@ public class PlayerState : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bossesKilled = 0;
+        totalGameBosses = 1;
         attackDamage = 40.0f;
         currentHealth = maxHealth;
         currentHunger = maxHunger;

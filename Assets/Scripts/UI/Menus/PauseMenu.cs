@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// The PauseMenu script controls the pause menu through buttons to resume, quit and show game instructions.
@@ -12,6 +13,9 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuScreen; // Pause menu screen object to hide and set visible.
     public GameObject instructionsPage1; // Instructions page 1 object to hide and set visible.
     public GameObject instructionsPage2; // Instructions page 2 object to hide and set visible.
+    public GameObject settingsPage; // Settings page object to hide and set visible.
+    public GameObject mainMenuDialog;
+    public GameObject quitGameDialog;
 
     private bool gameIsPaused = false;
 
@@ -74,6 +78,11 @@ public class PauseMenu : MonoBehaviour
         {
             instructionsPage2.SetActive(false);
         }
+
+        if (settingsPage.activeSelf)
+        {
+            settingsPage.SetActive(false);
+        }    
     }
 
     /// <summary>
@@ -112,11 +121,39 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    /// <summary>
-    ///  Quit the game.
-    /// </summary>
+    public void LoadSettings()
+    {
+        pauseMenuScreen.SetActive(false);
+        settingsPage.SetActive(true);
+    }
+
+    public void LoadMainMenu()
+    {
+        mainMenuDialog.SetActive(true);
+    }
+
+    public void LoadMainMenu_Yes()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void LoadMainMenu_No()
+    {
+        mainMenuDialog.SetActive(false);
+    }
+
     public void QuitGame()
     {
+        quitGameDialog.SetActive(true);
+    }
+
+    public void QuitGame_Yes()
+    {
         Application.Quit();
+    }
+
+    public void QuitGame_No()
+    {
+        quitGameDialog.SetActive(false);
     }
 }

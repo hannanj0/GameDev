@@ -11,6 +11,8 @@ using UnityEngine.UIElements;
 /// </summary>
 public class PlayerInteractions : MonoBehaviour
 {
+    public GameObject menuController;
+
     private bool inContact; // check if the player is in contact with an enemy.
     private bool craftingMenuOpen; // Check if the crafting menu is open.
     private float enemyAttackCooldown = 0.0f; // Counter to see how often the enemy can attack the player.
@@ -168,5 +170,10 @@ public class PlayerInteractions : MonoBehaviour
         // Clean up and disable the action when this object is destroyed
         useItemAction.performed -= UseItem;
         useItemAction.Disable();
+    }
+
+    private void OnPause()
+    {
+        menuController.GetComponent<PauseMenu>().OnPause();
     }
 }

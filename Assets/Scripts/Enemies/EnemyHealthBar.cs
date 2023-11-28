@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class EnemyHealthBar : MonoBehaviour
 {
     [SerializeField] private Slider slider;
-    [SerializeField] private Camera camera;
+    [SerializeField] private Camera mainCamera;
     [SerializeField] private Transform target;
     [SerializeField] private Vector3 barOffset; // The offset of the health bar
     [SerializeField] private float visibilityDistance = 10f; // Sets the distance for the health bar to be visible
@@ -27,13 +27,13 @@ public class EnemyHealthBar : MonoBehaviour
 
     void Update()
     {
-        if (camera != null && target != null)
+        if (mainCamera != null && target != null)
         {
-            float distanceToPlayer = Vector3.Distance(target.position, camera.transform.position);
+            float distanceToPlayer = Vector3.Distance(target.position, mainCamera.transform.position);
 
             if (distanceToPlayer <= visibilityDistance)
             {
-                transform.rotation = camera.transform.rotation;
+                transform.rotation = mainCamera.transform.rotation;
                 transform.position = target.position + barOffset;
             }
             else
