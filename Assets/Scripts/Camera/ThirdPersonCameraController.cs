@@ -1,15 +1,17 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class ThirdPersonCameraController : MonoBehaviour
 {
+    public Slider sensitivitySlider;
     public Transform player;
     public Transform cameraTarget;
 
     public PlayerInteractions playerInteractions;
     public PauseMenu pauseMenu;
 
-    public float rotationSpeed = 0.2f;
+    public float sensitivity = 5.0f;
     public float distanceFromTarget = 2;
     public float cameraHeightOffset = 2.5f;
     public Vector2 pitchMinMax = new Vector2(-35, 80); // Adjust the max value to prevent flipping
@@ -24,6 +26,11 @@ public class ThirdPersonCameraController : MonoBehaviour
         Cursor.visible = false;
     }
 
+    void Awake()
+    {
+        sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", sensitivity);
+    }
+
     void Update()
     {
         // Capture the mouse movement
@@ -35,11 +42,11 @@ public class ThirdPersonCameraController : MonoBehaviour
         if (!pauseMenu.GameIsPaused() && !playerInteractions.CraftingMenuOpen())
         {
             // Horizontal rotation
-            yaw += currentMouseDelta.x * rotationSpeed * Time.deltaTime;
+            yaw += currentMouseDelta.x * sensitivity * Time.deltaTime;
             player.rotation = Quaternion.Euler(0, yaw, 0);
 
             // Vertical rotation
-            pitch += currentMouseDelta.y * rotationSpeed * Time.deltaTime; // Notice we subtract to maintain the orientation
+            pitch += currentMouseDelta.y * sensitivity * Time.deltaTime; // Notice we subtract to maintain the orientation
             pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
 
             // Calculate rotation and position
@@ -54,5 +61,11 @@ public class ThirdPersonCameraController : MonoBehaviour
             // Look at the camera target
             transform.LookAt(cameraTarget.position);
         }
+    }
+
+    public void changeSensitivity(System.Single newSensitivity)
+    {
+        sensitivity = newSensitivity;
+        PlayerPrefs.SetFloat("Sensitivity", newSensitivity);
     }
 }
