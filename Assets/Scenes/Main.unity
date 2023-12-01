@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.61716497, g: 0.81795794, b: 0.820686, a: 1}
+  m_IndirectSpecularColor: {r: 0.6179998, g: 0.81942356, b: 0.82229364, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5812,7 +5812,7 @@ MonoBehaviour:
   cameraTarget: {fileID: 4874980051322353227}
   playerInteractions: {fileID: 4931256083479664901}
   pauseMenu: {fileID: 1146806290}
-  rotationSpeed: 4
+  sensitivity: 5
   distanceFromTarget: 4
   cameraHeightOffset: 2.5
   pitchMinMax: {x: -35, y: 80}
