@@ -163,6 +163,7 @@ public class AIController : MonoBehaviour
     /// </summary>
     void Move(float speed)
     {
+        GetComponent<Animator>().SetBool("WalkForward", true);
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speed;
     }
@@ -172,6 +173,7 @@ public class AIController : MonoBehaviour
     /// </summary>
     void Stop()
     {
+        GetComponent<Animator>().SetBool("WalkForward", false);
         navMeshAgent.isStopped = true;
         navMeshAgent.speed = 0;
     }
