@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.63512444, g: 0.8416172, b: 0.8443941, a: 1}
+  m_IndirectSpecularColor: {r: 0.69723094, g: 0.92345095, b: 0.92728186, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1127,7 +1127,7 @@ Transform:
   m_GameObject: {fileID: 150215999}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 314.51, y: 9.11, z: 339.42288}
+  m_LocalPosition: {x: 314.51, y: 4.2, z: 339.42288}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5770,7 +5770,7 @@ Transform:
   m_GameObject: {fileID: 665775760}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 305.7, y: 9, z: 295.7}
+  m_LocalPosition: {x: 305.7, y: 6, z: 295.7}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8835,7 +8835,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7292658344771522932, guid: f5b41ba4c79702547a89de7544b80656, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.382
+      value: 1.58
       objectReference: {fileID: 0}
     - target: {fileID: 7292658344771522932, guid: f5b41ba4c79702547a89de7544b80656, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18539,7 +18539,7 @@ Transform:
   m_GameObject: {fileID: 8609615925106562643}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.17364825, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 300, y: 9, z: 315}
+  m_LocalPosition: {x: 300, y: 4, z: 315}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -23711,7 +23711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3377483611055081813, guid: 9d5c8e335dd010e4181dd77ce153bae0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9
+      value: 4.55
       objectReference: {fileID: 0}
     - target: {fileID: 3377483611055081813, guid: 9d5c8e335dd010e4181dd77ce153bae0, type: 3}
       propertyPath: m_LocalPosition.z
