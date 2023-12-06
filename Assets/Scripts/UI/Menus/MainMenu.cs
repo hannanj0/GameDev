@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -8,6 +10,10 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class MainMenu : MonoBehaviour
 {
+    public Slider sensitivitySlider;
+
+    public AudioMixer audioMixer;
+
     public GameObject mainMenuScreen; // Main menu screen object to hide and set visible.
     public GameObject instructionsPage1; // Instructions page 1 object to hide and set visible.
     public GameObject instructionsPage2; // Instructions page 2 object to hide and set visible.
@@ -18,7 +24,18 @@ public class MainMenu : MonoBehaviour
     public GameObject noSavesFoundDialog;
     public GameObject quitGameDialog;
 
+    public GameObject generalSettings;
+    public GameObject controlsSettings;
+    public GameObject graphicsSettings;
+    public GameObject audioSettings;
+    public GameObject accessibilitySettings;
+
     private string levelToLoad;
+
+    void Awake()
+    {
+        sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", 5.0f);
+    }
 
     public void NewGame()
     {
@@ -155,6 +172,66 @@ public class MainMenu : MonoBehaviour
     {
         quitGameDialog.SetActive(false);
         mainMenuScreen.SetActive(true);
+    }
+
+    public void LoadGeneralSettings()
+    {
+        HideTabs();
+        generalSettings.SetActive(true);
+    }
+
+    public void LoadControlsSettings()
+    {
+        HideTabs();
+        controlsSettings.SetActive(true);
+    }
+
+    public void LoadGraphicsSettings()
+    {
+        HideTabs();
+        graphicsSettings.SetActive(true);
+    }
+
+    public void LoadAudioSettings()
+    {
+        HideTabs();
+        audioSettings.SetActive(true);
+    }
+
+    public void LoadAccessibilitySettings()
+    {
+        HideTabs();
+        accessibilitySettings.SetActive(true);
+    }
+
+    public void HideTabs()
+    {
+        generalSettings.SetActive(false);
+        controlsSettings.SetActive(false);
+        graphicsSettings.SetActive(false);
+        audioSettings.SetActive(false);
+        accessibilitySettings.SetActive(false);
+    }
+
+    public void ToggleFullScreen(bool isFullScreen)
+    {
+        Screen.fullScreen = isFullScreen;
+    }
+
+    public void SetGraphicsQuality(int index)
+    {
+
+        QualitySettings.SetQualityLevel(index);
+    }
+
+    public void SetMasterVolume(float volume)
+    {
+        audioMixer.SetFloat("volume", volume);
+    }
+
+    public void ChangeSensitivity(System.Single newSensitivity)
+    {
+        PlayerPrefs.SetFloat("Sensitivity", newSensitivity);
     }
 }
 

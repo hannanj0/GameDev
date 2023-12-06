@@ -93,7 +93,7 @@ public class PauseMenu : MonoBehaviour
         if (settingsPage.activeSelf)
         {
             settingsPage.SetActive(false);
-        }    
+        }
     }
 
     /// <summary>

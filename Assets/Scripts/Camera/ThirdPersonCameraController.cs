@@ -28,7 +28,7 @@ public class ThirdPersonCameraController : MonoBehaviour
 
     void Awake()
     {
-        //sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", sensitivity);
+        sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", sensitivity);
     }
 
     void Update()
@@ -66,6 +66,6 @@ public class ThirdPersonCameraController : MonoBehaviour
     public void changeSensitivity(System.Single newSensitivity)
     {
         sensitivity = newSensitivity;
-        //PlayerPrefs.SetFloat("Sensitivity", newSensitivity);
+        PlayerPrefs.SetFloat("Sensitivity", newSensitivity);
     }
 }
