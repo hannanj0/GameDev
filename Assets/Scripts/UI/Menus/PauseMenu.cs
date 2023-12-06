@@ -17,6 +17,12 @@ public class PauseMenu : MonoBehaviour
     public GameObject mainMenuDialog;
     public GameObject quitGameDialog;
 
+    public GameObject generalSettings;
+    public GameObject controlsSettings;
+    public GameObject graphicsSettings;
+    public GameObject audioSettings;
+    public GameObject accessibilitySettings;
+
     private bool gameIsPaused = false;
 
     /// <summary>
@@ -158,4 +164,50 @@ public class PauseMenu : MonoBehaviour
     {
         quitGameDialog.SetActive(false);
     }
+
+    public void LoadGeneralSettings()
+    {
+        HideTabs();
+        generalSettings.SetActive(true);
+    }
+
+    public void LoadControlsSettings()
+    {
+        HideTabs();
+        controlsSettings.SetActive(true);
+    }
+
+    public void LoadGraphicsSettings()
+    {
+        HideTabs();
+        graphicsSettings.SetActive(true);
+    }
+
+    public void LoadAudioSettings()
+    {
+        HideTabs();
+        audioSettings.SetActive(true);
+    }
+
+    public void LoadAccessibilitySettings()
+    {
+        HideTabs();
+        accessibilitySettings.SetActive(true);
+    }
+
+    public void HideTabs()
+    {
+        generalSettings.SetActive(false);
+        controlsSettings.SetActive(false);
+        graphicsSettings.SetActive(false);
+        audioSettings.SetActive(false);
+        accessibilitySettings.SetActive(false);
+    }
+
+    public void ToggleFullScreen(bool isFullScreen)
+    {
+        Screen.fullScreen = isFullScreen;
+    }
 }
+
+
