@@ -73,6 +73,7 @@ public class MainMenu : MonoBehaviour
         {
             levelToLoad = PlayerPrefs.GetString("SavedGame");
             SceneManager.LoadSceneAsync(levelToLoad);
+            HideTabs();
         }
         else
         {
@@ -112,6 +113,7 @@ public class MainMenu : MonoBehaviour
         if (settingsPage.activeSelf)
         {
             settingsPage.SetActive(false);
+            HideTabs();
         }
     }
 
@@ -155,6 +157,7 @@ public class MainMenu : MonoBehaviour
     {
         mainMenuScreen.SetActive(false);
         settingsPage.SetActive(true);
+        HideTabs();
     }
 
     public void QuitGame()

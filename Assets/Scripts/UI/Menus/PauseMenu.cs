@@ -57,6 +57,7 @@ public class PauseMenu : MonoBehaviour
         PlayerPrefs.Save();
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
+        HideTabs();
         LoadPauseMenu();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
