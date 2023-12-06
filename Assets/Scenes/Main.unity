@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.6757654, g: 0.89521843, b: 0.8986433, a: 1}
+  m_IndirectSpecularColor: {r: 0.6341652, g: 0.8409382, b: 0.84385425, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2860,6 +2860,10 @@ PrefabInstance:
       propertyPath: offset.y
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8702749494107618514, guid: 5db89231c75b6b343b789cd517d5f666, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 963194227}
     - target: {fileID: 8702749494107618514, guid: 5db89231c75b6b343b789cd517d5f666, type: 3}
       propertyPath: barOffset.y
       value: 1.5
@@ -7852,6 +7856,10 @@ PrefabInstance:
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8702749494107618514, guid: 5db89231c75b6b343b789cd517d5f666, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 8702749494107618514, guid: 5db89231c75b6b343b789cd517d5f666, type: 3}
       propertyPath: barOffset.y
       value: 1.5
       objectReference: {fileID: 0}
@@ -10846,6 +10854,10 @@ PrefabInstance:
       propertyPath: offset.y
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8702749494107618514, guid: 5db89231c75b6b343b789cd517d5f666, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 963194227}
     - target: {fileID: 8702749494107618514, guid: 5db89231c75b6b343b789cd517d5f666, type: 3}
       propertyPath: barOffset.y
       value: 5
@@ -23271,6 +23283,10 @@ PrefabInstance:
       propertyPath: offset.y
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8702749494107618514, guid: 5db89231c75b6b343b789cd517d5f666, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 963194227}
     - target: {fileID: 8702749494107618514, guid: 5db89231c75b6b343b789cd517d5f666, type: 3}
       propertyPath: barOffset.y
       value: 1.5
