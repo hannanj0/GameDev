@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 /// <summary>
 /// The PauseMenu script controls the pause menu through buttons to resume, quit and show game instructions.
 /// </summary>
 public class PauseMenu : MonoBehaviour
 {
+    public AudioMixer audioMixer;
+
     public GameObject pauseMenu; // PauseMenu object to hide and set visible.
     public GameObject pauseMenuScreen; // Pause menu screen object to hide and set visible.
     public GameObject instructionsPage1; // Instructions page 1 object to hide and set visible.
@@ -207,6 +210,17 @@ public class PauseMenu : MonoBehaviour
     public void ToggleFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
+    }
+
+    public void SetGraphicsQuality(int index)
+    {
+
+        QualitySettings.SetQualityLevel(index);
+    }
+
+    public void SetMasterVolume(float volume)
+    {
+        audioMixer.SetFloat("volume", volume);
     }
 }
 
