@@ -11,18 +11,16 @@ public class WeaponAttack : MonoBehaviour
     private float flashDuration = 0.1f; // Red colour flashes for this duration.
 
     public PlayerState playerState; // Use player state script to read player's current damage.
-    public WeaponRotation weaponRotation; // Use weapon rotation script to initiate the attack (rotation of weapon).
 
     void Awake()
     {
         // Initialize the PlayerControls
         playerControls = new PlayerControls();
 
-        // Get references to the player's Animator, PlayerState, and WeaponRotation components
+        // Get references to the player's Animator, PlayerState
         GameObject player = GameObject.FindWithTag("Player");
         animator = player.GetComponent<Animator>();
         playerState = player.GetComponent<PlayerState>();
-        weaponRotation = player.GetComponentInChildren<WeaponRotation>();
     }
 
     void Update()
@@ -73,7 +71,7 @@ public class WeaponAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy") && weaponRotation.IsAttacking() && playerAttacked)
+        if (other.gameObject.CompareTag("Enemy") && playerAttacked)
         {
             EnemyState enemy = other.gameObject.GetComponent<EnemyState>();
             enemy.TakeDamage(playerState.AttackDamage());
@@ -115,8 +113,6 @@ public class WeaponAttack : MonoBehaviour
 
     public void ResetMeleeAttack()
     {
-        // Reset the isMeleeAttack trigger here if needed
-        // Note: This is typically unnecessary for triggers as they auto-reset
         animator.ResetTrigger("isMeleeAttack");
     }
 
