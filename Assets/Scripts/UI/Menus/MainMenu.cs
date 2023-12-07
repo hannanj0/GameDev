@@ -30,7 +30,22 @@ public class MainMenu : MonoBehaviour
     public GameObject audioSettings;
     public GameObject accessibilitySettings;
 
+    public Button generalButton;
+    public Button controlsButton;
+    public Button graphicsButton;
+    public Button audioButton;
+    public Button accessibilityButton;
+
     private string levelToLoad;
+
+    private Color unselected;
+    private Color selected;
+
+    void Start()
+    {
+        unselected = new Color(0.388f, 0.565f, 0.278f);
+        selected = new Color(0.145f, 0.294f, 0.118f);
+    }
 
     void Awake()
     {
@@ -158,6 +173,7 @@ public class MainMenu : MonoBehaviour
         mainMenuScreen.SetActive(false);
         settingsPage.SetActive(true);
         HideTabs();
+        LoadGeneralSettings();
     }
 
     public void QuitGame()
@@ -180,30 +196,40 @@ public class MainMenu : MonoBehaviour
     public void LoadGeneralSettings()
     {
         HideTabs();
+        ResetButtons();
+        SelectButton(generalButton);
         generalSettings.SetActive(true);
     }
 
     public void LoadControlsSettings()
     {
         HideTabs();
+        ResetButtons();
+        SelectButton(controlsButton);
         controlsSettings.SetActive(true);
     }
 
     public void LoadGraphicsSettings()
     {
         HideTabs();
+        ResetButtons();
+        SelectButton(graphicsButton);
         graphicsSettings.SetActive(true);
     }
 
     public void LoadAudioSettings()
     {
         HideTabs();
+        ResetButtons();
+        SelectButton(audioButton);
         audioSettings.SetActive(true);
     }
 
     public void LoadAccessibilitySettings()
     {
         HideTabs();
+        ResetButtons();
+        SelectButton(accessibilityButton);
         accessibilitySettings.SetActive(true);
     }
 
@@ -214,6 +240,21 @@ public class MainMenu : MonoBehaviour
         graphicsSettings.SetActive(false);
         audioSettings.SetActive(false);
         accessibilitySettings.SetActive(false);
+        ResetButtons();
+    }
+
+    private void ResetButtons()
+    {
+        generalButton.image.color = unselected;
+        controlsButton.image.color = unselected;
+        graphicsButton.image.color = unselected;
+        audioButton.image.color = unselected;
+        accessibilityButton.image.color = unselected;
+    }
+
+    private void SelectButton(Button selectedButton)
+    {
+        selectedButton.image.color = selected;
     }
 
     public void ToggleFullScreen(bool isFullScreen)
