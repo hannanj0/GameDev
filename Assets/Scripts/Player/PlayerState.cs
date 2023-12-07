@@ -84,7 +84,7 @@ public class PlayerState : MonoBehaviour
     void Start()
     {
         bossesKilled = 0;
-        totalGameBosses = 1;
+        totalGameBosses = 2;
         attackDamage = 40.0f;
         currentHealth = maxHealth;
         currentHunger = maxHunger;

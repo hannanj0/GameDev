@@ -2,41 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
 /// <summary>
 /// The AIController script is used to determine how the enemies react in the environment in accordance to the player, and whether or not to chase them or not, depending on if they can see them, otherwise they will continue to patrol their own particular area
 /// </summary>
 public class AIController : MonoBehaviour
 {
-    public NavMeshAgent navMeshAgent;
-    public float startWaitTime = 4;
-    public float timeToRotate = 2;
-    public float speedWalk = 6;
-    public float speedRun = 9;
-
-    public float viewRadius = 15;
-    public float viewAngle = 360;
-    public LayerMask playerMask;
-    public LayerMask obstacleMask;
-    public float meshResolution = 1f;
-    public int edgeIterations = 4;
-    public float edgeDistance = 0.5f;
-
-    public Transform[] waypoints;
-    private int m_CurrentWaypointIndex;
-
-    private Vector3 playerLastPosition = Vector3.zero;
-    private Vector3 m_PlayerPosition;
-
-    private float m_WaitTime;
-    private float m_TimeToRotate;
-    private bool m_PlayerInRange;
-    private bool m_PlayerNear;
-    private bool m_IsPatrol;
-    private bool m_CaughtPlayer;
-
-    private Animator animator; // Reference to the Animator component
-
+    public NavMeshAgent navMeshAgent; // This is a reference to the NavMeshAgent for AI nagivation
+    public float startWaitTime = 4; // Time waiting before starting the patrolling
+    public float timeToRotate = 2; // Time it takes to rotate when in patrol
+    public float speedWalk = 6; // Walking speed of AI
+    public float speedRun = 9; // Chasing speed of AI
+    public float viewRadius = 15; // This radius is used for detecting the player
+    public float viewAngle = 360; // This is the angle used for detecting the player
+    public LayerMask playerMask; // The layer mask for detecting what is a "player" (the user)
+    public LayerMask obstacleMask; // The layer mask for detecting what is an "obstacle" (the trees)
+    public float meshResolution = 1f; // Used for FOV calculations
+    public int edgeIterations = 4; // Used to detect edges in FOV mesh
+    public float edgeDistance = 0.5f; // Used to detect edges in FOV mesh
+    public Transform[] waypoints; // Array of waypoints for patrols
+    int m_CurrentWaypointIndex; // Tracks the current waypoint during patrol
+    Vector3 playerLastPosition = Vector3.zero; // This stores the players last known position
+    Vector3 m_PlayerPosition; // This is the current player position
+    float m_WaitTime; // The time to wait before moving
+    float m_TimeToRotate; // The time to rotate
+    bool m_PlayerInRange; // Determines whether the player is in range or not
+    bool m_PlayerNear; // Determines if the player is near or not
+    bool m_IsPatrol; // Determines when enemy is in patrol mode or not
+    bool m_CaughtPlayer; // If player has been caught or not
     /// <summary>
     /// This initialises the variables and starts the patrol mode for enemy, the current waypoint index and sets the enemy speed and destination
     /// </summary>
@@ -48,53 +40,27 @@ public class AIController : MonoBehaviour
         m_PlayerInRange = false;
         m_WaitTime = startWaitTime;
         m_TimeToRotate = timeToRotate;
-
         m_CurrentWaypointIndex = 0;
         navMeshAgent = GetComponent<NavMeshAgent>();
-
-        // Ensure the Animator component is attached to the GameObject
-        animator = GetComponent<Animator>();
-        if (animator == null)
-        {
-            Debug.LogError("Animator component missing from this GameObject", this);
-        }
-        else
-        {
-            navMeshAgent.isStopped = false;
-            navMeshAgent.speed = speedWalk;
-            if (waypoints.Length > 0)
-            {
-                navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
-            }
-            else
-            {
-                Debug.LogError("No waypoints assigned in the waypoints array", this);
-            }
-        }
+        navMeshAgent.isStopped = false;
+        navMeshAgent.speed = speedWalk;
+        navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
     }
-
     /// <summary>
     /// This checks the environment and decides whether to chase the player or continue with patrolling
     /// </summary>
     void Update()
     {
-        // Ensure the Animator is not null before updating behavior
-        if (animator != null)
+        EnvironmentView();
+        if (!m_IsPatrol)
         {
-            EnvironmentView();
-
-            if (!m_IsPatrol)
-            {
-                Chasing();
-            }
-            else
-            {
-                Patroling();
-            }
+            Chasing();
+        }
+        else
+        {
+            Patroling();
         }
     }
-
-
     /// <summary>
     /// When chasing, it calculates the distance between the enemy and the player, setting the movement to running speed and stops when the player is close. Also, if the player gains distance, there will be a point where the enemy will return back to patrolling
     /// </summary>
@@ -102,12 +68,10 @@ public class AIController : MonoBehaviour
 {
     m_PlayerNear = false;
     playerLastPosition = Vector3.zero;
-
     if (!m_CaughtPlayer)
     {
         float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerPosition);
         float minDistanceToPlayer = 3f;
-
         if (distanceToPlayer > minDistanceToPlayer)
         {
             Move(speedRun);
@@ -118,7 +82,6 @@ public class AIController : MonoBehaviour
             Stop();
         }
     }
-
     if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
     {
         if (m_WaitTime <= 0 && !m_CaughtPlayer && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f)
@@ -140,7 +103,6 @@ public class AIController : MonoBehaviour
         }
     }
 }
-
     /// <summary>
     /// When in patrol mode, the enemy will move, wait and rotate, and move to the next waypoint
     /// </summary>
@@ -180,34 +142,36 @@ public class AIController : MonoBehaviour
             }
         }
     }
-
+    /// <summary>
+    /// This is so that the enemy moves at the particular speed required
+    /// </summary>
     void Move(float speed)
     {
-        animator.SetBool("WalkForward", true);
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speed;
     }
 
+    /// </summary>
     void Stop()
     {
-        animator.SetBool("WalkForward", false);
         navMeshAgent.isStopped = true;
         navMeshAgent.speed = 0;
     }
-
+    /// <summary>
+    /// Moves to the next point, with a debug log warning if necessary
+    /// </summary>
     public void NextPoint()
     {
-        if (waypoints != null && waypoints.Length > 0)
+        if (waypoints.Length > 0)
         {
             m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
             navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
         }
         else
         {
-            Debug.LogWarning("Waypoints array is null or empty", this);
+            Debug.LogWarning("No waypoints assigned to the AI controller.");
         }
     }
-
     /// <summary>
     /// Handles when the enemy catches the player
     /// </summary>
@@ -215,7 +179,6 @@ public class AIController : MonoBehaviour
     {
         m_CaughtPlayer = true;
     }
-
     /// <summary>
     /// When the enemy is looking for the player, within the patrolling period
     /// </summary>
@@ -239,14 +202,12 @@ public class AIController : MonoBehaviour
             }
         }
     }
-
     /// <summary>
     /// This is to detect whether the player is in the viewing range of the enemy, and if it is, then the enemy will switch to chasing mode in order to pursue the player
     /// </summary>
     void EnvironmentView()
     {
         Collider[] playerInRange = Physics.OverlapSphere(transform.position, viewRadius, playerMask);
-
         for (int i = 0; i < playerInRange.Length; i++)
         {
             Transform player = playerInRange[i].transform;
