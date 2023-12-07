@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -335,7 +335,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -266}
+  m_AnchoredPosition: {x: 0, y: -300}
   m_SizeDelta: {x: 2000.1022, y: 151.18}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &168029369
@@ -1059,15 +1059,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6528050485655911260, guid: 1d9a5dc0d26f8574e937bb1e7f50be3b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6528050485655911260, guid: 1d9a5dc0d26f8574e937bb1e7f50be3b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6528050485655911260, guid: 1d9a5dc0d26f8574e937bb1e7f50be3b, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.6
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6528050485655911260, guid: 1d9a5dc0d26f8574e937bb1e7f50be3b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2354,6 +2354,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82249157eb70445cfb5ebf7b8a196efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sensitivitySlider: {fileID: 0}
+  audioMixer: {fileID: 0}
   mainMenuScreen: {fileID: 0}
   instructionsPage1: {fileID: 0}
   instructionsPage2: {fileID: 0}
@@ -2362,6 +2364,16 @@ MonoBehaviour:
   loadGameDialog: {fileID: 0}
   noSavesFoundDialog: {fileID: 0}
   quitGameDialog: {fileID: 0}
+  generalSettings: {fileID: 0}
+  controlsSettings: {fileID: 0}
+  graphicsSettings: {fileID: 0}
+  audioSettings: {fileID: 0}
+  accessibilitySettings: {fileID: 0}
+  generalButton: {fileID: 0}
+  controlsButton: {fileID: 0}
+  graphicsButton: {fileID: 0}
+  audioButton: {fileID: 0}
+  accessibilityButton: {fileID: 0}
 --- !u!114 &933598575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3722,15 +3734,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6528050485655911260, guid: 1d9a5dc0d26f8574e937bb1e7f50be3b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6528050485655911260, guid: 1d9a5dc0d26f8574e937bb1e7f50be3b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6528050485655911260, guid: 1d9a5dc0d26f8574e937bb1e7f50be3b, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.6
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6528050485655911260, guid: 1d9a5dc0d26f8574e937bb1e7f50be3b, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.Audio;
 
 /// <summary>
 /// The PauseMenu script controls the pause menu through buttons to resume, quit and show game instructions.
@@ -26,6 +27,15 @@ public class PauseMenu : MonoBehaviour
     public GameObject audioSettings;
     public GameObject accessibilitySettings;
 
+    public Button generalButton;
+    public Button controlsButton;
+    public Button graphicsButton;
+    public Button audioButton;
+    public Button accessibilityButton;
+
+    private Color unselected;
+    private Color selected;
+
     private bool gameIsPaused = false;
 
     /// <summary>
@@ -33,6 +43,12 @@ public class PauseMenu : MonoBehaviour
     /// </summary>
     /// <returns> Boolean indicating paused or unpaused state. </returns>
     public bool GameIsPaused() { return gameIsPaused; }
+
+    void Start()
+    {
+        unselected = new Color(0.388f, 0.565f, 0.278f);
+        selected = new Color(0.145f, 0.294f, 0.118f);
+    }
 
     /// <summary>
     /// Toggle between pausing the game and resuming the game.
@@ -94,6 +110,7 @@ public class PauseMenu : MonoBehaviour
         if (settingsPage.activeSelf)
         {
             settingsPage.SetActive(false);
+            HideTabs();
         }
     }
 
@@ -137,6 +154,8 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuScreen.SetActive(false);
         settingsPage.SetActive(true);
+        HideTabs();
+        LoadGeneralSettings();
     }
 
     public void LoadMainMenu()
@@ -172,30 +191,40 @@ public class PauseMenu : MonoBehaviour
     public void LoadGeneralSettings()
     {
         HideTabs();
+        ResetButtons();
+        SelectButton(generalButton);
         generalSettings.SetActive(true);
     }
 
     public void LoadControlsSettings()
     {
         HideTabs();
+        ResetButtons();
+        SelectButton(controlsButton);
         controlsSettings.SetActive(true);
     }
 
     public void LoadGraphicsSettings()
     {
         HideTabs();
+        ResetButtons();
+        SelectButton(graphicsButton);
         graphicsSettings.SetActive(true);
     }
 
     public void LoadAudioSettings()
     {
         HideTabs();
+        ResetButtons();
+        SelectButton(audioButton);
         audioSettings.SetActive(true);
     }
 
     public void LoadAccessibilitySettings()
     {
         HideTabs();
+        ResetButtons();
+        SelectButton(accessibilityButton);
         accessibilitySettings.SetActive(true);
     }
 
@@ -206,6 +235,20 @@ public class PauseMenu : MonoBehaviour
         graphicsSettings.SetActive(false);
         audioSettings.SetActive(false);
         accessibilitySettings.SetActive(false);
+    }
+
+    private void ResetButtons()
+    {
+        generalButton.image.color = unselected;
+        controlsButton.image.color = unselected;
+        graphicsButton.image.color = unselected;
+        audioButton.image.color = unselected;
+        accessibilityButton.image.color = unselected;
+    }
+
+    private void SelectButton(Button selectedButton)
+    {
+        selectedButton.image.color = selected;
     }
 
     public void ToggleFullScreen(bool isFullScreen)
