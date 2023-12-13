@@ -99,7 +99,7 @@ public class PlayerState : MonoBehaviour
         lastPosition = playerBody.transform.position;
 
 
-        if (currentHunger > 0 && distanceTravelled >= 7)
+        if (currentHunger > 0 && distanceTravelled >= 14)
         {
             distanceTravelled = 0;
             currentHunger -= 1;
