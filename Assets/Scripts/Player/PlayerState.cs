@@ -109,6 +109,7 @@ public class PlayerState : MonoBehaviour
             {
                 currentHunger = 0;
             }
+            
         }
 
         // the game ends when health reaches 0, this is the loss condition

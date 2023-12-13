@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private PlayerState playerState;
+
     public float speed = 5.0f;
     public float runMultiplier = 2.0f;
     public Transform cameraTransform;
@@ -31,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
         controls.Gameplay.Sprint.performed += OnSprintPerformed;
         controls.Gameplay.Sprint.canceled += OnSprintCanceled;
         controls.Gameplay.Jump.performed += OnJumpPerformed;
+
+        playerState = GetComponent<PlayerState>();
     }
 
     void OnEnable()
@@ -47,6 +51,13 @@ public class PlayerMovement : MonoBehaviour
     {
         UpdateMoveDirection();
         UpdateAnimation();
+
+        // Check if hunger is zero and the player is currently sprinting
+        if (playerState.currentHunger == 0 && isRunning)
+        {
+            // Stop sprinting when hunger is zero
+            isRunning = false;
+        }
     }
 
     private void FixedUpdate()
@@ -126,7 +137,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnSprintPerformed(InputAction.CallbackContext context)
     {
-        isRunning = context.ReadValueAsButton() && canSprint;
+        isRunning = context.ReadValueAsButton() && canSprint && playerState.currentHunger > 0;
+
+        if (playerState.currentHunger == 0)
+        {
+            isRunning = false;
+        }
     }
 
     private void OnSprintCanceled(InputAction.CallbackContext context)
