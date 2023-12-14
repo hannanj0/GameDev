@@ -11,6 +11,8 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class PauseMenu : MonoBehaviour
 {
+    public Animator fadeScene;
+
     public AudioMixer audioMixer;
 
     public GameObject pauseMenu; // PauseMenu object to hide and set visible.
@@ -165,6 +167,16 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMainMenu_Yes()
     {
+        StartCoroutine(GoToMenu());
+    }
+
+    IEnumerator GoToMenu()
+    {
+        Time.timeScale = 1;
+        fadeScene.SetTrigger("FadeOut");
+
+        yield return new WaitForSeconds(1.5f);
+
         SceneManager.LoadScene(0);
     }
 

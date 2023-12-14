@@ -10,6 +10,9 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class MainMenu : MonoBehaviour
 {
+    public Animator fadeScene;
+    public Animator fadeMusic;
+
     public Slider sensitivitySlider;
 
     public AudioMixer audioMixer;
@@ -64,6 +67,16 @@ public class MainMenu : MonoBehaviour
     public void NewGame_Yes()
     {
         Time.timeScale = 1;
+        StartCoroutine(StartGame());
+    }
+
+    IEnumerator StartGame()
+    {
+        fadeScene.SetTrigger("FadeOut");
+        fadeMusic.SetTrigger("FadeOut");
+
+        yield return new WaitForSeconds(1.5f);
+
         SceneManager.LoadSceneAsync(1);
     }
 
