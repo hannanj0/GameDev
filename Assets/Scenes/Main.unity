@@ -6943,7 +6943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
-  player: {fileID: 0}
+  player: {fileID: 529909529413416177}
   timer: 1
   enemyBullet: {fileID: 336969416}
   spawnPoint: {fileID: 556907545}
