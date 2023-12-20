@@ -37,6 +37,7 @@ public class PlayerInteractions : MonoBehaviour
 
         Transform inventoryPlayer = transform.Find("Inventory");
         inventory = inventoryPlayer.GetComponent<Inventory>();
+        inventory.SelectSlot(0);
 
         weaponRotation = transform.Find("WeaponSlot/SwordPivot").GetComponent<WeaponRotation>();
 

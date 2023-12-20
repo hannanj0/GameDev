@@ -58,7 +58,7 @@ public class Inventory : MonoBehaviour
     /// <summary>
     /// Used to select a slot and deselect the previous one
     /// </summary>
-    void SelectSlot(int newSlot)
+    public void SelectSlot(int newSlot)
     {
         hotbarSlots[currentSlot].Deselect();
         hotbarSlots[newSlot].Select();
