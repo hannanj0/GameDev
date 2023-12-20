@@ -88,7 +88,8 @@ public class WeaponAttack : MonoBehaviour
             {
                 if (enemy.IsBoss())
                 {
-                    playerState.BossKilled();
+                    string bossName = other.gameObject.GetComponent<BossEnemyState>().BossName();
+                    playerState.BossKilled(bossName);
                 }
                 other.gameObject.SetActive(false);
             }

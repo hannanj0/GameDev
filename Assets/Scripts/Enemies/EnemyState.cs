@@ -21,10 +21,10 @@ public class EnemyState : MonoBehaviour
 
     // Getter methods for attributes
     public float Speed() { return speed; }
-    public float MaxHealth() { return maxHealth;}
-    public float Health() { return health;}
-    public float AttackDamage() {  return attackDamage;}
-    public bool IsBoss() { return isBoss;}
+    public float MaxHealth() { return maxHealth; }
+    public float Health() { return health; }
+    public float AttackDamage() {  return attackDamage; }
+    public bool IsBoss() { return isBoss; }
 
     /// <summary>
     /// Reduces the enemy's health by the given (player's) attack damage.

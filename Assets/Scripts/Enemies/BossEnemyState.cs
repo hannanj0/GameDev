@@ -8,11 +8,20 @@ using UnityEngine;
 /// </summary>
 public class BossEnemyState : EnemyState
 {
+    public string bossName; // Boss Name
+
+    public string BossName() { return bossName; }
+
+    public void SetBossName()
+    {
+        bossName = gameObject.name;
+    }
     /// <summary>
     /// Set the attributes for the boss enemies.
     /// </summary>
     void Start()
     {
+        SetBossName();
         speed = 1.5f; // Boss movement speed.
         maxHealth = 150.0f; // Boss maximum health.
         health = maxHealth; // Initially set their current health to their max health.

@@ -5,11 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class PlayerState : MonoBehaviour
 {
+    public Animator fadeScene;
+
+    private Vector3 spawnPosition = new Vector3(300f, 4f, 315f);
 
     public static PlayerState Instance { get; set; }
 
-    private int bossesKilled;
     private int totalGameBosses;
+    private List<string> bossesKilled = new List<string>();
 
     // Player Health
     public float currentHealth;
@@ -31,12 +34,26 @@ public class PlayerState : MonoBehaviour
     private float healthDecreaseInterval = 5f;
     private float healthDecreaseTimer;
 
-    public int BossesKilled() { return bossesKilled; }
+    public void SetCurrentHealth(float currentHealth) { currentHealth = this.currentHealth; }
+    public void SetMaxHealth(float maxHealth) { maxHealth = this.maxHealth; }
+    public void SetCurrentHunger(float currentHunger) { currentHunger = this.currentHunger; }
+    public void SetMaxHunger(float maxHunger) { maxHunger = this.maxHunger; }
+    public void SetBossesKilled(List<string> bossesKilled) { bossesKilled = this.bossesKilled; }
 
-    public void BossKilled()
+    public int BossesKilled() { return bossesKilled.Count; }
+
+    public void UpdateSpawnPosition(Vector3 newPosition) { 
+        spawnPosition = newPosition;
+    }
+
+    public void ResetSpawnPosition() { spawnPosition = new Vector3(300f, 4f, 315f); }
+
+    public void BossKilled(string bossName)
     {
-        bossesKilled += 1;
-        if (bossesKilled == totalGameBosses)
+        Debug.Log(bossName);
+        bossesKilled.Add(bossName);
+
+        if (BossesKilled() == totalGameBosses)
         {
             Invoke("WinGame", 1.0f);
         }
@@ -44,10 +61,20 @@ public class PlayerState : MonoBehaviour
 
     public void WinGame()
     {
-        Time.timeScale = 0;
+        StartCoroutine(LoadWinMenu());
+    }
+
+    IEnumerator LoadWinMenu()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        fadeScene.SetTrigger("FadeOut");
+
+        yield return new WaitForSeconds(1.5f);
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        SceneManager.LoadScene("WinGame");
+        SceneManager.LoadScene(3);
     }
 
     public float AttackDamage()
@@ -83,12 +110,23 @@ public class PlayerState : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bossesKilled = 0;
+        playerBody.transform.position = spawnPosition;
+        LoadSpawn();;
         totalGameBosses = 2;
         attackDamage = 40.0f;
         currentHealth = maxHealth;
         currentHunger = maxHunger;
         healthDecreaseTimer = healthDecreaseInterval;
+    }
+
+    public void LoadSpawn()
+    {
+        if (PlayerPrefs.HasKey("SpawnPositionX"))
+        {
+            float spawnX = PlayerPrefs.GetFloat("SpawnPositionX");
+            float spawnZ = PlayerPrefs.GetFloat("SpawnPositionZ");
+            playerBody.transform.position = new Vector3(spawnX, 0.5f, spawnZ);
+        }
     }
 
     // Update is called once per frame

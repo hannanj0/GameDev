@@ -155,6 +155,17 @@ public class PlayerInteractions : MonoBehaviour
 
             background.DisplayDescription(I);
         }
+
+        else if ( other.tag == "Checkpoint")
+        {
+            playerState.UpdateSpawnPosition(other.transform.position);
+            PlayerPrefs.SetFloat("SpawnPosition" + "X", other.transform.position.x);
+            PlayerPrefs.SetFloat("SpawnPosition" + "Z", other.transform.position.z);
+
+            PlayerPrefs.Save();
+            //reset health and hunger
+            // reset health of all enemies
+        }
     }
 
     /// <summary>

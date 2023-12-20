@@ -48,8 +48,8 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
-        unselected = new Color(0.388f, 0.565f, 0.278f);
-        selected = new Color(0.145f, 0.294f, 0.118f);
+        unselected = new Color(0.7098f, 0.8509f, 0.6275f);
+        selected = new Color(0.388f, 0.565f, 0.278f);
     }
 
     /// <summary>

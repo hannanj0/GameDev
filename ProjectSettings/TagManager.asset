@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Item
   - Weapon
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
