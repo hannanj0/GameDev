@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97f32824e6994245b3d513c0c650966, type: 3}
+  m_Name: Strength Potion
+  m_EditorClassIdentifier: 
+  materials:
+  - amount: 1
+    item: {fileID: 11400000, guid: 4ca08ad984b133042a09a6f024b08827, type: 2}
+  - amount: 1
+    item: {fileID: 11400000, guid: 3f2b129618b086341b0a2d08a8d4506b, type: 2}
+  CraftedItem: {fileID: 11400000, guid: ef39fd5b3293378428b0a151ee580cab, type: 2}

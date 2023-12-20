@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: StrenghtPotion
   m_EditorClassIdentifier: 
   Name: Strength Potion
-  hotbar_image: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   consumable: 1
   strength: 33
+  potionLength: 5

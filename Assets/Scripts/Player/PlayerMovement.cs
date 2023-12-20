@@ -115,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(origin, Vector3.down, out hit, checkDistance, groundLayer))
         {
-            Debug.Log($"Hit: {hit.collider.name}"); // This will tell you what the raycast hit.
+            //Debug.Log($"Hit: {hit.collider.name}"); // This will tell you what the raycast hit.
             return true;
         }
 

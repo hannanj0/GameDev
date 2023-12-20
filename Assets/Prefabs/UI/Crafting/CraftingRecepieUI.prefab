@@ -195,75 +195,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5407064057412857000}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!1 &2938158434940926016
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 921804113112800789}
-  - component: {fileID: 7004483456786494025}
-  - component: {fileID: 8067449283152087100}
-  m_Layer: 5
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &921804113112800789
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2938158434940926016}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 818852129938422141}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7004483456786494025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2938158434940926016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!114 &8067449283152087100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2938158434940926016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
+      m_Calls:
+      - m_Target: {fileID: 913391065520851868}
+        m_TargetAssemblyTypeName: CraftingBar, Assembly-CSharp
+        m_MethodName: Craft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3384505861919816353
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818852129938422141}
+  - component: {fileID: 913391065520851868}
   m_Layer: 5
   m_Name: CraftingRecepieUI
   m_TagString: Untagged
@@ -522,7 +467,6 @@ RectTransform:
   - {fileID: 5020322099713692759}
   - {fileID: 1402949638644218375}
   - {fileID: 4261146224646102209}
-  - {fileID: 921804113112800789}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -530,6 +474,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 400}
   m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &913391065520851868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3832317565026132290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 743c7de912869ae40b0e0cdeb7912c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6051313519549070154
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,7 +705,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1329793477875634307, guid: 0059ab3a2a1d3b940b1a6eedecccc065, type: 3}
       propertyPath: m_Name
-      value: ItemSlot (1)
+      value: Material2
       objectReference: {fileID: 0}
     - target: {fileID: 3158295287233642894, guid: 0059ab3a2a1d3b940b1a6eedecccc065, type: 3}
       propertyPath: m_Pivot.x
@@ -777,11 +733,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3158295287233642894, guid: 0059ab3a2a1d3b940b1a6eedecccc065, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 80
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3158295287233642894, guid: 0059ab3a2a1d3b940b1a6eedecccc065, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 80
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3158295287233642894, guid: 0059ab3a2a1d3b940b1a6eedecccc065, type: 3}
       propertyPath: m_LocalPosition.x
@@ -879,11 +835,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3158295287233642894, guid: 0059ab3a2a1d3b940b1a6eedecccc065, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 80
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3158295287233642894, guid: 0059ab3a2a1d3b940b1a6eedecccc065, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 80
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3158295287233642894, guid: 0059ab3a2a1d3b940b1a6eedecccc065, type: 3}
       propertyPath: m_LocalPosition.x
@@ -975,7 +931,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1329793477875634307, guid: 0059ab3a2a1d3b940b1a6eedecccc065, type: 3}
       propertyPath: m_Name
-      value: ItemSlot
+      value: Material1
       objectReference: {fileID: 0}
     - target: {fileID: 3158295287233642894, guid: 0059ab3a2a1d3b940b1a6eedecccc065, type: 3}
       propertyPath: m_Pivot.x
@@ -1003,11 +959,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3158295287233642894, guid: 0059ab3a2a1d3b940b1a6eedecccc065, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 80
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3158295287233642894, guid: 0059ab3a2a1d3b940b1a6eedecccc065, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 80
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3158295287233642894, guid: 0059ab3a2a1d3b940b1a6eedecccc065, type: 3}
       propertyPath: m_LocalPosition.x
