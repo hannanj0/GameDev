@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
@@ -10,6 +9,8 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class MainMenu : MonoBehaviour
 {
+    public CloudSave cloudSave;
+
     public Animator fadeScene;
     public Animator fadeMusic;
 
@@ -39,8 +40,6 @@ public class MainMenu : MonoBehaviour
     public Button audioButton;
     public Button accessibilityButton;
 
-    private string levelToLoad;
-
     private Color unselected;
     private Color selected;
 
@@ -52,7 +51,7 @@ public class MainMenu : MonoBehaviour
 
     void Awake()
     {
-        sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", 5.0f);
+        //sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", 5.0f);
     }
 
     public void NewGame()
@@ -92,20 +91,21 @@ public class MainMenu : MonoBehaviour
         loadGameDialog.SetActive(true);
     }
 
-    public void LoadGame_Yes()
+    public async void LoadGame_Yes()
     {
-        loadGameDialog.SetActive(false);
-
+        bool loadGameResult = await cloudSave.LoadGame();
         // save file found
-        if (PlayerPrefs.HasKey("SavedGame"))
+        if (loadGameResult)
         {
-            levelToLoad = PlayerPrefs.GetString("SavedGame");
-            SceneManager.LoadSceneAsync(levelToLoad);
+            GameManager.Instance.loadGameRequest = true;
+            Time.timeScale = 1;
             HideTabs();
+            StartCoroutine(StartGame());
         }
         else
         {
             noSavesFoundDialog.SetActive(true);
+            loadGameDialog.SetActive(false);
         }
     }
 

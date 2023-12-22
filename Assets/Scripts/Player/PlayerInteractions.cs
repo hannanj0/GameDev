@@ -11,6 +11,8 @@ using UnityEngine.UIElements;
 /// </summary>
 public class PlayerInteractions : MonoBehaviour
 {
+    public CloudSave cloudSave;
+
     public GameObject menuController;
 
     private bool inContact; // check if the player is in contact with an enemy.
@@ -157,15 +159,15 @@ public class PlayerInteractions : MonoBehaviour
             background.DisplayDescription(I);
         }
 
-        else if ( other.tag == "Checkpoint")
+        else if (other.tag == "Checkpoint")
         {
-            playerState.UpdateSpawnPosition(other.transform.position);
-            PlayerPrefs.SetFloat("SpawnPosition" + "X", other.transform.position.x);
-            PlayerPrefs.SetFloat("SpawnPosition" + "Z", other.transform.position.z);
+            if (other.gameObject.name == "Checkpoint1")
+            {
+                playerState.spawnPosition = other.transform.position;
+                playerState.spawnPosition.y = 0.5f;
+            }
 
-            PlayerPrefs.Save();
-            //reset health and hunger
-            // reset health of all enemies
+            cloudSave.SaveGame();
         }
     }
 
@@ -174,7 +176,7 @@ public class PlayerInteractions : MonoBehaviour
     /// </summary>
     private void OnAttack()
     {
-        weaponRotation.BeginAttack();
+        //weaponRotation.BeginAttack();
     }
 
     private void OnDestroy()

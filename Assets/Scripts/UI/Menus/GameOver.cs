@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class GameOver : MonoBehaviour
 {
+    public Animator fadeScene;
+
     public GameObject mainMenuDialog;
     public GameObject quitGameDialog;
 
@@ -17,8 +19,26 @@ public class GameOver : MonoBehaviour
     /// </summary>
     public void RetryGame()
     {
+        GameManager.Instance.loadGameRequest = true;
         Time.timeScale = 1;
-        SceneManager.LoadScene(1);
+        StartCoroutine(Retry());
+    }
+
+    IEnumerator Retry()
+    {
+        fadeScene.SetTrigger("FadeOut");
+
+        yield return new WaitForSeconds(1.5f);
+
+        SceneManager.LoadSceneAsync(1);
+    }
+    IEnumerator MainMenu()
+    {
+        fadeScene.SetTrigger("FadeOut");
+
+        yield return new WaitForSeconds(1.5f);
+
+        SceneManager.LoadSceneAsync(0);
     }
 
     public void LoadMainMenu()
@@ -28,7 +48,8 @@ public class GameOver : MonoBehaviour
 
     public void LoadMainMenu_Yes()
     {
-        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+        StartCoroutine(MainMenu());
     }
 
     public void LoadMainMenu_No()

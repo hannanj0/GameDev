@@ -9,9 +9,26 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class WinMenu : MonoBehaviour
 {
+    public Animator fadeScene;
+
     public GameObject playAgainDialog;
     public GameObject mainMenuDialog;
     public GameObject quitGameDialog;
+
+    IEnumerator ReplayGame()
+    {
+        fadeScene.SetTrigger("FadeOut");
+
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadSceneAsync(1);
+    }
+    IEnumerator MainMenu()
+    {
+        fadeScene.SetTrigger("FadeOut");
+
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadSceneAsync(0);
+    }
 
     /// <summary>
     /// Resume the game by allowing time to flow again. Loads the Main scene in order to replay the game.
@@ -24,7 +41,7 @@ public class WinMenu : MonoBehaviour
     public void PlayAgain_Yes()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(1);
+        StartCoroutine(ReplayGame());
     }
 
     public void PlayAgain_No()
@@ -39,7 +56,8 @@ public class WinMenu : MonoBehaviour
 
     public void LoadMainMenu_Yes()
     {
-        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+        StartCoroutine(MainMenu());
     }
 
     public void LoadMainMenu_No()

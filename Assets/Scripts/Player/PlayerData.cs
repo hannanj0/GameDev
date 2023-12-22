@@ -13,6 +13,7 @@ public class PlayerData
     public float attackDamage = 40f;
 
     public float spawnPositionX = 300f;
+    public float spawnPositionY = 4f;
     public float spawnPositionZ = 315f;
 
 }

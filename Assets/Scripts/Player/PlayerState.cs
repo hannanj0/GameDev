@@ -1,17 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 public class PlayerState : MonoBehaviour
 {
+    PlayerData playerData;
+    bool dataPending = false;
+
+    public MainManager mainManager;
+
+    public GameObject menuController;
+
     public Animator fadeScene;
 
-    private Vector3 spawnPosition = new Vector3(300f, 4f, 315f);
+    public Vector3 spawnPosition = new Vector3(300f, 4f, 315f);
 
     public static PlayerState Instance { get; set; }
 
-    private int totalGameBosses;
+    private int totalGameBosses = 2;
     private List<string> bossesKilled = new List<string>();
 
     // Player Health
@@ -34,26 +43,35 @@ public class PlayerState : MonoBehaviour
     private float healthDecreaseInterval = 5f;
     private float healthDecreaseTimer;
 
-    public void SetCurrentHealth(float currentHealth) { currentHealth = this.currentHealth; }
-    public void SetMaxHealth(float maxHealth) { maxHealth = this.maxHealth; }
+    public void SetCurrentHealth(float c) { c = currentHealth; }
+    public void SetMaxHealth(float m) { m = maxHealth; }
     public void SetCurrentHunger(float currentHunger) { currentHunger = this.currentHunger; }
     public void SetMaxHunger(float maxHunger) { maxHunger = this.maxHunger; }
     public void SetBossesKilled(List<string> bossesKilled) { bossesKilled = this.bossesKilled; }
 
-    public int BossesKilled() { return bossesKilled.Count; }
+    public void SetPlayerSpawn(Vector3 newPosition) { playerBody.transform.position = newPosition; }
 
-    public void UpdateSpawnPosition(Vector3 newPosition) { 
-        spawnPosition = newPosition;
-    }
+    public float CurrentHealth() { return currentHealth; }
+    public float MaxHealth() { return maxHealth; }
+    public float CurrentHunger() {  return currentHunger; }
+    public float MaxHunger() { return maxHunger; }
+    public float AttackDamage() {  return attackDamage; }
+    public List<string> BossesKilled() {  return bossesKilled; }
+    public float SpawnX() { return spawnPosition.x; }
+    public float SpawnY() {  return spawnPosition.y; }
+    public float SpawnZ() {  return spawnPosition.z; }
+    public int TotalGameBosses() { return totalGameBosses; }
+
+
+    public int BossesKilledCount() { return bossesKilled.Count; }
 
     public void ResetSpawnPosition() { spawnPosition = new Vector3(300f, 4f, 315f); }
 
     public void BossKilled(string bossName)
     {
-        Debug.Log(bossName);
         bossesKilled.Add(bossName);
 
-        if (BossesKilled() == totalGameBosses)
+        if (BossesKilledCount() == totalGameBosses)
         {
             Invoke("WinGame", 1.0f);
         }
@@ -75,11 +93,6 @@ public class PlayerState : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         SceneManager.LoadScene(3);
-    }
-
-    public float AttackDamage()
-    {
-        return attackDamage;
     }
 
     public void TakeDamage(float damage)
@@ -110,24 +123,64 @@ public class PlayerState : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerBody.transform.position = spawnPosition;
-        LoadSpawn();;
-        totalGameBosses = 2;
-        attackDamage = 40.0f;
-        currentHealth = maxHealth;
-        currentHunger = maxHunger;
-        healthDecreaseTimer = healthDecreaseInterval;
+        if (GameManager.Instance != null && GameManager.Instance.loadGameRequest)
+        {
+            dataPending = true;
+            playerData = mainManager.LoadPlayerData();
+
+            healthDecreaseTimer = healthDecreaseInterval;
+            this.bossesKilled = playerData.bossesKilled;
+
+            if (bossesKilled.Count == this.totalGameBosses)
+            {
+                WinGame();
+            }
+            else if (bossesKilled.Count > 0)
+            {
+                foreach (string boss in bossesKilled)
+                {
+                    GameObject bossToHide = GameObject.Find(boss);
+
+                    if (bossToHide != null)
+                    {
+                        Debug.Log(boss + "set false");
+                        bossToHide.SetActive(false);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Object with name {bossToHide} not found in the scene.");
+                    }
+                }
+            }
+            this.currentHealth = playerData.currentHealth;
+            this.maxHealth = playerData.maxHealth;
+
+            this.currentHunger = playerData.currentHunger;
+            this.maxHunger = playerData.maxHunger;
+
+            this.spawnPosition = new Vector3(
+                playerData.spawnPositionX,
+                playerData.spawnPositionY,
+                playerData.spawnPositionZ
+            );
+
+            playerBody.transform.position = this.spawnPosition;
+
+            GameManager.Instance.loadGameRequest = false;
+        }
+        else
+        {
+            ResetSpawnPosition();
+            playerBody.transform.position = spawnPosition;
+            totalGameBosses = 2;
+            attackDamage = 40.0f;
+            currentHealth = maxHealth;
+            currentHunger = maxHunger;
+            healthDecreaseTimer = healthDecreaseInterval;
+        }
+        dataPending = false;
     }
 
-    public void LoadSpawn()
-    {
-        if (PlayerPrefs.HasKey("SpawnPositionX"))
-        {
-            float spawnX = PlayerPrefs.GetFloat("SpawnPositionX");
-            float spawnZ = PlayerPrefs.GetFloat("SpawnPositionZ");
-            playerBody.transform.position = new Vector3(spawnX, 0.5f, spawnZ);
-        }
-    }
 
     // Update is called once per frame
     void Update()
@@ -151,12 +204,16 @@ public class PlayerState : MonoBehaviour
         }
 
         // the game ends when health reaches 0, this is the loss condition
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !dataPending)
         {
-            Time.timeScale = 0;
+            PauseMenu pauseMenu = menuController.GetComponent<PauseMenu>();
+            
+            Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            SceneManager.LoadScene("GameOver");
+
+            pauseMenu.LoadGameOverMenu();
+
         }
 
         // when the hunger reaches 0, the health will slowly deteriorate

@@ -5,12 +5,15 @@ using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
 
 /// <summary>
 /// The PauseMenu script controls the pause menu through buttons to resume, quit and show game instructions.
 /// </summary>
 public class PauseMenu : MonoBehaviour
 {
+    public CloudSave cloudSave;
+
     public Animator fadeScene;
 
     public AudioMixer audioMixer;
@@ -44,6 +47,8 @@ public class PauseMenu : MonoBehaviour
     /// Check whether the game is paused or not.
     /// </summary>
     /// <returns> Boolean indicating paused or unpaused state. </returns>
+
+
     public bool GameIsPaused() { return gameIsPaused; }
 
     void Start()
@@ -160,6 +165,11 @@ public class PauseMenu : MonoBehaviour
         LoadGeneralSettings();
     }
 
+    public void SaveGame()
+    {
+        cloudSave.SaveGame();
+    }
+
     public void LoadMainMenu()
     {
         mainMenuDialog.SetActive(true);
@@ -178,6 +188,21 @@ public class PauseMenu : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         SceneManager.LoadScene(0);
+    }
+
+    public void LoadGameOverMenu() 
+    {  
+        StartCoroutine(GameOverMenu()); 
+    }
+
+    IEnumerator GameOverMenu()
+    {
+        Time.timeScale = 1;
+        fadeScene.SetTrigger("FadeOut");
+
+        yield return new WaitForSeconds(1.5f);
+
+        SceneManager.LoadScene(2);
     }
 
     public void LoadMainMenu_No()

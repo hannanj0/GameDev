@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3533,6 +3533,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600478399}
   m_CullTransparentMesh: 1
+--- !u!1 &605631183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 605631184}
+  m_Layer: 0
+  m_Name: DataManagement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &605631184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605631183}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1209.8257, y: 534.6451, z: -1344.799}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1673239676}
+  - {fileID: 1973409429}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &647347236
 GameObject:
   m_ObjectHideFlags: 0
@@ -11871,6 +11904,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1673239674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1673239676}
+  - component: {fileID: 1673239675}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1673239675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673239674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8b8444628c9b4478c6c33b44194a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadGameRequest: 0
+  playerData:
+    bossesKilled: []
+    currentHealth: 100
+    maxHealth: 100
+    currentHunger: 100
+    maxHunger: 100
+    attackDamage: 40
+    spawnPositionX: 300
+    spawnPositionY: 4
+    spawnPositionZ: 315
+--- !u!4 &1673239676
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673239674}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 605631184}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1706896758
 GameObject:
   m_ObjectHideFlags: 0
@@ -13745,6 +13833,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e7aecb5e4d1e95499e43b9d2f990de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataFound: 0
+  playerState: {fileID: 0}
 --- !u!4 &1973409429
 Transform:
   m_ObjectHideFlags: 0
@@ -13753,12 +13843,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973409427}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1297.7479, y: 775.1243, z: 1265.2081}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 87.92224, y: 240.47925, z: 2610.007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 605631184}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1986869062
 GameObject:
@@ -14843,6 +14933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82249157eb70445cfb5ebf7b8a196efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cloudSave: {fileID: 1973409428}
   fadeScene: {fileID: 5614885249237116992}
   fadeMusic: {fileID: 308945119}
   sensitivitySlider: {fileID: 1133362924}
@@ -15171,4 +15262,4 @@ SceneRoots:
   - {fileID: 5614885249237116991}
   - {fileID: 2135126473}
   - {fileID: 308945118}
-  - {fileID: 1973409429}
+  - {fileID: 605631184}

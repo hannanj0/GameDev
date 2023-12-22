@@ -1,24 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
-using System.IO;
 using Newtonsoft.Json;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
 using Unity.Services.CloudSave;
 using UnityEngine.InputSystem;
-
+using System.Threading.Tasks;
 
 public class CloudSave : MonoBehaviour
 {
     PlayerData dataToSave;
     PlayerData loadedData;
 
+    public bool dataFound = false;
+    private TaskCompletionSource<bool> loadGameCompletionSource;
+
+    public PlayerState playerState;
+
+
     // Start is called before the first frame update
     void Start()
     {
         SetupSignIn();
+    }
+
+    void Update()
+    {
+        // Check for "k" key press
+        if (Keyboard.current.kKey.wasPressedThisFrame)
+        {
+            PrepareDataFile();
+            SaveDataFile();
+        }
+
+        // Check for "l" key press
+        if (Keyboard.current.lKey.wasPressedThisFrame)
+        {
+            LoadGame();
+        }
     }
 
     async void SetupSignIn()
@@ -30,14 +48,34 @@ public class CloudSave : MonoBehaviour
         }
     }
 
-
-    public void PrepareDataFile()
+    public void SaveGame()
     {
-        dataToSave = new PlayerData();
-        dataToSave.bossesKilled.Add("LavaBoss");
+        PrepareDataFile();
+        SaveDataFile();
+    }
+
+    private void PrepareDataFile()
+    {
+        //player = GameObject.Find("PlayerAsset");
+        //playerState = player.GetComponent<PlayerState>();
+        Debug.Log("data"+playerState.SpawnX());
+
+        dataToSave = new PlayerData {
+            bossesKilled = playerState.BossesKilled(),
+
+            currentHealth = playerState.CurrentHealth(),
+            maxHealth = playerState.MaxHealth(),
+            currentHunger = playerState.CurrentHunger(),
+            maxHunger = playerState.MaxHunger(),
+            attackDamage = playerState.AttackDamage(),
+
+            spawnPositionX = playerState.SpawnX(),
+            spawnPositionY = playerState.SpawnY(),
+            spawnPositionZ = playerState.SpawnZ(),
+        };
     }
     
-    public async void SaveDataFile()
+    private async void SaveDataFile()
     {
         try
         {
@@ -47,8 +85,6 @@ public class CloudSave : MonoBehaviour
 
             // Save the JSON data to Unity Cloud Saves
             await CloudSaveService.Instance.Files.Player.SaveAsync("playerData", byteArray);
-
-            Debug.Log("Player data saved to Unity Cloud");
         }
         catch (System.Exception e)
         {
@@ -56,45 +92,61 @@ public class CloudSave : MonoBehaviour
         }
     }
 
-    public async void LoadDataFile()
+    public Task<bool> LoadGame()
+    {
+        loadGameCompletionSource = new TaskCompletionSource<bool>();
+        LoadGameAsync();
+        return loadGameCompletionSource.Task;
+    }
+
+    private async void LoadGameAsync()
     {
         try
         {
-            // Retrieve the JSON data from Unity Cloud Saves
-            byte[] byteArray = await CloudSaveService.Instance.Files.Player.LoadBytesAsync("playerData");
-            string JSONData = System.Text.Encoding.UTF8.GetString(byteArray);
-            loadedData = JsonUtility.FromJson<PlayerData>(JSONData);
-            // Deserialize the JSON data back into the PlayerData object
+            await LoadDataFile(); // Wait for the asynchronous operation to complete
 
+            // Set the result of the task completion source
+            loadGameCompletionSource.SetResult(dataFound);
 
-            Debug.Log("Player data loaded from Unity Cloud");
-            Debug.Log(loadedData.bossesKilled);
-            Debug.Log(loadedData.currentHealth);
+            if (dataFound)
+            {
+                dataFound = false;
+            }
         }
         catch (System.Exception e)
         {
+            // Set the exception if an error occurs
+            loadGameCompletionSource.SetException(e);
             Debug.LogError($"Failed to load player data: {e.Message}");
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private async Task LoadDataFile()
     {
-        // Check for "s" key press
-        if (Keyboard.current.sKey.wasPressedThisFrame)
+        try
         {
-            PrepareDataFile();
-            SaveDataFile();
-            //SaveData();
-            // Do something when "s" key is pressed
-        }
+            byte[] byteArray = await CloudSaveService.Instance.Files.Player.LoadBytesAsync("playerData");
+            
+            if (byteArray != null && byteArray.Length > 0)
+            {
+                // Retrieve the JSON data from Unity Cloud Saves
+                string JSONData = System.Text.Encoding.UTF8.GetString(byteArray);
+                loadedData = JsonUtility.FromJson<PlayerData>(JSONData);
+                // Deserialize the JSON data back into the PlayerData object
+                dataFound = true;
+                GameManager.Instance.playerData = loadedData;
 
-        // Check for "d" key press
-        if (Keyboard.current.dKey.wasPressedThisFrame)
+            }
+            else
+            {
+                // No save found in the cloud
+                Debug.Log("No cloud save found.");
+            }
+           
+        }
+        catch (System.Exception e)
         {
-            LoadDataFile();
-            //LoadData();
-            // Do something when "d" key is pressed
+            Debug.LogError($"Failed to load player data: {e.Message}");
         }
     }
 }
