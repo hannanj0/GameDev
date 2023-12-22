@@ -19784,7 +19784,7 @@ GameObject:
   - component: {fileID: 1972179300}
   - component: {fileID: 1972179302}
   - component: {fileID: 1972179301}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Volcanic Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
