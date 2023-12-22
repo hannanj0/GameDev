@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.6790024, g: 0.8994196, b: 0.9029383, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -19446,7 +19446,7 @@ GameObject:
   - component: {fileID: 1972179300}
   - component: {fileID: 1972179302}
   - component: {fileID: 1972179301}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Volcanic Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
