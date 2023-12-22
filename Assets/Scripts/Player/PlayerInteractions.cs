@@ -27,6 +27,7 @@ public class PlayerInteractions : MonoBehaviour
     private InputAction openCMenu;
     private WeaponRotation weaponRotation; // Player rotates their weapon to attack.
     private ItemDescription background;
+    private GameSavedInfo popupInfo;
     private Canvas craftingTable;
 
     public bool CraftingMenuOpen() {  return craftingMenuOpen; }
@@ -47,6 +48,9 @@ public class PlayerInteractions : MonoBehaviour
 
         Transform backgroundChild = transform.Find("ItemInformation/BackgroundColour");
         background = backgroundChild.GetComponent<ItemDescription>();
+        Transform saveObject = transform.Find("ItemInformation/SaveGameDisplay");
+        popupInfo = saveObject.GetComponent<GameSavedInfo>();
+
 
         Transform craftingPlayer = transform.Find("Crafting");
         craftingTable = craftingPlayer.GetComponent<Canvas>();
@@ -73,7 +77,7 @@ public class PlayerInteractions : MonoBehaviour
                 {
                     playerState.TakeDamage(enemyState.AttackDamage());
                     enemyAttackCooldown = 0.0f;
-            }
+                }
             }
     }
     /// <summary>
@@ -161,13 +165,11 @@ public class PlayerInteractions : MonoBehaviour
 
         else if (other.tag == "Checkpoint")
         {
-            if (other.gameObject.name == "Checkpoint1")
-            {
-                playerState.spawnPosition = other.transform.position;
-                playerState.spawnPosition.y = 0.5f;
-            }
+            playerState.spawnPosition = other.transform.position;
+            playerState.spawnPosition.y = 0.5f;
 
             cloudSave.SaveGame();
+            popupInfo.DisplayDescription();
         }
     }
 

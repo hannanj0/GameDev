@@ -130,12 +130,8 @@ public class PlayerState : MonoBehaviour
 
             healthDecreaseTimer = healthDecreaseInterval;
             this.bossesKilled = playerData.bossesKilled;
-
-            if (bossesKilled.Count == this.totalGameBosses)
-            {
-                WinGame();
-            }
-            else if (bossesKilled.Count > 0)
+            
+            if (bossesKilled.Count > 0)
             {
                 foreach (string boss in bossesKilled)
                 {
@@ -143,7 +139,6 @@ public class PlayerState : MonoBehaviour
 
                     if (bossToHide != null)
                     {
-                        Debug.Log(boss + "set false");
                         bossToHide.SetActive(false);
                     }
                     else
@@ -151,7 +146,14 @@ public class PlayerState : MonoBehaviour
                         Debug.LogWarning($"Object with name {bossToHide} not found in the scene.");
                     }
                 }
+
+                if (bossesKilled.Count == this.totalGameBosses)
+                {
+                    WinGame();
+                }
             }
+            this.attackDamage = playerData.attackDamage;
+            Debug.Log("attack: " + playerData.attackDamage);
             this.currentHealth = playerData.currentHealth;
             this.maxHealth = playerData.maxHealth;
 

@@ -73,6 +73,7 @@ public class CloudSave : MonoBehaviour
             spawnPositionY = playerState.SpawnY(),
             spawnPositionZ = playerState.SpawnZ(),
         };
+        Debug.Log("cloud save " + dataToSave.attackDamage);
     }
     
     private async void SaveDataFile()

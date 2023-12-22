@@ -41,7 +41,7 @@ public class ItemDescription : MonoBehaviour
     public void DisplayDescription(GameItem item)
     {
         offCooldown = false;
-        backgroundColour.a = 70 / 255f;
+        backgroundColour.a = 100 / 255f;
         descriptionImage.color = backgroundColour;
         timer = itemDescriptionTimer;
         Debug.Log(descriptionText);

@@ -75,6 +75,7 @@ public class WeaponAttack : MonoBehaviour
         {
             EnemyState enemy = other.gameObject.GetComponent<EnemyState>();
             enemy.TakeDamage(playerState.AttackDamage());
+            Debug.Log(playerState.AttackDamage());
 
             enemyMeshRenderer = other.gameObject.GetComponent<MeshRenderer>();
             enemyColor = enemyMeshRenderer.material.color;
