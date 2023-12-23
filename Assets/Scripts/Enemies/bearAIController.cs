@@ -36,6 +36,11 @@ public class bearAIController : MonoBehaviour
 
     private Animator animator; // Reference to the Animator component
 
+    private float attackCooldown = 2f; // Cooldown time between attacks
+    private float timeSinceLastAttack = 0f; // Time since last attack
+    private MobEnemyState mobEnemyState; // Reference to the MobEnemyState component
+
+
     /// <summary>
     /// This initialises the variables and starts the patrol mode for enemy, the current waypoint index and sets the enemy speed and destination
     /// </summary>
@@ -50,34 +55,33 @@ public class bearAIController : MonoBehaviour
 
         m_CurrentWaypointIndex = 0;
         navMeshAgent = GetComponent<NavMeshAgent>();
+        mobEnemyState = GetComponent<MobEnemyState>(); // Make sure to attach MobEnemyState script to the bear GameObject
 
-        // Ensure the Animator component is attached to the GameObject
         animator = GetComponent<Animator>();
         if (animator == null)
         {
             Debug.LogError("Animator component missing from this GameObject", this);
         }
+
+        if (mobEnemyState == null)
+        {
+            Debug.LogError("MobEnemyState component missing from this GameObject", this);
+        }
+
+        navMeshAgent.isStopped = false;
+        navMeshAgent.speed = speedWalk;
+        if (waypoints.Length > 0)
+        {
+            navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+        }
         else
         {
-            navMeshAgent.isStopped = false;
-            navMeshAgent.speed = speedWalk;
-            if (waypoints.Length > 0)
-            {
-                navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
-            }
-            else
-            {
-                Debug.LogError("No waypoints assigned in the waypoints array", this);
-            }
+            Debug.LogError("No waypoints assigned in the waypoints array", this);
         }
     }
 
-    /// <summary>
-    /// This checks the environment and decides whether to chase the player or continue with patrolling
-    /// </summary>
     void Update()
     {
-        // Ensure the Animator is not null before updating behavior
         if (animator != null)
         {
             EnvironmentView();
@@ -90,7 +94,46 @@ public class bearAIController : MonoBehaviour
             {
                 Patroling();
             }
+
+            float turnAngle = CalculateTurnAngle();
+            animator.SetFloat("TurnAngle", turnAngle);
+
+            // Handle attack cooldown
+            if (timeSinceLastAttack < attackCooldown)
+            {
+                timeSinceLastAttack += Time.deltaTime;
+            }
+
+            if (m_PlayerInRange && timeSinceLastAttack >= attackCooldown)
+            {
+                AttackPlayer();
+                timeSinceLastAttack = 0f; // Reset the attack cooldown
+            }
         }
+    }
+
+    private void AttackPlayer()
+    {
+        float attackRange = 2.0f; // Example attack range
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null && Vector3.Distance(transform.position, playerObject.transform.position) <= attackRange)
+        {
+            PlayerState playerState = playerObject.GetComponent<PlayerState>();
+            if (playerState != null)
+            {
+                playerState.TakeDamage(mobEnemyState.AttackDamage());
+                animator.SetTrigger("Attack"); // Make sure there is a trigger named "Attack" in your Animator Controller
+            }
+        }
+    }
+
+    float CalculateTurnAngle()
+    {
+        Vector3 velocity = navMeshAgent.velocity;
+        Vector3 localVelocity = transform.InverseTransformDirection(velocity);
+        float turnAngle = Mathf.Atan2(localVelocity.x, localVelocity.z) * Mathf.Rad2Deg;
+
+        return turnAngle;
     }
 
 
@@ -182,6 +225,7 @@ public class bearAIController : MonoBehaviour
 
     void Move(float speed)
     {
+        animator.SetBool("Idle", false);
         animator.SetBool("WalkForward", true);
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speed;
@@ -190,6 +234,7 @@ public class bearAIController : MonoBehaviour
     void Stop()
     {
         animator.SetBool("WalkForward", false);
+        animator.SetBool("Idle", true);
         navMeshAgent.isStopped = true;
         navMeshAgent.speed = 0;
     }
