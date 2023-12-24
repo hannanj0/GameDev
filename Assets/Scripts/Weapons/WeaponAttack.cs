@@ -33,7 +33,6 @@ public class WeaponAttack : MonoBehaviour
         }
     }
 
-
     private void OnEnable()
     {
         // Enable the Gameplay action map
@@ -68,19 +67,33 @@ public class WeaponAttack : MonoBehaviour
         }
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy") && playerAttacked)
+        if (other.gameObject.CompareTag("Enemy") && IsPlayerAttacking())
         {
-            EnemyState enemy = other.gameObject.GetComponent<EnemyState>();
+            ApplyDamageToEnemy(other);
+            playerAttacked = false;
+        }
+    }
+
+    private bool IsPlayerAttacking()
+    {
+        // Check if the player is currently in the attack animation
+        return playerAttacked && animator.GetCurrentAnimatorStateInfo(0).IsName("Melee Attack");
+    }
+
+    private void ApplyDamageToEnemy(Collider enemyCollider)
+    {
+        EnemyState enemy = enemyCollider.gameObject.GetComponent<EnemyState>();
+        if (enemy != null)
+        {
             enemy.TakeDamage(playerState.AttackDamage());
             Debug.Log(playerState.AttackDamage());
 
-            enemyMeshRenderer = other.gameObject.GetComponent<MeshRenderer>();
+            enemyMeshRenderer = enemyCollider.gameObject.GetComponent<MeshRenderer>();
             enemyColor = enemyMeshRenderer.material.color;
 
-            EnemyHealthBar enemyHealthBar = other.transform.Find("HealthBarContainer/HealthBar").GetComponent<EnemyHealthBar>();
+            EnemyHealthBar enemyHealthBar = enemyCollider.transform.Find("HealthBarContainer/HealthBar").GetComponent<EnemyHealthBar>();
             enemyHealthBar.UpdateHealthBar(enemy.Health(), enemy.MaxHealth());
 
             FlashEnemyStart();
@@ -89,21 +102,11 @@ public class WeaponAttack : MonoBehaviour
             {
                 if (enemy.IsBoss())
                 {
-                    string bossName = other.gameObject.GetComponent<BossEnemyState>().BossName();
+                    string bossName = enemyCollider.gameObject.GetComponent<BossEnemyState>().BossName();
                     playerState.BossKilled(bossName);
                 }
-                other.gameObject.SetActive(false);
+                enemyCollider.gameObject.SetActive(false);
             }
-            // Reset the attack state to allow for another attack
-            playerAttacked = false;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Enemy") && playerAttacked)
-        {
-            playerAttacked = false;
         }
     }
 
@@ -113,14 +116,13 @@ public class WeaponAttack : MonoBehaviour
         Invoke(nameof(FlashEnemyFinish), flashDuration);
     }
 
-    public void ResetMeleeAttack()
-    {
-        animator.ResetTrigger("isMeleeAttack");
-    }
-
-
     void FlashEnemyFinish()
     {
         enemyMeshRenderer.material.color = enemyColor;
+    }
+
+    public void ResetMeleeAttack()
+    {
+        animator.ResetTrigger("isMeleeAttack");
     }
 }
