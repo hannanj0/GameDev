@@ -82,6 +82,7 @@ public class CraftingBar : MonoBehaviour
                 inventory.hotbarSlots[m1_loc].RemoveItem();
                 inventory.hotbarSlots[m2_loc].RemoveItem();
                 inventory.Add(CraftedItem.item);
+                break;
             }
         }
     }
