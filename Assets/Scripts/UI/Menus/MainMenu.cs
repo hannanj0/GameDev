@@ -33,6 +33,10 @@ public class MainMenu : MonoBehaviour
     public GameObject graphicsSettings;
     public GameObject audioSettings;
     public GameObject accessibilitySettings;
+    public GameObject controlsSettingsPage1;
+    public GameObject bindingsSettings;
+    public GameObject settingsBackButton;
+    public GameObject bindingsBackButton;
 
     public Button generalButton;
     public Button controlsButton;
@@ -220,6 +224,10 @@ public class MainMenu : MonoBehaviour
         ResetButtons();
         SelectButton(controlsButton);
         controlsSettings.SetActive(true);
+        controlsSettingsPage1.SetActive(true);
+        bindingsSettings.SetActive(false);
+        bindingsBackButton.SetActive(false);
+        settingsBackButton.SetActive(true);
     }
 
     public void LoadGraphicsSettings()
@@ -289,6 +297,14 @@ public class MainMenu : MonoBehaviour
     public void ChangeSensitivity(System.Single newSensitivity)
     {
         PlayerPrefs.SetFloat("Sensitivity", newSensitivity);
+    }
+
+    public void LoadBindingsSettings()
+    {
+        controlsSettingsPage1.SetActive(false);
+        settingsBackButton.SetActive(false);
+        bindingsBackButton.SetActive(true);
+        bindingsSettings.SetActive(true);
     }
 }
 
