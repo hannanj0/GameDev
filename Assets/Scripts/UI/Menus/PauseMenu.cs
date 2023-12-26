@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
@@ -13,10 +14,15 @@ using UnityEngine.Playables;
 public class PauseMenu : MonoBehaviour
 {
     public CloudSave cloudSave;
+    public PlayerSettings playerSettings;
 
     public Animator fadeScene;
 
+    public Slider sensitivitySlider;
+    public Slider masterVolumeSlider;
     public AudioMixer audioMixer;
+    public TMP_Dropdown dropdown;
+    public Toggle toggle;
 
     public GameObject pauseMenu; // PauseMenu object to hide and set visible.
     public GameObject pauseMenuScreen; // Pause menu screen object to hide and set visible.
@@ -31,6 +37,10 @@ public class PauseMenu : MonoBehaviour
     public GameObject graphicsSettings;
     public GameObject audioSettings;
     public GameObject accessibilitySettings;
+    public GameObject controlsSettingsPage1;
+    public GameObject bindingsSettings;
+    public GameObject settingsBackButton;
+    public GameObject bindingsBackButton;
 
     public Button generalButton;
     public Button controlsButton;
@@ -47,14 +57,26 @@ public class PauseMenu : MonoBehaviour
     /// Check whether the game is paused or not.
     /// </summary>
     /// <returns> Boolean indicating paused or unpaused state. </returns>
-
-
     public bool GameIsPaused() { return gameIsPaused; }
 
     void Start()
     {
         unselected = new Color(0.7098f, 0.8509f, 0.6275f);
         selected = new Color(0.388f, 0.565f, 0.278f);
+    }
+
+    public void LoadCloudSettings()
+    {
+        if (GameManager.Instance != null && GameManager.Instance.loadSettingsRequest)
+        {
+            playerSettings = GameManager.Instance.playerSettings;
+            ToggleFullScreen(playerSettings.fullScreen);
+            ChangeSensitivity(playerSettings.sensitivity);
+            SetGraphicsQuality(playerSettings.graphicsSetting);
+            Debug.Log("graphics: " + playerSettings.graphicsSetting);
+            SetMasterVolume(playerSettings.masterVolume);
+            GameManager.Instance.loadSettingsRequest = false;
+        }
     }
 
     /// <summary>
@@ -165,6 +187,11 @@ public class PauseMenu : MonoBehaviour
         LoadGeneralSettings();
     }
 
+    public void SaveSettings()
+    {
+        cloudSave.SavePlayerSettings();
+    }
+
     public void SaveGame()
     {
         cloudSave.SaveGame();
@@ -177,6 +204,7 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMainMenu_Yes()
     {
+        GameManager.Instance.inGame = false;
         StartCoroutine(GoToMenu());
     }
 
@@ -191,7 +219,8 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void LoadGameOverMenu() 
-    {  
+    {
+        GameManager.Instance.inGame = false;
         StartCoroutine(GameOverMenu()); 
     }
 
@@ -239,6 +268,10 @@ public class PauseMenu : MonoBehaviour
         ResetButtons();
         SelectButton(controlsButton);
         controlsSettings.SetActive(true);
+        controlsSettingsPage1.SetActive(true);
+        bindingsSettings.SetActive(false);
+        bindingsBackButton.SetActive(false);
+        settingsBackButton.SetActive(true);
     }
 
     public void LoadGraphicsSettings()
@@ -272,6 +305,7 @@ public class PauseMenu : MonoBehaviour
         graphicsSettings.SetActive(false);
         audioSettings.SetActive(false);
         accessibilitySettings.SetActive(false);
+        ResetButtons();
     }
 
     private void ResetButtons()
@@ -291,17 +325,36 @@ public class PauseMenu : MonoBehaviour
     public void ToggleFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
+        toggle.isOn = isFullScreen;
+        playerSettings.fullScreen = isFullScreen;
     }
 
     public void SetGraphicsQuality(int index)
     {
-
         QualitySettings.SetQualityLevel(index);
+        dropdown.value = index;
+        playerSettings.graphicsSetting = index;
     }
 
     public void SetMasterVolume(float volume)
     {
         audioMixer.SetFloat("volume", volume);
+        masterVolumeSlider.value = volume;
+        playerSettings.masterVolume = volume;
+    }
+
+    public void ChangeSensitivity(System.Single newSensitivity)
+    {
+        sensitivitySlider.value = newSensitivity;
+        playerSettings.sensitivity = newSensitivity;
+    }
+
+    public void LoadBindingsSettings()
+    {
+        controlsSettingsPage1.SetActive(false);
+        settingsBackButton.SetActive(false);
+        bindingsBackButton.SetActive(true);
+        bindingsSettings.SetActive(true);
     }
 }
 

@@ -20,6 +20,7 @@ public class WinMenu : MonoBehaviour
         fadeScene.SetTrigger("FadeOut");
 
         yield return new WaitForSeconds(1.5f);
+
         SceneManager.LoadSceneAsync(1);
     }
     IEnumerator MainMenu()
@@ -27,6 +28,7 @@ public class WinMenu : MonoBehaviour
         fadeScene.SetTrigger("FadeOut");
 
         yield return new WaitForSeconds(1.5f);
+
         SceneManager.LoadSceneAsync(0);
     }
 
@@ -41,6 +43,7 @@ public class WinMenu : MonoBehaviour
     public void PlayAgain_Yes()
     {
         Time.timeScale = 1;
+        GameManager.Instance.inGame = true;
         StartCoroutine(ReplayGame());
     }
 
@@ -57,6 +60,7 @@ public class WinMenu : MonoBehaviour
     public void LoadMainMenu_Yes()
     {
         Time.timeScale = 1;
+        GameManager.Instance.inGame = false;
         StartCoroutine(MainMenu());
     }
 

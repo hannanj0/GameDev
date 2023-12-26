@@ -5,8 +5,12 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public bool loadGameRequest = false;
+    public bool loadSettingsRequest = false;
+    public bool inGame = false;
 
     public PlayerData playerData;
+
+    public PlayerSettings playerSettings;
 
     private void Awake()
     {

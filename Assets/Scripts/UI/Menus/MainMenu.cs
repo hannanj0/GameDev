@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -10,13 +11,16 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public CloudSave cloudSave;
+    public PlayerSettings playerSettings;
 
     public Animator fadeScene;
     public Animator fadeMusic;
 
     public Slider sensitivitySlider;
-
+    public Slider masterVolumeSlider;
     public AudioMixer audioMixer;
+    public TMP_Dropdown dropdown;
+    public Toggle toggle;
 
     public GameObject mainMenuScreen; // Main menu screen object to hide and set visible.
     public GameObject instructionsPage1; // Instructions page 1 object to hide and set visible.
@@ -51,11 +55,26 @@ public class MainMenu : MonoBehaviour
     {
         unselected = new Color(0.7098f, 0.8509f, 0.6275f);
         selected = new Color(0.388f, 0.565f, 0.278f);
+        
     }
 
     void Awake()
     {
-        //sensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity", 5.0f);
+        
+    }
+
+    public void LoadCloudSettings()
+    {
+        if (GameManager.Instance != null && GameManager.Instance.loadSettingsRequest)
+        {
+            playerSettings = GameManager.Instance.playerSettings;
+            ToggleFullScreen(playerSettings.fullScreen);
+            ChangeSensitivity(playerSettings.sensitivity);
+            SetGraphicsQuality(playerSettings.graphicsSetting);
+            Debug.Log("graphics: " + playerSettings.graphicsSetting);
+            SetMasterVolume(playerSettings.masterVolume);
+            GameManager.Instance.loadSettingsRequest = false;
+        }
     }
 
     public void NewGame()
@@ -70,6 +89,9 @@ public class MainMenu : MonoBehaviour
     public void NewGame_Yes()
     {
         Time.timeScale = 1;
+        GameManager.Instance.loadSettingsRequest = true;
+        GameManager.Instance.playerSettings = playerSettings;
+        GameManager.Instance.inGame = true;
         StartCoroutine(StartGame());
     }
 
@@ -102,6 +124,8 @@ public class MainMenu : MonoBehaviour
         if (loadGameResult)
         {
             GameManager.Instance.loadGameRequest = true;
+            GameManager.Instance.playerSettings = playerSettings;
+            GameManager.Instance.inGame = true;
             Time.timeScale = 1;
             HideTabs();
             StartCoroutine(StartGame());
@@ -193,6 +217,11 @@ public class MainMenu : MonoBehaviour
         LoadGeneralSettings();
     }
 
+    public void SaveSettings()
+    {
+        cloudSave.SavePlayerSettings();
+    }
+
     public void QuitGame()
     {
         mainMenuScreen.SetActive(false);
@@ -281,22 +310,28 @@ public class MainMenu : MonoBehaviour
     public void ToggleFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
+        toggle.isOn = isFullScreen;
+        playerSettings.fullScreen = isFullScreen;
     }
 
     public void SetGraphicsQuality(int index)
     {
-
         QualitySettings.SetQualityLevel(index);
+        dropdown.value = index;
+        playerSettings.graphicsSetting = index;
     }
 
     public void SetMasterVolume(float volume)
     {
         audioMixer.SetFloat("volume", volume);
+        masterVolumeSlider.value = volume;
+        playerSettings.masterVolume = volume;
     }
 
     public void ChangeSensitivity(System.Single newSensitivity)
     {
-        PlayerPrefs.SetFloat("Sensitivity", newSensitivity);
+        sensitivitySlider.value = newSensitivity;
+        playerSettings.sensitivity = newSensitivity;
     }
 
     public void LoadBindingsSettings()

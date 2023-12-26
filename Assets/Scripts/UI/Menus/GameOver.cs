@@ -20,6 +20,7 @@ public class GameOver : MonoBehaviour
     public void RetryGame()
     {
         GameManager.Instance.loadGameRequest = true;
+        GameManager.Instance.inGame = true;
         Time.timeScale = 1;
         StartCoroutine(Retry());
     }
@@ -49,6 +50,7 @@ public class GameOver : MonoBehaviour
     public void LoadMainMenu_Yes()
     {
         Time.timeScale = 1;
+        GameManager.Instance.inGame = false;
         StartCoroutine(MainMenu());
     }
 
