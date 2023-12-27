@@ -2577,7 +2577,6 @@ GameObject:
   m_Component:
   - component: {fileID: 933598573}
   - component: {fileID: 933598572}
-  - component: {fileID: 933598571}
   - component: {fileID: 933598574}
   - component: {fileID: 933598575}
   - component: {fileID: 933598576}
@@ -2588,14 +2587,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &933598571
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 933598570}
-  m_Enabled: 1
 --- !u!20 &933598572
 Camera:
   m_ObjectHideFlags: 0
@@ -2681,13 +2672,19 @@ MonoBehaviour:
     sensitivity: 5
     graphicsSetting: 1
     masterVolume: 0
+    musicVolume: 0
+    sfxVolume: 0
+    isMuted: 0
   fadeScene: {fileID: 0}
   fadeMusic: {fileID: 0}
   sensitivitySlider: {fileID: 0}
   masterVolumeSlider: {fileID: 0}
+  musicVolumeSlider: {fileID: 0}
+  sfxVolumeSlider: {fileID: 0}
   audioMixer: {fileID: 0}
   dropdown: {fileID: 0}
-  toggle: {fileID: 0}
+  fullScreenToggle: {fileID: 0}
+  muteToggle: {fileID: 0}
   mainMenuScreen: {fileID: 0}
   instructionsPage1: {fileID: 0}
   instructionsPage2: {fileID: 0}
