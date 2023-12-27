@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class MainMenu : MonoBehaviour
 {
+    public AudioSource buttonClick;
     public CloudSave cloudSave;
     public PlayerSettings playerSettings;
 
@@ -18,9 +19,14 @@ public class MainMenu : MonoBehaviour
 
     public Slider sensitivitySlider;
     public Slider masterVolumeSlider;
+    public Slider musicVolumeSlider;
+    public Slider sfxVolumeSlider;
+
     public AudioMixer audioMixer;
     public TMP_Dropdown dropdown;
-    public Toggle toggle;
+
+    public Toggle fullScreenToggle;
+    public Toggle muteToggle;
 
     public GameObject mainMenuScreen; // Main menu screen object to hide and set visible.
     public GameObject instructionsPage1; // Instructions page 1 object to hide and set visible.
@@ -55,12 +61,11 @@ public class MainMenu : MonoBehaviour
     {
         unselected = new Color(0.7098f, 0.8509f, 0.6275f);
         selected = new Color(0.388f, 0.565f, 0.278f);
-        
     }
 
-    void Awake()
+    public void ButtonClick()
     {
-        
+        buttonClick.Play();
     }
 
     public void LoadCloudSettings()
@@ -71,8 +76,10 @@ public class MainMenu : MonoBehaviour
             ToggleFullScreen(playerSettings.fullScreen);
             ChangeSensitivity(playerSettings.sensitivity);
             SetGraphicsQuality(playerSettings.graphicsSetting);
-            Debug.Log("graphics: " + playerSettings.graphicsSetting);
             SetMasterVolume(playerSettings.masterVolume);
+            SetMusicVolume(playerSettings.musicVolume);
+            SetSFXVolume(playerSettings.sfxVolume);
+            SetToggleMute(playerSettings.isMuted);
             GameManager.Instance.loadSettingsRequest = false;
         }
     }
@@ -310,7 +317,7 @@ public class MainMenu : MonoBehaviour
     public void ToggleFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
-        toggle.isOn = isFullScreen;
+        fullScreenToggle.isOn = isFullScreen;
         playerSettings.fullScreen = isFullScreen;
     }
 
@@ -323,9 +330,37 @@ public class MainMenu : MonoBehaviour
 
     public void SetMasterVolume(float volume)
     {
-        audioMixer.SetFloat("volume", volume);
+        audioMixer.SetFloat("masterVolume", volume);
         masterVolumeSlider.value = volume;
         playerSettings.masterVolume = volume;
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        audioMixer.SetFloat("musicVolume", volume);
+        musicVolumeSlider.value = volume;
+        playerSettings.musicVolume = volume;
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        audioMixer.SetFloat("sfxVolume", volume);
+        sfxVolumeSlider.value = volume;
+        playerSettings.sfxVolume = volume;
+    }
+
+    public void SetToggleMute(bool isMuted)
+    {
+        if (isMuted) 
+        {
+            AudioListener.volume = 0;
+        }
+        else
+        {
+            AudioListener.volume = 1;
+        }
+        muteToggle.isOn = isMuted;
+        playerSettings.isMuted = isMuted;
     }
 
     public void ChangeSensitivity(System.Single newSensitivity)

@@ -14,14 +14,20 @@ public class PauseMenu : MonoBehaviour
 {
     public CloudSave cloudSave;
     public PlayerSettings playerSettings;
+    public AudioSource buttonClick;
 
     public Animator fadeScene;
 
     public Slider sensitivitySlider;
     public Slider masterVolumeSlider;
+    public Slider musicVolumeSlider;
+    public Slider sfxVolumeSlider;
+
     public AudioMixer audioMixer;
     public TMP_Dropdown dropdown;
-    public Toggle toggle;
+
+    public Toggle fullScreenToggle;
+    public Toggle muteToggle;
 
     public GameObject pauseMenu; // PauseMenu object to hide and set visible.
     public GameObject pauseMenuScreen; // Pause menu screen object to hide and set visible.
@@ -64,6 +70,11 @@ public class PauseMenu : MonoBehaviour
         selected = new Color(0.388f, 0.565f, 0.278f);
     }
 
+    public void ButtonClick()
+    {
+        buttonClick.Play();
+    }
+
     public void LoadCloudSettings()
     {
         if (GameManager.Instance != null && GameManager.Instance.loadSettingsRequest)
@@ -72,8 +83,10 @@ public class PauseMenu : MonoBehaviour
             ToggleFullScreen(playerSettings.fullScreen);
             ChangeSensitivity(playerSettings.sensitivity);
             SetGraphicsQuality(playerSettings.graphicsSetting);
-            Debug.Log("graphics: " + playerSettings.graphicsSetting);
             SetMasterVolume(playerSettings.masterVolume);
+            SetMusicVolume(playerSettings.musicVolume);
+            SetSFXVolume(playerSettings.sfxVolume);
+            SetToggleMute(playerSettings.isMuted);
             GameManager.Instance.loadSettingsRequest = false;
         }
     }
@@ -96,9 +109,8 @@ public class PauseMenu : MonoBehaviour
     /// <summary>
     /// Resume the game by allowing time to continue, showing the cursor and setting the boolean.
     /// </summary>
-    private void ResumeGame()
+    public void ResumeGame()
     {
-        PlayerPrefs.Save();
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
         HideTabs();
@@ -203,18 +215,18 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMainMenu_Yes()
     {
+        Time.timeScale = 1;
         GameManager.Instance.inGame = false;
         StartCoroutine(GoToMenu());
     }
 
     IEnumerator GoToMenu()
     {
-        Time.timeScale = 1;
         fadeScene.SetTrigger("FadeOut");
 
         yield return new WaitForSeconds(1.5f);
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadSceneAsync(0);
     }
 
     public void LoadGameOverMenu() 
@@ -324,7 +336,7 @@ public class PauseMenu : MonoBehaviour
     public void ToggleFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
-        toggle.isOn = isFullScreen;
+        fullScreenToggle.isOn = isFullScreen;
         playerSettings.fullScreen = isFullScreen;
     }
 
@@ -337,9 +349,37 @@ public class PauseMenu : MonoBehaviour
 
     public void SetMasterVolume(float volume)
     {
-        audioMixer.SetFloat("volume", volume);
+        audioMixer.SetFloat("masterVolume", volume);
         masterVolumeSlider.value = volume;
         playerSettings.masterVolume = volume;
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        audioMixer.SetFloat("musicVolume", volume);
+        musicVolumeSlider.value = volume;
+        playerSettings.musicVolume = volume;
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        audioMixer.SetFloat("sfxVolume", volume);
+        sfxVolumeSlider.value = volume;
+        playerSettings.sfxVolume = volume;
+    }
+
+    public void SetToggleMute(bool isMuted)
+    {
+        if (isMuted)
+        {
+            AudioListener.volume = 0;
+        }
+        else
+        {
+            AudioListener.volume = 1;
+        }
+        muteToggle.isOn = isMuted;
+        playerSettings.isMuted = isMuted;
     }
 
     public void ChangeSensitivity(System.Single newSensitivity)

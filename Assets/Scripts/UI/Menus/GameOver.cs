@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,9 +10,14 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     public Animator fadeScene;
-
+    public AudioSource buttonClick;
     public GameObject mainMenuDialog;
     public GameObject quitGameDialog;
+
+    public void ButtonClick()
+    {
+        buttonClick.Play();
+    }
 
     /// <summary>
     /// Resets the game, allowing the user to retry.

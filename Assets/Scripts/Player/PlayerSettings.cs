@@ -8,5 +8,8 @@ public class PlayerSettings
     public float sensitivity = 5f;
     public int graphicsSetting = 1;
     public float masterVolume = 0f;
+    public float musicVolume = 0f;
+    public float sfxVolume = 0f;
+    public bool isMuted = false;
 
 }

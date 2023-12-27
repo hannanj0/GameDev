@@ -5,6 +5,7 @@ using Unity.Services.Authentication;
 using Unity.Services.CloudSave;
 using UnityEngine.InputSystem;
 using System.Threading.Tasks;
+using System.IO;
 
 public class CloudSave : MonoBehaviour
 {
@@ -254,9 +255,14 @@ public class CloudSave : MonoBehaviour
             }
 
         }
-        catch (System.Exception e)
+        catch (CloudSaveException)
         {
-            Debug.LogError($"Failed to load player data: {e.Message}");
+            Debug.Log("no saved settings in cloud yet");
+        }
+
+        catch
+        {
+            Debug.Log("no data loaded");
         }
     }
 }
