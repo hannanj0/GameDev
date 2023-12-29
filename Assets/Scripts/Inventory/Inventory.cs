@@ -13,7 +13,7 @@ public class Inventory : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        controls = new PlayerControls();  // Initialize the controls
+        controls = InputManager.Instance.Controls;  // Initialize the controls
         controls.Gameplay.HotBarSelect.performed += OnHotbarKey;  // Update reference to Gameplay
     }
 

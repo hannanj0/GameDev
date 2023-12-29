@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        controls = new PlayerControls();
+        controls = InputManager.Instance.Controls;
 
         controls.Gameplay.Move.performed += OnMovePerformed;
         controls.Gameplay.Move.canceled += OnMoveCanceled;

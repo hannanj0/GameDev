@@ -15,7 +15,7 @@ public class WeaponAttack : MonoBehaviour
     void Awake()
     {
         // Initialize the PlayerControls
-        playerControls = new PlayerControls();
+        playerControls = InputManager.Instance.Controls;
 
         // Get references to the player's Animator, PlayerState
         GameObject player = GameObject.FindWithTag("Player");
