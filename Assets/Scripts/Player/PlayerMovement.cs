@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private Vector3 moveDirection;
     private bool isRunning = false;
-    private bool canSprint = true; // This needs to be kept if UpdateSprinting is used
+    private bool canSprint = true; 
     private bool isJumping = false;
     private Rigidbody rb;
     private PlayerControls controls;

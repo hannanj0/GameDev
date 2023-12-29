@@ -95,9 +95,6 @@ public class bearAIController : MonoBehaviour
                 Patroling();
             }
 
-            float turnAngle = CalculateTurnAngle();
-            animator.SetFloat("TurnAngle", turnAngle);
-
             // Handle attack cooldown
             if (timeSinceLastAttack < attackCooldown)
             {
@@ -125,15 +122,6 @@ public class bearAIController : MonoBehaviour
                 animator.SetTrigger("Attack"); // Make sure there is a trigger named "Attack" in your Animator Controller
             }
         }
-    }
-
-    float CalculateTurnAngle()
-    {
-        Vector3 velocity = navMeshAgent.velocity;
-        Vector3 localVelocity = transform.InverseTransformDirection(velocity);
-        float turnAngle = Mathf.Atan2(localVelocity.x, localVelocity.z) * Mathf.Rad2Deg;
-
-        return turnAngle;
     }
 
 
