@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
+    public int damage = 10;
+
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
+        {
+            PlayerState playerState = other.GetComponent<PlayerState>();
+
+            if (playerState != null)
             {
-                Destroy(gameObject);
+                playerState.TakeDamage(damage);
             }
+
+            Destroy(gameObject);
+        }
     }
 }

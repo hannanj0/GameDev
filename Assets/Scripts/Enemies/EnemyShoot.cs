@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyShoot : MonoBehaviour
 {
     public UnityEngine.AI.NavMeshAgent enemy;
     public Transform player;
 
-    [SerializeField] private float timer = 5;
+    public float timer = 5;
     private float bulletTime;
 
     public GameObject enemyBullet;
@@ -17,17 +16,14 @@ public class EnemyShoot : MonoBehaviour
 
     private GameObject bulletObj; // Declare bulletObj at the class level
 
-    // Start is called before the first frame update
     void Start()
     {
         bulletTime = timer;
     }
 
-    // Update is called once per frame
     void Update()
     {
         enemy.SetDestination(player.position);
-        // Shoot at the player
         ShootAtPlayer();
     }
 
