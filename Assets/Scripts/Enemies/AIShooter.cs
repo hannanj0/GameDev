@@ -29,6 +29,8 @@ public class AIShooter : MonoBehaviour
     bool m_CaughtPlayer;
     EnemyShoot enemyShooter;
 
+    private bool isPatrolling = true;
+
     void Start()
     {
         m_PlayerPosition = Vector3.zero;
@@ -47,19 +49,22 @@ public class AIShooter : MonoBehaviour
 
     void Update()
     {
-        EnvironmentView();
+        if (!m_CaughtPlayer)
+        {
+            EnvironmentView();
 
-        if (!m_IsPatrol)
-        {
-            ChasingPlayer();
-            if (m_PlayerInRange)
+            if (!m_IsPatrol)
             {
-                enemyShooter.ShootAtPlayer();
+                ChasingPlayer();
+                if (m_PlayerInRange)
+                {
+                    enemyShooter.ShootAtPlayer();
+                }
             }
-        }
-        else
-        {
-            Patroling();
+            else if (isPatrolling)
+            {
+                Patroling();
+            }
         }
     }
 
@@ -167,6 +172,7 @@ public class AIShooter : MonoBehaviour
     void CaughtPlayer()
     {
         m_CaughtPlayer = true;
+        isPatrolling = false;
     }
 
     void LookAtPlayer(Vector3 player)

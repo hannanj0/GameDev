@@ -15,6 +15,7 @@ public class EnemyShoot : MonoBehaviour
     public float enemySpeed;
 
     private GameObject bulletObj; // Declare bulletObj at the class level
+    private bool isPatrolling = true;
 
     void Start()
     {
@@ -23,8 +24,19 @@ public class EnemyShoot : MonoBehaviour
 
     void Update()
     {
-        enemy.SetDestination(player.position);
-        ShootAtPlayer();
+        if (isPatrolling)  // Fix: Check if the enemy is patrolling
+        {
+            // Your patrolling logic here
+            // For example, you can make the enemy move between waypoints
+            // You might want to use a coroutine or other method for patrolling
+            // For simplicity, I'm using a Debug.Log statement here
+            Debug.Log("Patrolling...");
+        }
+        else
+        {
+            enemy.SetDestination(player.position);
+            ShootAtPlayer();
+        }
     }
 
     // Method to initiate shooting
@@ -57,6 +69,7 @@ public class EnemyShoot : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            isPatrolling = false;
             Destroy(bulletObj);
         }
     }
