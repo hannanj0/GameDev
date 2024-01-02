@@ -39,15 +39,38 @@ public class EnemyShoot : MonoBehaviour
         }
     }
 
-    // Method to initiate shooting
     public void StartShooting()
     {
-        // Assign the instantiated bullet object to the class-level variable
-        bulletObj = Instantiate(enemyBullet, spawnPoint.transform.position, spawnPoint.transform.rotation) as GameObject;
+        // Calculate the direction from the spawnPoint to the player
+        Vector3 shootDirection = (player.position - spawnPoint.position).normalized;
+
+        // Instantiate the bullet at the spawnPoint's position and rotation
+        bulletObj = Instantiate(enemyBullet, spawnPoint.position, spawnPoint.rotation);
+
+        // Disable the bullet prefab in the scene (if it's enabled by default)
+        bulletObj.SetActive(false);
+
+        // Set the bullet's initial velocity in the calculated direction
         Rigidbody bulletRig = bulletObj.GetComponent<Rigidbody>();
-        bulletRig.AddForce(bulletRig.transform.forward * enemySpeed);
-        Destroy(bulletObj, 5f);
+        bulletRig.velocity = shootDirection * enemySpeed;
+
+        // Set a timer to enable the bullet and destroy it after a certain time
+        StartCoroutine(EnableAndDestroyBullet(bulletObj, 5f));
     }
+
+    // Coroutine to enable the bullet and destroy it after a delay
+    private IEnumerator EnableAndDestroyBullet(GameObject bullet, float delay)
+    {  
+        yield return new WaitForSeconds(delay);
+
+        // Enable the bullet before destroying it
+        bullet.SetActive(true);
+
+        // Destroy the bullet after it has been enabled
+        Destroy(bullet, 0.1f); // You can adjust the delay here
+    }
+
+
 
     // Make ShootAtPlayer method public
     public void ShootAtPlayer()
