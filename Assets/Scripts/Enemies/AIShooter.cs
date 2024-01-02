@@ -31,6 +31,8 @@ public class AIShooter : MonoBehaviour
 
     private bool isPatrolling = true;
 
+    public float rotationSpeed = 5f;
+
     void Start()
     {
         m_PlayerPosition = Vector3.zero;
@@ -72,20 +74,38 @@ public class AIShooter : MonoBehaviour
     {
         m_PlayerNear = false;
         playerLastPosition = Vector3.zero;
+
+        float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerPosition);
+
+        
+
         if (!m_CaughtPlayer)
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerPosition);
             float minDistanceToPlayer = 3f;
-            if (distanceToPlayer > minDistanceToPlayer)
+            float chasingRadius = 10f;  // Adjust this value based on your game's needs
+
+            float currentDistance = distanceToPlayer;
+
+            Vector3 directionToPlayer = (m_PlayerPosition - transform.position).normalized;
+
+            if (currentDistance > minDistanceToPlayer && currentDistance > chasingRadius)
             {
                 Move(speedRun);
                 navMeshAgent.SetDestination(m_PlayerPosition);
+
+                // Rotate to face the player's current position
+                // Directly set rotation to face the player's current position
+                transform.rotation = Quaternion.LookRotation(directionToPlayer);
             }
             else
             {
                 StopMovement();
+
+                // Update rotation to continuously face the player's current position
+                transform.rotation = Quaternion.LookRotation(directionToPlayer);
             }
         }
+
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
         {
             if (m_WaitTime <= 0 && !m_CaughtPlayer && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f)
@@ -107,6 +127,7 @@ public class AIShooter : MonoBehaviour
             }
         }
     }
+
 
     private void Patroling()
     {

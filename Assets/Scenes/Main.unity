@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.6689176, g: 0.88579166, b: 0.8889611, a: 1}
+  m_IndirectSpecularColor: {r: 0.69652796, g: 0.9221235, b: 0.92585295, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12951,6 +12951,7 @@ MonoBehaviour:
   waypoints:
   - {fileID: 333166640}
   - {fileID: 961343789}
+  rotationSpeed: 5
 --- !u!114 &698023067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12965,7 +12966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 698023068}
   player: {fileID: 529909529413416177}
-  timer: 1
+  timer: 0.8
   enemyBullet: {fileID: 336969416}
   spawnPoint: {fileID: 556907545}
   enemySpeed: 1000
