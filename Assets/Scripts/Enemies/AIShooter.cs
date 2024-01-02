@@ -127,18 +127,21 @@ public class AIShooter : MonoBehaviour
         {
             m_PlayerNear = false;
             playerLastPosition = Vector3.zero;
-            navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
-            if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+
+            // Check if the NavMeshAgent has arrived at the destination
+            if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
             {
                 if (m_WaitTime <= 0)
                 {
-                    Move(speedWalk);
-                    m_WaitTime -= startWaitTime;
+                // Move to the next waypoint
+                NextPoint();
+                Move(speedWalk);
+                m_WaitTime -= startWaitTime;
                 }
                 else
                 {
-                    StopMovement();
-                    m_WaitTime -= Time.deltaTime;
+                StopMovement();
+                m_WaitTime -= Time.deltaTime;
                 }
             }
         }
@@ -161,6 +164,7 @@ public class AIShooter : MonoBehaviour
         if (waypoints.Length > 0)
         {
             m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
+            Debug.Log("Setting destination to waypoint: " + m_CurrentWaypointIndex);
             navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
         }
         else
