@@ -36,14 +36,10 @@ public class PlayerInteractions : MonoBehaviour
 
     void Awake()
     {
-        // ... (existing code)
-
         // Initialize the PlayerControls
-        playerControls = InputManager.Instance.Controls; // Assuming you have a singleton InputManager
-
-        // No need to instantiate InputActions, just get references from playerControls
-        useItemAction = playerControls.Gameplay.UseItem; // Change the name to the exact action name in your Input Asset
-        openCMenu = playerControls.Gameplay.OpenCraftingMenu; // Change the name to the exact action name in your Input Asset
+        playerControls = InputManager.Instance.Controls; 
+        useItemAction = playerControls.Gameplay.UseItem; 
+        openCMenu = playerControls.Gameplay.OpenCraftingMenu;
     }
 
     void Start()
@@ -80,9 +76,7 @@ public class PlayerInteractions : MonoBehaviour
 
     private void OnEnable()
     {
-        // ... (existing code)
 
-        // Subscribe to the actions
         useItemAction.performed += UseItem;
         useItemAction.Enable();
 
@@ -92,9 +86,6 @@ public class PlayerInteractions : MonoBehaviour
 
     private void OnDisable()
     {
-        // ... (existing code)
-
-        // Unsubscribe from the actions
         useItemAction.performed -= UseItem;
         useItemAction.Disable();
 
