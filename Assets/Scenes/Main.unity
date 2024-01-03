@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.6859927, g: 0.9084206, b: 0.9119299, a: 1}
+  m_IndirectSpecularColor: {r: 0.67761695, g: 0.89738756, b: 0.90055287, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -43757,6 +43757,7 @@ GameObject:
   - component: {fileID: 4931256083479664901}
   - component: {fileID: 3961963879384317957}
   - component: {fileID: 8609615925106562644}
+  - component: {fileID: 8609615925106562645}
   m_Layer: 6
   m_Name: PlayerAsset
   m_TagString: Player
@@ -43779,6 +43780,22 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 512
+--- !u!114 &8609615925106562645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8609615925106562643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7946bcf9f5678941a7542419c0f9d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crosshair: {fileID: 123154176}
+  highlightMaterial: {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  highlightRange: 1
+  itemLabel: {fileID: 1405947697}
 --- !u!4 &8651334033465313303
 Transform:
   m_ObjectHideFlags: 0
