@@ -26,10 +26,6 @@ public class ThirdPersonCameraController : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void Awake()
-    {
-    }
-
     void Update()
     {
         // Capture the mouse movement
@@ -46,7 +42,7 @@ public class ThirdPersonCameraController : MonoBehaviour
 
             // Vertical rotation
             pitch += currentMouseDelta.y * sensitivity * Time.deltaTime; // Notice we subtract to maintain the orientation
-            pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
+            pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y); // Clamp the pitch angle
 
             // Calculate rotation and position
             Vector3 cameraPositionOffset = new Vector3(0, cameraHeightOffset, -distanceFromTarget);

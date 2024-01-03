@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.646401, g: 0.8568119, b: 0.85981256, a: 1}
+  m_IndirectSpecularColor: {r: 0.7098009, g: 0.940089, b: 0.9442276, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -19263,7 +19263,7 @@ MonoBehaviour:
   sensitivity: 5
   distanceFromTarget: 4
   cameraHeightOffset: 2.5
-  pitchMinMax: {x: -35, y: 80}
+  pitchMinMax: {x: -35, y: 31}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
