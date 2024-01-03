@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.67761695, g: 0.89738756, b: 0.90055287, a: 1}
+  m_IndirectSpecularColor: {r: 0.646401, g: 0.8568119, b: 0.85981256, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11227,6 +11227,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossesSlain: {fileID: 720656146}
   playerState: {fileID: 3423122078431667504}
+--- !u!1 &600321687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 600321689}
+  - component: {fileID: 600321688}
+  m_Layer: 0
+  m_Name: Cutscene1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!320 &600321688
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600321687}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 7c7751e40a6d94cc0b5d1a1c0fb1e41a, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 0}
+    value: {fileID: 0}
+  - key: {fileID: 4862557942340491918, guid: 7c7751e40a6d94cc0b5d1a1c0fb1e41a, type: 2}
+    value: {fileID: 538502514924329210}
+  m_ExposedReferences:
+    m_References: []
+--- !u!4 &600321689
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600321687}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 330.62753, y: -58.839005, z: 482.23993}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &607310581
 GameObject:
   m_ObjectHideFlags: 0
@@ -23370,7 +23423,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -20.000092}
+  m_AnchoredPosition: {x: 0, y: -20.000061}
   m_SizeDelta: {x: 350, y: 200}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1153391027
@@ -38011,7 +38064,7 @@ Transform:
   - {fileID: 1407723739}
   - {fileID: 123154176}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -20, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0.3794892, z: 0}
 --- !u!95 &538502514924329210
 Animator:
   serializedVersion: 7
@@ -44175,3 +44228,4 @@ SceneRoots:
   - {fileID: 1673239676}
   - {fileID: 301067269}
   - {fileID: 1247266944}
+  - {fileID: 600321689}
