@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerState playerState;
 
     public float speed = 5.0f;
-    public float runMultiplier = 2.0f;
+    public float runMultiplier = 1.5f;
     public Transform cameraTransform;
 
     private Vector2 moveInput;
@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isRunning = false;
     private bool canSprint = true; 
     private bool isJumping = false;
+    private const float ColliderExtraMargin = 0.1f; // Example value, adjust as needed
+
+
     private Rigidbody rb;
     private PlayerControls controls;
     private Animator animator;
@@ -25,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic; // Improved collision detection for high speed
+
         animator = GetComponent<Animator>();
         controls = InputManager.Instance.Controls;
 
@@ -158,30 +163,47 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void UpdateAnimation()
-{
-    Vector3 localMoveDirection = transform.InverseTransformDirection(moveDirection);
-    animator.SetFloat("MoveX", localMoveDirection.x);
-    animator.SetFloat("MoveZ", localMoveDirection.z);
-    animator.SetBool("isRunning", isRunning);
-
-    // Check if we are falling (y velocity is negative and we are not on the ground)
-    bool falling = rb.velocity.y < 0 && !IsGrounded();
-    animator.SetBool("isFalling", falling);
-
-    // Ensure we are not interrupting the jump up animation
-    if (IsGrounded())
     {
-        animator.SetBool("isFalling", false); // Reset the isFalling when grounded
+        Vector3 localMoveDirection = transform.InverseTransformDirection(moveDirection);
+        animator.SetFloat("MoveX", localMoveDirection.x);
+        animator.SetFloat("MoveZ", localMoveDirection.z);
+        animator.SetBool("isRunning", isRunning);
+
+        // Check if we are falling (y velocity is negative and we are not on the ground)
+        bool falling = rb.velocity.y < 0 && !IsGrounded();
+        animator.SetBool("isFalling", falling);
+
+        // Ensure we are not interrupting the jump up animation
+        if (IsGrounded())
+        {
+            animator.SetBool("isFalling", false); // Reset the isFalling when grounded
+        }
     }
-}
 
 
     private void UpdatePosition()
     {
         float currentSpeed = isRunning ? speed * runMultiplier : speed;
         Vector3 movement = moveDirection * currentSpeed * Time.fixedDeltaTime;
-        rb.MovePosition(rb.position + movement);
+
+        // Check for potential collision before moving
+        if (!IsCollidingWithBarrier(movement))
+        {
+            rb.MovePosition(rb.position + movement);
+        }
     }
+
+    private bool IsCollidingWithBarrier(Vector3 movement)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, movement.normalized, out hit, movement.magnitude + ColliderExtraMargin, groundLayer))
+        {
+            Debug.Log("Collision detected with barrier");
+            return true;
+        }
+        return false;
+    }
+
 
     // This method allows external scripts to enable or disable sprinting.
     public void UpdateSprinting(bool sprintAllowed)
