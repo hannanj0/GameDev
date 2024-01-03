@@ -23,14 +23,28 @@ public class PlayerInteractions : MonoBehaviour
     private PlayerState playerState; // Player stats inside script.
     private EnemyState enemyState; // EnemyState script to read their damage.
     private Inventory inventory; // Player manages their inventory.
-    private InputAction useItemAction;
-    private InputAction openCMenu;
+    private PlayerControls playerControls; // Add this to reference the input system
+    private InputAction useItemAction; // No longer manually instantiated
+    private InputAction openCMenu; // No longer manually instantiated
+
     private WeaponRotation weaponRotation; // Player rotates their weapon to attack.
     private ItemDescription background;
     private GameSavedInfo popupInfo;
     private Canvas craftingTable;
 
     public bool CraftingMenuOpen() {  return craftingMenuOpen; }
+
+    void Awake()
+    {
+        // ... (existing code)
+
+        // Initialize the PlayerControls
+        playerControls = InputManager.Instance.Controls; // Assuming you have a singleton InputManager
+
+        // No need to instantiate InputActions, just get references from playerControls
+        useItemAction = playerControls.Gameplay.UseItem; // Change the name to the exact action name in your Input Asset
+        openCMenu = playerControls.Gameplay.OpenCraftingMenu; // Change the name to the exact action name in your Input Asset
+    }
 
     void Start()
     {
@@ -54,14 +68,38 @@ public class PlayerInteractions : MonoBehaviour
 
         Transform craftingPlayer = transform.Find("Crafting");
         craftingTable = craftingPlayer.GetComponent<Canvas>();
-        // Set up input action for "UseItem"
-        useItemAction = new InputAction("UseItem", binding: "<Keyboard>/f");
+        // // Set up input action for "UseItem"
+        // useItemAction = new InputAction("UseItem", binding: "<Keyboard>/f");
+        // useItemAction.performed += UseItem;
+        // useItemAction.Enable();
+        // // Set up input action for "OpenCraftingMenu"
+        // openCMenu = new InputAction("OpenCraftingMenu", binding:"<Keyboard>/tab");
+        // openCMenu.performed += OpenCraftingMenu;
+        // openCMenu.Enable();
+    }
+
+    private void OnEnable()
+    {
+        // ... (existing code)
+
+        // Subscribe to the actions
         useItemAction.performed += UseItem;
         useItemAction.Enable();
-        // Set up input action for "OpenCraftingMenu"
-        openCMenu = new InputAction("OpenCraftingMenu", binding:"<Keyboard>/tab");
+
         openCMenu.performed += OpenCraftingMenu;
         openCMenu.Enable();
+    }
+
+    private void OnDisable()
+    {
+        // ... (existing code)
+
+        // Unsubscribe from the actions
+        useItemAction.performed -= UseItem;
+        useItemAction.Disable();
+
+        openCMenu.performed -= OpenCraftingMenu;
+        openCMenu.Disable();
     }
 
     /// <summary>
