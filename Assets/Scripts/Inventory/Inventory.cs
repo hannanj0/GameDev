@@ -29,15 +29,16 @@ public class Inventory : MonoBehaviour
 
     void OnHotbarKey(InputAction.CallbackContext context)
     {
-        Debug.Log(context.control.name);
-        string key = context.control.name;
+        // Get the index of the binding that was triggered
+        int bindingIndex = controls.Gameplay.HotBarSelect.GetBindingIndexForControl(context.control);
 
-        int slotIndex = -1;
-        if (int.TryParse(key, out slotIndex))
+        // If the bindingIndex is valid, select the corresponding hotbar slot
+        if (bindingIndex >= 0 && bindingIndex < hotbarSlots.Length)
         {
-            SelectSlot(slotIndex - 1);
+            SelectSlot(bindingIndex);
         }
     }
+
     /// <summary>
     /// Adds the item to the inventory and the hotbar
     /// </summary>
