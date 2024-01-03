@@ -30,7 +30,7 @@ public class EnemyShoot : MonoBehaviour
             // For example, you can make the enemy move between waypoints
             // You might want to use a coroutine or other method for patrolling
             // For simplicity, I'm using a Debug.Log statement here
-            Debug.Log("Patrolling...");
+            // Debug.Log("Patrolling...");
         }
         else
         {
