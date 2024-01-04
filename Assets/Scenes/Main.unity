@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.6859936, g: 0.9084204, b: 0.9119287, a: 1}
+  m_IndirectSpecularColor: {r: 0.69522923, g: 0.9203054, b: 0.9240112, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -19855,7 +19855,7 @@ MonoBehaviour:
   distanceFromTarget: 4
   cameraHeightOffset: 2.5
   pitchMinMax: {x: -35, y: 31}
-  compassText: {fileID: 0}
+  compassText: {fileID: 452645794}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
