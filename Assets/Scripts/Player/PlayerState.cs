@@ -129,6 +129,8 @@ public class PlayerState : MonoBehaviour
             playerData = mainManager.LoadPlayerData();
 
             healthDecreaseTimer = healthDecreaseInterval;
+            Debug.Log(playerData);
+            Debug.Log(playerData.bossesKilled);
             this.bossesKilled = playerData.bossesKilled;
             
             if (bossesKilled.Count > 0)
@@ -165,9 +167,10 @@ public class PlayerState : MonoBehaviour
                 playerData.spawnPositionY,
                 playerData.spawnPositionZ
             );
+            Debug.Log(playerData.spawnPositionX);
 
             playerBody.transform.position = this.spawnPosition;
-
+            Debug.Log(this.spawnPosition);
             GameManager.Instance.loadGameRequest = false;
         }
         else

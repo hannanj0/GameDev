@@ -6,7 +6,7 @@ public class WeaponAttack : MonoBehaviour
     private Animator animator;
     private PlayerControls playerControls;
     private bool playerAttacked; // Track whether the player was previously attacking.
-    private MeshRenderer enemyMeshRenderer; // Enemy's mesh renderer to make the enemy flash red.
+    private Renderer enemyRenderer; // Enemy's mesh renderer to make the enemy flash red.
     private Color enemyColor; // Red colour to flash enemy material - visual feedback for attacks.
     private float flashDuration = 0.1f; // Red colour flashes for this duration.
 
@@ -90,13 +90,20 @@ public class WeaponAttack : MonoBehaviour
             enemy.TakeDamage(playerState.AttackDamage());
             Debug.Log(playerState.AttackDamage());
 
-            enemyMeshRenderer = enemyCollider.gameObject.GetComponent<MeshRenderer>();
-            enemyColor = enemyMeshRenderer.material.color;
+            if (enemyCollider.gameObject.name == "Bear_4")
+            {
+                enemyRenderer = enemyCollider.transform.Find("Meshes/Body").GetComponent<SkinnedMeshRenderer>();
+            }
+            else
+            {
+                enemyRenderer = enemyCollider.gameObject.GetComponent<MeshRenderer>();
+            }
+
+            enemyColor = enemyRenderer.material.color;
+            FlashEnemyStart();
 
             EnemyHealthBar enemyHealthBar = enemyCollider.transform.Find("HealthBarContainer/HealthBar").GetComponent<EnemyHealthBar>();
             enemyHealthBar.UpdateHealthBar(enemy.Health(), enemy.MaxHealth());
-
-            FlashEnemyStart();
 
             if (enemy.Health() <= 0)
             {
@@ -112,13 +119,13 @@ public class WeaponAttack : MonoBehaviour
 
     void FlashEnemyStart()
     {
-        enemyMeshRenderer.material.color = Color.red;
+        enemyRenderer.material.color = Color.red;
         Invoke(nameof(FlashEnemyFinish), flashDuration);
     }
 
     void FlashEnemyFinish()
     {
-        enemyMeshRenderer.material.color = enemyColor;
+        enemyRenderer.material.color = enemyColor;
     }
 
     public void ResetMeleeAttack()

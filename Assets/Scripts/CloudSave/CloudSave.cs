@@ -86,6 +86,9 @@ public class CloudSave : MonoBehaviour
 
     private void PreparePlayerData()
     {
+        Debug.Log(playerState.SpawnX());
+        Debug.Log(playerState.SpawnY());
+        Debug.Log(playerState.SpawnZ());
         dataToSave = new PlayerData {
             bossesKilled = playerState.BossesKilled(),
 
@@ -110,7 +113,7 @@ public class CloudSave : MonoBehaviour
             byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(JSONData);
 
             // Save the JSON data to Unity Cloud Saves
-            await CloudSaveService.Instance.Files.Player.SaveAsync("playerSettings", byteArray);
+            await CloudSaveService.Instance.Files.Player.SaveAsync("playerData", byteArray);
         }
         catch (System.Exception e)
         {
