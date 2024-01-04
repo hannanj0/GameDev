@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.InputSystem;
 
 public class ThirdPersonCameraController : MonoBehaviour
@@ -16,6 +17,8 @@ public class ThirdPersonCameraController : MonoBehaviour
     public float cameraHeightOffset = 2.5f;
     public Vector2 pitchMinMax = new Vector2(-35, 80); // Adjust the max value to prevent flipping
 
+    public TMP_Text compassText; // Reference to the TextMeshProUGUI component for displaying compass directions
+
     private float yaw;
     private float pitch;
     private Vector2 currentMouseDelta = Vector2.zero;
@@ -24,6 +27,11 @@ public class ThirdPersonCameraController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        if (compassText != null)
+        {
+            compassText.text = "";
+        }
     }
 
     void Update()
@@ -55,7 +63,46 @@ public class ThirdPersonCameraController : MonoBehaviour
 
             // Look at the camera target
             transform.LookAt(cameraTarget.position);
+
+            // Update compass text
+            UpdateCompassText();
         }
+    }
+
+    void UpdateCompassText()
+    {
+        if (compassText != null)
+        {
+            float compassDirection = (yaw + 360) % 360; // Normalize to [0, 360)
+
+            // Determine the cardinal direction based on the compassDirection
+            string cardinalDirection = GetCardinalDirection(compassDirection);
+
+            // Update the compass text
+            compassText.text = cardinalDirection;
+        }
+    }
+
+    string GetCardinalDirection(float angle)
+    {
+        if (angle >= 337.5f || angle < 22.5f)
+            return "N";
+        if (angle >= 22.5f && angle < 67.5f)
+            return "NE";
+        if (angle >= 67.5f && angle < 112.5f)
+            return "E";
+        if (angle >= 112.5f && angle < 157.5f)
+            return "SE";
+        if (angle >= 157.5f && angle < 202.5f)
+            return "S";
+        if (angle >= 202.5f && angle < 247.5f)
+            return "SW";
+        if (angle >= 247.5f && angle < 292.5f)
+            return "W";
+        if (angle >= 292.5f && angle < 337.5f)
+            return "NW";
+
+        return "";
     }
 
     public void changeSensitivity(System.Single newSensitivity)
