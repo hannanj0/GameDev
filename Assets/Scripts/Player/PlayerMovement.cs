@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,9 +13,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private Vector3 moveDirection;
     private bool isRunning = false;
-    private bool canSprint = true; 
+    private bool canSprint = true;
     private bool isJumping = false;
-    private const float ColliderExtraMargin = 0.1f; // Example value, adjust as needed
+    private const float ColliderExtraMargin = 0.1f;
     public float maxSlopeAngle = 45.0f;
     public float slopeCheckDistance = 1.0f;
 
@@ -26,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
     private float groundCheckDistance = 0.2f;
     public LayerMask groundLayer;
     public float airControlFactor = 0.5f;
+
+    // Add this variable to control whether the script is active
+    private bool isScriptActive = false;
 
     void Awake()
     {
@@ -43,6 +47,14 @@ public class PlayerMovement : MonoBehaviour
 
         playerState = GetComponent<PlayerState>();
         rb.interpolation = RigidbodyInterpolation.Interpolate;
+
+        StartCoroutine(EnableScriptAfterDelay());
+    }
+
+    private IEnumerator EnableScriptAfterDelay()
+    {
+        yield return new WaitForSeconds(14f); // Change the delay to 14 seconds
+        isScriptActive = true; // Enable the entire script functionality
     }
 
     void OnEnable()
@@ -57,34 +69,62 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        UpdateMoveDirection();
-        UpdateAnimation();
-
-        if (playerState.currentHunger == 0 && isRunning)
+        // Only execute the update logic if the script is active
+        if (isScriptActive)
         {
-            isRunning = false;
+            UpdateMoveDirection();
+            UpdateAnimation();
+
+            if (playerState.currentHunger == 0 && isRunning)
+            {
+                isRunning = false;
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        UpdatePosition();
+        // Only execute the fixed update logic if the script is active
+        if (isScriptActive)
+        {
+            UpdatePosition();
 
-        if (isJumping)
-        {
-            if (IsGrounded())
+            if (isJumping)
             {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-                isJumping = false;
+                if (IsGrounded())
+                {
+                    rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+                    isJumping = false;
+                }
+            }
+            else
+            {
+                if (IsGrounded() && animator.GetBool("isJumping"))
+                {
+                    animator.SetBool("isJumping", false);
+                }
             }
         }
-        else
-        {
-            if (IsGrounded() && animator.GetBool("isJumping"))
-            {
-                animator.SetBool("isJumping", false);
-            }
-        }
+    }
+
+    private void OnMovePerformed(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>();
+    }
+
+    private void OnMoveCanceled(InputAction.CallbackContext context)
+    {
+        moveInput = Vector2.zero;
+    }
+
+    private void OnSprintPerformed(InputAction.CallbackContext context)
+    {
+        isRunning = context.ReadValueAsButton() && canSprint && playerState.currentHunger > 0;
+    }
+
+    private void OnSprintCanceled(InputAction.CallbackContext context)
+    {
+        isRunning = false;
     }
 
     private void OnJumpPerformed(InputAction.CallbackContext context)
@@ -122,26 +162,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         return false;
-    }
-
-    private void OnMovePerformed(InputAction.CallbackContext context)
-    {
-        moveInput = context.ReadValue<Vector2>();
-    }
-
-    private void OnMoveCanceled(InputAction.CallbackContext context)
-    {
-        moveInput = Vector2.zero;
-    }
-
-    private void OnSprintPerformed(InputAction.CallbackContext context)
-    {
-        isRunning = context.ReadValueAsButton() && canSprint && playerState.currentHunger > 0;
-    }
-
-    private void OnSprintCanceled(InputAction.CallbackContext context)
-    {
-        isRunning = false;
     }
 
     private void UpdateMoveDirection()

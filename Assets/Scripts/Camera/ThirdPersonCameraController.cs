@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class ThirdPersonCameraController : MonoBehaviour
 {
@@ -15,13 +16,16 @@ public class ThirdPersonCameraController : MonoBehaviour
     public float sensitivity = 5.0f;
     public float distanceFromTarget = 2;
     public float cameraHeightOffset = 2.5f;
-    public Vector2 pitchMinMax = new Vector2(-35, 80); // Adjust the max value to prevent flipping
+    public Vector2 pitchMinMax = new Vector2(-35, 80);
 
-    public TMP_Text compassText; // Reference to the TextMeshProUGUI component for displaying compass directions
+    public TMP_Text compassText;
 
     private float yaw;
     private float pitch;
     private Vector2 currentMouseDelta = Vector2.zero;
+
+    // Add this variable to control the camera logic
+    private bool enableCameraLogic = false;
 
     void Start()
     {
@@ -32,25 +36,32 @@ public class ThirdPersonCameraController : MonoBehaviour
         {
             compassText.text = "";
         }
+
+        StartCoroutine(EnableScriptAfterDelay());
+    }
+
+    IEnumerator EnableScriptAfterDelay()
+    {
+        yield return new WaitForSeconds(14f);
+        enableCameraLogic = true; // Enable the camera logic
     }
 
     void Update()
     {
-        // Capture the mouse movement
         currentMouseDelta = Mouse.current.delta.ReadValue();
     }
 
     void LateUpdate()
     {
-        if (!pauseMenu.GameIsPaused() && !playerInteractions.CraftingMenuOpen())
+        if (enableCameraLogic && !pauseMenu.GameIsPaused() && !playerInteractions.CraftingMenuOpen())
         {
             // Horizontal rotation
             yaw += currentMouseDelta.x * sensitivity * Time.deltaTime;
             player.rotation = Quaternion.Euler(0, yaw, 0);
 
             // Vertical rotation
-            pitch += currentMouseDelta.y * sensitivity * Time.deltaTime; // Notice we subtract to maintain the orientation
-            pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y); // Clamp the pitch angle
+            pitch += currentMouseDelta.y * sensitivity * Time.deltaTime;
+            pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
 
             // Calculate rotation and position
             Vector3 cameraPositionOffset = new Vector3(0, cameraHeightOffset, -distanceFromTarget);
@@ -73,12 +84,8 @@ public class ThirdPersonCameraController : MonoBehaviour
     {
         if (compassText != null)
         {
-            float compassDirection = (yaw + 360) % 360; // Normalize to [0, 360)
-
-            // Determine the cardinal direction based on the compassDirection
+            float compassDirection = (yaw + 360) % 360;
             string cardinalDirection = GetCardinalDirection(compassDirection);
-
-            // Update the compass text
             compassText.text = cardinalDirection;
         }
     }
@@ -105,7 +112,7 @@ public class ThirdPersonCameraController : MonoBehaviour
         return "";
     }
 
-    public void changeSensitivity(System.Single newSensitivity)
+    public void ChangeSensitivity(float newSensitivity)
     {
         sensitivity = newSensitivity;
     }
