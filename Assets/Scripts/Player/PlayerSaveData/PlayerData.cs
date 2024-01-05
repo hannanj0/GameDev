@@ -10,7 +10,8 @@ public class PlayerData
     public float maxHealth = 100f;
     public float currentHunger = 100f;
     public float maxHunger = 100f;
-    public float attackDamage = 40f;
+    public float baseDamage = 40f;
+    public float extraDamage = 0f;
 
     public float spawnPositionX = 300f;
     public float spawnPositionY = 4f;

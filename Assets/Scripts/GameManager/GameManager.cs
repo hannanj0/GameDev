@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public bool loadGameRequest = false;
     public bool loadSettingsRequest = false;
     public bool inGame = false;
+    public int gameDifficulty = 1;
 
     public PlayerData playerData;
 
