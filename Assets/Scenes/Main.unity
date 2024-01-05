@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.68073976, g: 0.9015672, b: 0.904913, a: 1}
+  m_IndirectSpecularColor: {r: 0.6921158, g: 0.9160015, b: 0.9195924, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9458,6 +9458,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5725723148325014459, guid: c9cefac82f808d6468994122632743e6, type: 3}
   m_PrefabInstance: {fileID: 479062577}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &479451694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 479451696}
+  - component: {fileID: 479451695}
+  m_Layer: 0
+  m_Name: CutsceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &479451695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479451694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef28c2f4f92794cbd87d9c8ab44d962c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiElements:
+  - {fileID: 123154175}
+  - {fileID: 749147479}
+  - {fileID: 1919592240}
+  - {fileID: 1475670022}
+  - {fileID: 1407723738}
+--- !u!4 &479451696
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479451694}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 495.5, y: 519.75, z: 0.000015258789}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &480914849
 GameObject:
   m_ObjectHideFlags: 0
@@ -14669,6 +14719,7 @@ MonoBehaviour:
   waypoints:
   - {fileID: 451732745}
   - {fileID: 1637401119}
+  turnSmoothTime: 0.1
 --- !u!114 &723710022 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 127308280044985770, guid: 1d9a5dc0d26f8574e937bb1e7f50be3b, type: 3}
@@ -20218,13 +20269,12 @@ MonoBehaviour:
   speed: 5
   runMultiplier: 4
   cameraTransform: {fileID: 4874980051322353227}
-  maxSlopeAngle: 45
-  slopeCheckDistance: 1
   jumpForce: 4
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  airControlFactor: 0.5
+  maxSlopeAngle: 45
+  slopeCheckDistance: 1
 --- !u!1 &960922511
 GameObject:
   m_ObjectHideFlags: 0
@@ -48555,3 +48605,4 @@ SceneRoots:
   - {fileID: 2013948423}
   - {fileID: 1357968879}
   - {fileID: 2042366700}
+  - {fileID: 479451696}
