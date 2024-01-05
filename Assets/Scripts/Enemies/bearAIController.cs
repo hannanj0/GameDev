@@ -33,6 +33,8 @@ public class bearAIController : MonoBehaviour
     private bool m_PlayerNear;
     private bool m_IsPatrol;
     private bool m_CaughtPlayer;
+    [SerializeField] private float turnSmoothTime = 0.1f; // Smooth time for turning
+    private float turnSmoothVelocity; // Velocity reference for smooth damping
 
     private Animator animator; // Reference to the Animator component
 
@@ -213,12 +215,18 @@ public class bearAIController : MonoBehaviour
 
     void Move(float speed)
     {
+        Vector3 direction = (navMeshAgent.destination - transform.position).normalized;
+        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+
+        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
         animator.SetBool("Idle", false);
         animator.SetBool("WalkForward", true);
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speed;
     }
-
+    
     void Stop()
     {
         animator.SetBool("WalkForward", false);
