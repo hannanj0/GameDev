@@ -7,9 +7,7 @@ public class PlayerData
     public List<string> bossesKilled = new List<string>();
 
     public float currentHealth = 100f;
-    public float maxHealth = 100f;
     public float currentHunger = 100f;
-    public float maxHunger = 100f;
     public float baseDamage = 40f;
     public float extraDamage = 0f;
 

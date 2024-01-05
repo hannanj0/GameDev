@@ -32,6 +32,7 @@ public class PlayerState : MonoBehaviour
     public float currentHunger;
     public float maxHunger;
     public float loseHealthFromHunger = 5f;
+    public float loseHungerAfterDistance = 16f;
     //Player stats
     private float baseDamage = 40f;
     private float extraDamage = 0f;
@@ -130,7 +131,6 @@ public class PlayerState : MonoBehaviour
             dataPending = true;
             playerData = mainManager.LoadPlayerData();
 
-            healthDecreaseTimer = healthDecreaseInterval;
             this.bossesKilled = playerData.bossesKilled;
             
             if (bossesKilled.Count > 0)
@@ -157,7 +157,6 @@ public class PlayerState : MonoBehaviour
             this.extraDamage = playerData.extraDamage;
             Debug.Log("base attack: " + playerData.baseDamage + "extra attack: " + playerData.extraDamage);
             this.currentHealth = playerData.currentHealth;
-
             this.currentHunger = playerData.currentHunger;
 
             this.spawnPosition = new Vector3(
@@ -176,7 +175,6 @@ public class PlayerState : MonoBehaviour
 
             totalGameBosses = 2;
             extraDamage = 0f;
-            healthDecreaseTimer = healthDecreaseInterval;
         }
         dataPending = false;
 
@@ -185,23 +183,27 @@ public class PlayerState : MonoBehaviour
             baseDamage = 35f;
             loseHealthFromHunger = 2f;
             maxHealth = 150f;
+            loseHungerAfterDistance = 30f;
         }
         else if (GameManager.Instance != null && GameManager.Instance.gameDifficulty == 1)
         {
             baseDamage = 30f;
             loseHealthFromHunger = 4f;
             maxHealth = 100f;
+            loseHungerAfterDistance = 25f;
         }
         else if (GameManager.Instance != null && GameManager.Instance.gameDifficulty == 2)
         {
             baseDamage = 20f;
             loseHealthFromHunger = 6f;
             maxHealth = 80f;
+            loseHungerAfterDistance = 20f;
         }
 
         maxHunger = 100f;
         currentHealth = maxHealth;
         currentHunger = maxHunger;
+        healthDecreaseTimer = healthDecreaseInterval;
 
         if (currentHealth > maxHealth)
         {
@@ -218,7 +220,7 @@ public class PlayerState : MonoBehaviour
         lastPosition = playerBody.transform.position;
 
 
-        if (currentHunger > 0 && distanceTravelled >= 14 && Time.timeSinceLevelLoad > 10.0f)
+        if (currentHunger > 0 && distanceTravelled >= loseHungerAfterDistance && Time.timeSinceLevelLoad > 12.0f)
         {
             distanceTravelled = 0;
             currentHunger -= 1;
@@ -263,18 +265,21 @@ public class PlayerState : MonoBehaviour
             baseDamage = 35f;
             loseHealthFromHunger = 2f;
             maxHealth = 150f;
+            loseHungerAfterDistance = 30f;
         }
         else if (difficulty == 1)
         {
             baseDamage = 30f;
             loseHealthFromHunger = 4f;
             maxHealth = 100f;
+            loseHungerAfterDistance = 25f;
         }
         else if (difficulty == 2)
         {
             baseDamage = 20f;
             loseHealthFromHunger = 6f;
             maxHealth = 80f;
+            loseHungerAfterDistance = 20f;
         }
         if (currentHealth > maxHealth)
         {
