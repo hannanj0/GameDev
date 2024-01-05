@@ -176,8 +176,6 @@ public class PlayerState : MonoBehaviour
 
             totalGameBosses = 2;
             extraDamage = 0f;
-            currentHealth = maxHealth;
-            currentHunger = maxHunger;
             healthDecreaseTimer = healthDecreaseInterval;
         }
         dataPending = false;
@@ -200,7 +198,11 @@ public class PlayerState : MonoBehaviour
             loseHealthFromHunger = 6f;
             maxHealth = 80f;
         }
+
         maxHunger = 100f;
+        currentHealth = maxHealth;
+        currentHunger = maxHunger;
+
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
