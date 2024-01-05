@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
 using System.Collections;
+using UnityEngine.Playables;
 
 public class ThirdPersonCameraController : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class ThirdPersonCameraController : MonoBehaviour
     // Add this variable to control the camera logic
     private bool enableCameraLogic = false;
 
+    private PlayableDirector playableDirector; // Add this variable
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -38,6 +41,13 @@ public class ThirdPersonCameraController : MonoBehaviour
         }
 
         StartCoroutine(EnableScriptAfterDelay());
+
+        // Find the PlayableDirector component
+        playableDirector = GetComponent<PlayableDirector>();
+        if (playableDirector != null)
+        {
+            playableDirector.stopped += OnCutsceneFinished;
+        }
     }
 
     IEnumerator EnableScriptAfterDelay()
@@ -115,5 +125,24 @@ public class ThirdPersonCameraController : MonoBehaviour
     public void ChangeSensitivity(float newSensitivity)
     {
         sensitivity = newSensitivity;
+    }
+
+    // Add this method to enable or disable the camera logic
+    public void EnableCameraLogic(bool enable)
+    {
+        enableCameraLogic = enable;
+    }
+
+    // Add this method to handle cutscene completion event
+    private void OnCutsceneFinished(PlayableDirector director)
+    {
+        // Enable the camera logic after the cutscene finishes
+        StartCoroutine(EnableCameraAfterDelay(15f));
+    }
+
+    IEnumerator EnableCameraAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        EnableCameraLogic(true);
     }
 }

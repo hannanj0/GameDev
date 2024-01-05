@@ -32,13 +32,6 @@ public class Interaction : MonoBehaviour
 
         if (!hit.transform.TryGetComponent(out InteractableObject interactable)) return;
 
-        // Check if there's a conversation attached
-        if (interactable.Conversation != null)
-        {
-            // Start the conversation with a predefined dialogue array
-            string[] dialogue = new string[] { "Hello!", "How are you?", "Goodbye!" };
-            interactable.Conversation.StartConversation(dialogue);
-        }
 
         interactable.Interact();
         Debug.Log(("Interact"));
