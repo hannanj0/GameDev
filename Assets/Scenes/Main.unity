@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.6921158, g: 0.9160015, b: 0.9195924, a: 1}
+  m_IndirectSpecularColor: {r: 0.6762138, g: 0.89530313, b: 0.8986781, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7271,7 +7271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5390771376432699990, guid: 4b00cbf69241461449e1f002f241e2e8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8142255802068311731, guid: 4b00cbf69241461449e1f002f241e2e8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10580,6 +10580,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hotbar 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6682263649037789026, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+      propertyPath: hotbarImage
+      value: 
+      objectReference: {fileID: 519912468}
     - target: {fileID: 7756553001096730130, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -10679,6 +10683,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45bca11fcd56c9e43a971abd769a3026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &519912468 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7486298525428157168, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+  m_PrefabInstance: {fileID: 519912465}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &531227005
@@ -11069,6 +11084,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hotbar 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6682263649037789026, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+      propertyPath: hotbarImage
+      value: 
+      objectReference: {fileID: 543912760}
     - target: {fileID: 7756553001096730130, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -11168,6 +11187,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45bca11fcd56c9e43a971abd769a3026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &543912760 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7486298525428157168, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+  m_PrefabInstance: {fileID: 543912757}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &556907544
@@ -13360,6 +13390,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hotbar 9
       objectReference: {fileID: 0}
+    - target: {fileID: 6682263649037789026, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+      propertyPath: hotbarImage
+      value: 
+      objectReference: {fileID: 683663234}
     - target: {fileID: 7756553001096730130, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -13459,6 +13493,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45bca11fcd56c9e43a971abd769a3026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &683663234 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7486298525428157168, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+  m_PrefabInstance: {fileID: 683663231}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &687114073
@@ -15578,6 +15623,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hotbar 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6682263649037789026, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+      propertyPath: hotbarImage
+      value: 
+      objectReference: {fileID: 744153105}
     - target: {fileID: 7756553001096730130, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -15677,6 +15726,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45bca11fcd56c9e43a971abd769a3026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &744153105 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7486298525428157168, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+  m_PrefabInstance: {fileID: 744153102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &749147479
@@ -28637,6 +28697,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hotbar 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6682263649037789026, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+      propertyPath: hotbarImage
+      value: 
+      objectReference: {fileID: 1363885092}
     - target: {fileID: 7756553001096730130, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -28736,6 +28800,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45bca11fcd56c9e43a971abd769a3026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1363885092 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7486298525428157168, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+  m_PrefabInstance: {fileID: 1363885089}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1373908626
@@ -32631,6 +32706,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hotbar 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6682263649037789026, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+      propertyPath: hotbarImage
+      value: 
+      objectReference: {fileID: 1531620777}
+    - target: {fileID: 6682263649037789026, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+      propertyPath: imageColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682263649037789026, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+      propertyPath: imageColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682263649037789026, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+      propertyPath: imageColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7486298525428157168, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -32742,6 +32833,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45bca11fcd56c9e43a971abd769a3026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1531620777 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7486298525428157168, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+  m_PrefabInstance: {fileID: 1531620774}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1536109545
@@ -33169,6 +33271,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hotbar 7
       objectReference: {fileID: 0}
+    - target: {fileID: 6682263649037789026, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+      propertyPath: hotbarImage
+      value: 
+      objectReference: {fileID: 1583489901}
     - target: {fileID: 7756553001096730130, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -33268,6 +33374,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45bca11fcd56c9e43a971abd769a3026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1583489901 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7486298525428157168, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+  m_PrefabInstance: {fileID: 1583489898}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1584485120
@@ -40531,6 +40648,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hotbar 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6682263649037789026, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+      propertyPath: hotbarImage
+      value: 
+      objectReference: {fileID: 2059963410}
     - target: {fileID: 7756553001096730130, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -40630,6 +40751,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45bca11fcd56c9e43a971abd769a3026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2059963410 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7486298525428157168, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+  m_PrefabInstance: {fileID: 2059963407}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2063087139
@@ -41142,6 +41274,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hotbar 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6682263649037789026, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+      propertyPath: hotbarImage
+      value: 
+      objectReference: {fileID: 2088775044}
     - target: {fileID: 7756553001096730130, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -41241,6 +41377,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45bca11fcd56c9e43a971abd769a3026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2088775044 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7486298525428157168, guid: 1493502eb6de72146a773294a3f2cf25, type: 3}
+  m_PrefabInstance: {fileID: 2088775041}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2093521371 stripped
