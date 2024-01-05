@@ -24,7 +24,8 @@ public class PauseMenu : MonoBehaviour
     public Slider sfxVolumeSlider;
 
     public AudioMixer audioMixer;
-    public TMP_Dropdown dropdown;
+    public TMP_Dropdown graphicsDropdown;
+    public TMP_Dropdown difficultyDropdown;
 
     public Toggle fullScreenToggle;
     public Toggle muteToggle;
@@ -57,6 +58,7 @@ public class PauseMenu : MonoBehaviour
     private Color selected;
 
     private bool gameIsPaused = false;
+    public PlayerState playerState;
 
     /// <summary>
     /// Check whether the game is paused or not.
@@ -81,6 +83,7 @@ public class PauseMenu : MonoBehaviour
         {
             playerSettings = GameManager.Instance.playerSettings;
             ToggleFullScreen(playerSettings.fullScreen);
+            SetGameDifficulty(playerSettings.gameDifficulty);
             ChangeSensitivity(playerSettings.sensitivity);
             SetGraphicsQuality(playerSettings.graphicsSetting);
             SetMasterVolume(playerSettings.masterVolume);
@@ -340,10 +343,18 @@ public class PauseMenu : MonoBehaviour
         playerSettings.fullScreen = isFullScreen;
     }
 
+    public void SetGameDifficulty(int index)
+    {
+        GameManager.Instance.gameDifficulty = index;
+        difficultyDropdown.value = index;
+        playerSettings.gameDifficulty = index;
+        playerState.UpdatePlayer(index);
+    }
+
     public void SetGraphicsQuality(int index)
     {
         QualitySettings.SetQualityLevel(index);
-        dropdown.value = index;
+        graphicsDropdown.value = index;
         playerSettings.graphicsSetting = index;
     }
 

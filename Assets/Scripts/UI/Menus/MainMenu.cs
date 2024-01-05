@@ -23,7 +23,8 @@ public class MainMenu : MonoBehaviour
     public Slider sfxVolumeSlider;
 
     public AudioMixer audioMixer;
-    public TMP_Dropdown dropdown;
+    public TMP_Dropdown graphicsDropdown;
+    public TMP_Dropdown difficultyDropdown;
 
     public Toggle fullScreenToggle;
     public Toggle muteToggle;
@@ -66,6 +67,7 @@ public class MainMenu : MonoBehaviour
     public void ButtonClick()
     {
         buttonClick.Play();
+        Debug.Log("button click");
     }
 
     public void LoadCloudSettings()
@@ -74,6 +76,7 @@ public class MainMenu : MonoBehaviour
         {
             playerSettings = GameManager.Instance.playerSettings;
             ToggleFullScreen(playerSettings.fullScreen);
+            SetGameDifficulty(playerSettings.gameDifficulty);
             ChangeSensitivity(playerSettings.sensitivity);
             SetGraphicsQuality(playerSettings.graphicsSetting);
             SetMasterVolume(playerSettings.masterVolume);
@@ -321,10 +324,18 @@ public class MainMenu : MonoBehaviour
         playerSettings.fullScreen = isFullScreen;
     }
 
+    public void SetGameDifficulty(int index)
+    {
+        GameManager.Instance.gameDifficulty = index;
+        //update variables?
+        difficultyDropdown.value = index;
+        playerSettings.gameDifficulty = index;
+    }
+
     public void SetGraphicsQuality(int index)
     {
         QualitySettings.SetQualityLevel(index);
-        dropdown.value = index;
+        graphicsDropdown.value = index;
         playerSettings.graphicsSetting = index;
     }
 

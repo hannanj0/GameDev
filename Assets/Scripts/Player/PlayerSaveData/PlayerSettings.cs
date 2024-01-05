@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class PlayerSettings
 {
     public bool fullScreen = false;
+    public int gameDifficulty = 1;
     public float sensitivity = 5f;
     public int graphicsSetting = 1;
     public float masterVolume = 0f;

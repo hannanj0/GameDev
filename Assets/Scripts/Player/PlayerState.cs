@@ -31,10 +31,10 @@ public class PlayerState : MonoBehaviour
     // Player Hunger
     public float currentHunger;
     public float maxHunger;
-
+    public float loseHealthFromHunger = 5f;
     //Player stats
-    private float attackDamage;
-
+    private float baseDamage = 40f;
+    private float extraDamage = 0f;
     float distanceTravelled = 0;
     Vector3 lastPosition;
 
@@ -55,7 +55,9 @@ public class PlayerState : MonoBehaviour
     public float MaxHealth() { return maxHealth; }
     public float CurrentHunger() {  return currentHunger; }
     public float MaxHunger() { return maxHunger; }
-    public float AttackDamage() {  return attackDamage; }
+    public float BaseDamage() {  return baseDamage; }
+    public float ExtraDamage() { return extraDamage; }
+    public float AttackDamage() { return baseDamage + extraDamage; }
     public List<string> BossesKilled() {  return bossesKilled; }
     public float SpawnX() { return spawnPosition.x; }
     public float SpawnY() {  return spawnPosition.y; }
@@ -102,7 +104,7 @@ public class PlayerState : MonoBehaviour
 
     public void IncreaseDamage(float damage)
     {
-        attackDamage += damage;
+        extraDamage += damage;
     }
 
     // awake looks and checks that it is the only instance in the game, if not, it will destroy it
@@ -129,8 +131,6 @@ public class PlayerState : MonoBehaviour
             playerData = mainManager.LoadPlayerData();
 
             healthDecreaseTimer = healthDecreaseInterval;
-            Debug.Log(playerData);
-            Debug.Log(playerData.bossesKilled);
             this.bossesKilled = playerData.bossesKilled;
             
             if (bossesKilled.Count > 0)
@@ -145,7 +145,7 @@ public class PlayerState : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogWarning($"Object with name {bossToHide} not found in the scene.");
+                        Debug.Log($"Object with name {bossToHide} not found in the scene.");
                     }
                 }
 
@@ -154,36 +154,57 @@ public class PlayerState : MonoBehaviour
                     WinGame();
                 }
             }
-            this.attackDamage = playerData.attackDamage;
-            Debug.Log("attack: " + playerData.attackDamage);
+            this.extraDamage = playerData.extraDamage;
+            Debug.Log("base attack: " + playerData.baseDamage + "extra attack: " + playerData.extraDamage);
             this.currentHealth = playerData.currentHealth;
-            this.maxHealth = playerData.maxHealth;
 
             this.currentHunger = playerData.currentHunger;
-            this.maxHunger = playerData.maxHunger;
 
             this.spawnPosition = new Vector3(
                 playerData.spawnPositionX,
                 playerData.spawnPositionY,
                 playerData.spawnPositionZ
             );
-            Debug.Log(playerData.spawnPositionX);
 
             playerBody.transform.position = this.spawnPosition;
-            Debug.Log(this.spawnPosition);
             GameManager.Instance.loadGameRequest = false;
         }
         else
         {
             ResetSpawnPosition();
             playerBody.transform.position = spawnPosition;
+
             totalGameBosses = 2;
-            attackDamage = 40.0f;
+            extraDamage = 0f;
             currentHealth = maxHealth;
             currentHunger = maxHunger;
             healthDecreaseTimer = healthDecreaseInterval;
         }
         dataPending = false;
+
+        if (GameManager.Instance != null && GameManager.Instance.gameDifficulty == 0)
+        {
+            baseDamage = 35f;
+            loseHealthFromHunger = 2f;
+            maxHealth = 150f;
+        }
+        else if (GameManager.Instance != null && GameManager.Instance.gameDifficulty == 1)
+        {
+            baseDamage = 30f;
+            loseHealthFromHunger = 4f;
+            maxHealth = 100f;
+        }
+        else if (GameManager.Instance != null && GameManager.Instance.gameDifficulty == 2)
+        {
+            baseDamage = 20f;
+            loseHealthFromHunger = 6f;
+            maxHealth = 80f;
+        }
+        maxHunger = 100f;
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
     }
 
 
@@ -227,9 +248,35 @@ public class PlayerState : MonoBehaviour
             healthDecreaseTimer -= Time.deltaTime;
             if (healthDecreaseTimer <= 0)
             {
-                currentHealth -= 5;
+                currentHealth -= loseHealthFromHunger;
                 healthDecreaseTimer = healthDecreaseInterval;
             }
+        }
+    }
+
+    public void UpdatePlayer(int difficulty)
+    {
+        if (difficulty == 0)
+        {
+            baseDamage = 35f;
+            loseHealthFromHunger = 2f;
+            maxHealth = 150f;
+        }
+        else if (difficulty == 1)
+        {
+            baseDamage = 30f;
+            loseHealthFromHunger = 4f;
+            maxHealth = 100f;
+        }
+        else if (difficulty == 2)
+        {
+            baseDamage = 20f;
+            loseHealthFromHunger = 6f;
+            maxHealth = 80f;
+        }
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
         }
     }
 }

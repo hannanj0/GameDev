@@ -96,7 +96,8 @@ public class CloudSave : MonoBehaviour
             maxHealth = playerState.MaxHealth(),
             currentHunger = playerState.CurrentHunger(),
             maxHunger = playerState.MaxHunger(),
-            attackDamage = playerState.AttackDamage(),
+            baseDamage = playerState.BaseDamage(),
+            extraDamage = playerState.ExtraDamage(),
 
             spawnPositionX = playerState.SpawnX(),
             spawnPositionY = playerState.SpawnY(),
