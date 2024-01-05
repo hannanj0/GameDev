@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Timeline;
 using UnityEngine.Playables;
+using UnityEngine.InputSystem; // Include the Input System namespace
 
 namespace StarterAssets.Interactions
 {
@@ -10,35 +11,45 @@ namespace StarterAssets.Interactions
         [SerializeField] private UnityEvent _onInteract;
         [SerializeField] private PlayableDirector cutsceneDirector;
 
+        private PlayerControls controls; // Reference to PlayerControls
+        private bool cutscenePlayed = false;
+
         UnityEvent InteractionInterface.onInteract
         {
             get => _onInteract;
             set => _onInteract = value;
         }
 
-        private bool cutscenePlayed = false;
-
-        private void Update()
+        void Awake()
         {
-            // Check for player input to initiate the cutscene
-            if (Input.GetKeyDown(KeyCode.E) && !cutscenePlayed)
-            {
-                Interact();
-            }
+            controls = new PlayerControls(); // Initialize the PlayerControls
+            controls.Gameplay.Interact.performed += context => Interact();
+        }
+
+        void OnEnable()
+        {
+            controls.Gameplay.Interact.Enable(); // Enable the Interact action
+        }
+
+        void OnDisable()
+        {
+            controls.Gameplay.Interact.Disable(); // Disable the Interact action
         }
 
         public void Interact()
         {
-            _onInteract.Invoke();
-
-            ThirdPersonCameraController cameraController = Camera.main.GetComponent<ThirdPersonCameraController>();
-
-            if (cameraController != null)
+            if (!cutscenePlayed)
             {
-                cameraController.EnableCameraLogic(false);
-            }
+                _onInteract.Invoke();
 
-            PlayCutscene();
+                ThirdPersonCameraController cameraController = Camera.main.GetComponent<ThirdPersonCameraController>();
+                if (cameraController != null)
+                {
+                    cameraController.EnableCameraLogic(false);
+                }
+
+                PlayCutscene();
+            }
         }
 
         private void PlayCutscene()
@@ -48,22 +59,18 @@ namespace StarterAssets.Interactions
                 cutsceneDirector.gameObject.SetActive(true);
                 cutsceneDirector.stopped += OnCutsceneFinished;
                 cutsceneDirector.Play();
-
                 cutscenePlayed = true;
             }
         }
 
         private void OnCutsceneFinished(PlayableDirector director)
         {
-            // Cutscene finished, re-enable the camera logic
             ThirdPersonCameraController cameraController = Camera.main.GetComponent<ThirdPersonCameraController>();
-
             if (cameraController != null)
             {
                 cameraController.EnableCameraLogic(true);
             }
 
-            // Remove the event listener to prevent memory leaks
             cutsceneDirector.stopped -= OnCutsceneFinished;
         }
     }
