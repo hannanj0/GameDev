@@ -1,6 +1,7 @@
 # Group AI - Unity Game Development Prototype
 
 ## Table of Contents
+
 - [Introduction](#introduction)
 - [Features](#features)
 - [Attributions](#attributions)
@@ -11,8 +12,8 @@
 
 ## Introduction
 
-Welcome to group AI's game prototype! This project explores concept #1 which is a survival, crafting game. 
-The player must face difficult enemies on their journey to the final boss and beat it to win the game. 
+Welcome to group AI's game prototype! This project explores concept #1 which is a survival, crafting game.
+The player must face difficult enemies on their journey to the final boss and beat it to win the game.
 Many core concepts were used to make up this game prototype, as you will see in the next section.
 
 ## Features
@@ -34,28 +35,94 @@ Here are some key concepts and features included in our prototype:
 
 ### Assets
 
+1. Main Menu Music (self-created asset)
+
+   - Ediz Tan - Learning to Rise: this is one of Tanur's compositions which aims to create a bright, powerful and adventurous atmosphere.
+
+2. Menu Buttons (external asset)
+
+   - https://assetstore.unity.com/packages/2d/gui/icons/a-lot-of-useful-icons-01-126673.
+
+3. Button Click SFX (external asset)
+
+   - https://assetstore.unity.com/packages/audio/sound-fx/free-ui-click-sound-pack-244644.
+
+4. Stylised Skybox (external asset)
+
+   - https://assetstore.unity.com/packages/2d/textures-materials/sky/free-stylized-skybox-212257.
+
+5. Bubble Font (external asset)
+
+   - https://assetstore.unity.com/packages/2d/fonts/bubble-font-free-version-24987.
+
+6. Main Menu Sword Images (external asset)
+
+   - Attribution: Image by succo (https://pixabay.com/users/succo-96729/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2453295") from Pixabay (https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2453295).
+   - Acquired from: https://pixabay.com/vectors/swords-middle-ages-historical-2453295/.
+
+7. UI Heart Icon (external asset)
+
+   - Attribution: Image by Clker-Free-Vector-Images (https://pixabay.com/users/clker-free-vector-images-3736/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=304570)Clker-Free-Vector-Images from Pixabay (https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=304570).
+   - Acquired from: https://pixabay.com/vectors/red-heart-health-love-shape-304570/.
+
+8. UI Apple Icon (external asset)
+
+   - Attribution: Image by Anna (https://pixabay.com/users/kropekk_pl-114936/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=285776) from Pixabay (https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=285776).
+   - Acquired from: https://pixabay.com/vectors/apple-fruit-apples-green-apple-285776/.
+
+9. INSERT WEAPON
+
+10. INSERT ENVIRONMENT
+
+11. INSERT BEAR
+
+12. INSERT NPC
+
+13. INSERT MOB 2
+
+14. INSERT BOSS 1
+
+15. INSERT BOSS 2
+
+16. INSERT PLAYER
+
+17.
+
 ### Code Snippets
-    
+
 #### Tanur's attributions
+
 Note: Most of these are sources used for inspiration and understanding concepts and bugs better, so no code is copied directly.
 Implementing the flashing red colour in WeaponAttack.cs is more closely followed on the other hand.
+
 1. WeaponAttack.cs
+
    - https://discussions.unity.com/t/adding-a-cooldown-time-to-a-attack/140231/3 assisted with configuring our game's attack and cooldowns.
    - https://www.youtube.com/watch?v=3aWgstSctMw assisted with making the enemy flash red.
 
 2. WeaponRotation.cs
-   
+
    Below are some resources I consulted which helped with Slerp usage, understanding normalised angle rotations and ensuring smooth rotations for the player's sword:
+
    - https://www.youtube.com/shorts/jAN2IoWdPzM?feature=share
    - https://stackoverflow.com/questions/53106326/quaternion-slerp-not-smoothly-rotating-for-some-reason
    - https://docs.unity3d.com/ScriptReference/Quaternion.Slerp.html
    - https://www.reddit.com/r/Unity3D/comments/lqmb8p/quaternion_lerpslerp_snapping_instead_of_rotating/
    - https://discussions.unity.com/t/quaternion-slerp-in-a-coroutine/33180
-  
-4. PauseMenu.cs
+
+3. PauseMenu.cs
+
    - https://www.youtube.com/watch?v=9dYDBomQpBQ helpful for the foundations of my pause menu object and its functionality.
 
-5. General C# Documentation Guidance.
+4. Scene transitions
+
+   - https://www.youtube.com/watch?v=CE9VOZivb3I&t=996s extremely useful for setting up the fade effect as a transition.
+
+5. Creative Day/Night Cycle using Animation
+
+   - https://www.youtube.com/watch?v=uQCYT_WMzN8 assisted with animation setup for day/night cycle.
+
+6. General C# Documentation Guidance.
    - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments assisted with proper C# documentation.
 
 #### Hugos's attributions
@@ -64,46 +131,52 @@ Note: Most of these are sources used for inspiration and understanding concepts 
 
 1. PlayerMovement.cs
 
-    - [https://www.youtube.com/watch?v=vFV0uJ0KE2Q](https://www.youtube.com/watch?v=vFV0uJ0KE2Q) assisted with using the new input system with movement.
-    - https://www.youtube.com/watch?v=q-VfsQQlji0 - overview video on creation of a basic movement system
-      
+   - [https://www.youtube.com/watch?v=vFV0uJ0KE2Q](https://www.youtube.com/watch?v=vFV0uJ0KE2Q) assisted with using the new input system with movement.
+   - https://www.youtube.com/watch?v=q-VfsQQlji0 - overview video on creation of a basic movement system
+
 2. ThirdPersonCameraController.cs
 
-	- https://www.youtube.com/watch?v=04EpnVbMKpU - fundamentals of implementing the camera system with new input system, relative positioning of the camera
-	- https://www.youtube.com/watch?v=qnjKoTmko3Q - quick overview of how camera systems are made and work.
- 
+   - https://www.youtube.com/watch?v=04EpnVbMKpU - fundamentals of implementing the camera system with new input system, relative positioning of the camera
+   - https://www.youtube.com/watch?v=qnjKoTmko3Q - quick overview of how camera systems are made and work.
+
 3. Playercontrols.cs (inputactions)
 
-	- https://www.youtube.com/watch?v=Yjee_e4fICc - explained how to configure and use for other scenarios
-	- Videos on QMplus (guided on the initial creation)
+   - https://www.youtube.com/watch?v=Yjee_e4fICc - explained how to configure and use for other scenarios
+   - Videos on QMplus (guided on the initial creation)
 
 4. General C# Documentation Guidance.
    - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments assisted with proper C# documentation.
 
 #### Hannan's attributions
+
 Note: Most of these are sources used for inspiration and understanding concepts and bugs better, so no code is copied directly.
 Implementing the advanced enemy movement AI in AIController.cs is more closely followed on the other hand.
 
 1. MainMenu.cs
+
    - https://www.youtube.com/watch?v=-GWjA6dixV4 - Helped my understanding of creating a main menu scene, and switching to the main scene via the code and configuring the build settings in order for this to work.
 
 2. HealthBar.cs + HungerBar.cs + PlayerState.cs
-   
+
    The following were used as inspiration to create the Status bars for the player:
-   - https://www.youtube.com/watch?v=k2H3cJL1M9A 
+
+   - https://www.youtube.com/watch?v=k2H3cJL1M9A
    - https://www.youtube.com/watch?v=_lREXfAMUcE
    - https://discussions.unity.com/t/health-bar-goes-down-with-time/191485 - Helpful for implementation of hunger bar decreasing over time.
-  
-4. AIController.cs
+
+3. AIController.cs
+
    - https://www.youtube.com/watch?v=6Ai0xg6xTUk - This helped with ensuring the enemy is looking the correct way with the eyes.
    - https://www.youtube.com/watch?v=ieyHlYp5SLQ - This assisted with the enemy patrolling, viewing angles and when to chase the player as well as avoiding obstacles.
    - I also used the module resources to help with the NavMesh stuff needed for the patrolling and movement of enemy AI.
 
-5. General C# Documentation Guidance.
+4. General C# Documentation Guidance.
    - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments assisted with proper C# documentation.
 
 #### Tamer's attributions
+
 These guides were used as inspiration and the knowledge was combined with our own knowledge to create any features needed
+
 1. Inventory
    - https://www.youtube.com/watch?v=AoD_F1fSFFg
 2. Crafting
@@ -119,3 +192,4 @@ Here's how to get the game running on your local machine.
 1. Clone this repository:
    ```sh
    git clone https://github.com/hannanj0/GameDev.git
+   ```
