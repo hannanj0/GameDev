@@ -10,6 +10,7 @@ TagManager:
   - Item
   - Weapon
   - Checkpoint
+  - NPC
   layers:
   - Default
   - TransparentFX
