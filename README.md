@@ -169,9 +169,34 @@ Implementing the advanced enemy movement AI in AIController.cs is more closely f
    - https://www.youtube.com/watch?v=6Ai0xg6xTUk - This helped with ensuring the enemy is looking the correct way with the eyes.
    - https://www.youtube.com/watch?v=ieyHlYp5SLQ - This assisted with the enemy patrolling, viewing angles and when to chase the player as well as avoiding obstacles.
    - I also used the module resources to help with the NavMesh stuff needed for the patrolling and movement of enemy AI.
+  
+4. AIShooter.cs + BulletScript.cs + EnemyShoot.cs
 
-4. General C# Documentation Guidance.
+   - https://www.youtube.com/watch?v=k1kOtaM2NJg - Helped with the implementation and understanding of a shooting enemy, and linkage between both the bullet and the enemy itself.
+   - AIController.cs - This was used because it used pretty much the same concept in terms of patrolling and chasing.
+  
+5. AIDasher.cs
+
+   - https://docs.unity3d.com/ScriptReference/Vector3.Lerp.html - Used to recongise how to smoothly interpolate from one point to the other, resulting in the dash mechanism, apart from that, it was pretty much setting dashing variables, increasing the speed so that it can be explicitly seen.
+   - AIController.cs - This was used because it used pretty much the same concept in terms of patrolling and chasing.
+  
+6. Interaction.cs + InteractableObject.cs + InteractionInterface.cs
+
+   - https://www.youtube.com/watch?v=ZNiEbRL85Vc - This was very useful to help understand and implement the interaction system using the new input system with an object, in my case, the NPC.
+   - https://docs.unity3d.com/ScriptReference/Quaternion.LookRotation.html - Assisted with ensuring the enemy is looking at the player and with direction of bullets toward the player.
+  
+7. IntroCutsceneManager.cs + Timeline Usage for Cutscenes
+
+   - https://www.youtube.com/watch?v=NnPDJfvLeWQ - This aided me in understanding how to create cutscenes using Unity Timeline.
+   - https://www.youtube.com/watch?v=Ms10GAMAydA&t=536s - Used to understand the difference between Activation and Animation, when using Unity Timeline.
+  
+8. ThirdPersonCameraController.cs (For Cardinal Directions Part)
+
+   - https://study.com/academy/lesson/cardinal-intermediate-directions-definition-meaning.html#:~:text=The%20four%20cardinal%20directions%2C%20in,and%20sets%20in%20the%20west. - This was helpful to understand the degrees needed for spanning the camera across, and in which direction what Cardinal Direction should be displayed, using if-else statements.
+
+9. General C# Documentation Guidance.
    - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments assisted with proper C# documentation.
+   - https://docs.unity.com/ - Useful for pretty much everything Unity.
 
 #### Tamer's attributions
 
