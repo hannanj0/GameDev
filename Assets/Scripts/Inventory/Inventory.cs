@@ -29,15 +29,40 @@ public class Inventory : MonoBehaviour
 
     void OnHotbarKey(InputAction.CallbackContext context)
     {
-        // Get the index of the binding that was triggered
-        int bindingIndex = controls.Gameplay.HotBarSelect.GetBindingIndexForControl(context.control);
-
-        // If the bindingIndex is valid, select the corresponding hotbar slot
-        if (bindingIndex >= 0 && bindingIndex < hotbarSlots.Length)
+        // First check if D-Pad was used
+        if (context.control.name == "D-Pad/Left")
         {
-            SelectSlot(bindingIndex);
+            // Decrement currentSlot and wrap around if less than 0
+            currentSlot--;
+            if (currentSlot < 0)
+            {
+                currentSlot = 9 - 1;
+            }
+            SelectSlot(currentSlot);
+        }
+        else if (context.control.name == "D-Pad/Right")
+        {
+            // Increment currentSlot and wrap around if greater than the number of slots
+            currentSlot++;
+            if (currentSlot >= hotbarSlots.Length)
+            {
+                currentSlot = 0;
+            }
+            SelectSlot(currentSlot);
+        }
+        else
+        {
+            // Get the index of the binding that was triggered for 1-9 keys or buttons
+            int bindingIndex = controls.Gameplay.HotBarSelect.GetBindingIndexForControl(context.control);
+
+            // If the bindingIndex corresponds to the hotbar keys (1-9) and is valid, select the corresponding hotbar slot
+            if (bindingIndex >= 0 && bindingIndex < hotbarSlots.Length)
+            {
+                SelectSlot(bindingIndex);
+            }
         }
     }
+
 
     /// <summary>
     /// Adds the item to the inventory and the hotbar
