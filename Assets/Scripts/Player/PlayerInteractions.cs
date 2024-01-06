@@ -184,7 +184,7 @@ public class PlayerInteractions : MonoBehaviour
         //
         if (other.gameObject.CompareTag("Item"))
         {
-            GameItem I = other.GetComponent<GameItem>();
+            GameItem I = other.gameObject.GetComponent<GameItem>();
             Debug.Log("Item Picked Up");
             inventory.Add(I.item);
             other.gameObject.SetActive(false);

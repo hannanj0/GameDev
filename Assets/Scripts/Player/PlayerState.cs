@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerState : MonoBehaviour
 {
+    public bool playerDead = false;
+
     PlayerData playerData;
     bool dataPending = false;
 
@@ -15,6 +17,9 @@ public class PlayerState : MonoBehaviour
     public GameObject menuController;
 
     public Animator fadeScene;
+    public Animator playerAnimation;
+
+    private AudioSource[] playerAudio;
 
     public Vector3 spawnPosition = new Vector3(300f, 4f, 315f);
 
@@ -126,6 +131,8 @@ public class PlayerState : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerDead = false;
+
         if (GameManager.Instance != null && GameManager.Instance.loadGameRequest)
         {
             dataPending = true;
@@ -234,20 +241,19 @@ public class PlayerState : MonoBehaviour
         }
 
         // the game ends when health reaches 0, this is the loss condition
+        
         if (currentHealth <= 0 && !dataPending)
         {
-            PauseMenu pauseMenu = menuController.GetComponent<PauseMenu>();
-            
-            Time.timeScale = 1;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-
-            pauseMenu.LoadGameOverMenu();
-
+            currentHealth = 0;
+            if (!playerDead)
+            {
+                playerDead = true;
+                StartCoroutine(PlayerGameOver());
+            }
         }
 
         // when the hunger reaches 0, the health will slowly deteriorate
-        if (currentHunger == 0)
+        if (currentHunger <= 0)
         {
             healthDecreaseTimer -= Time.deltaTime;
             if (healthDecreaseTimer <= 0)
@@ -256,6 +262,22 @@ public class PlayerState : MonoBehaviour
                 healthDecreaseTimer = healthDecreaseInterval;
             }
         }
+        playerAudio = transform.Find("PlayerAudio").GetComponents<AudioSource>();
+    }
+
+    IEnumerator PlayerGameOver()
+    {
+        Time.timeScale = 1;
+        playerAudio[0].Play();
+        playerAnimation.SetBool("Dead", true);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        PauseMenu pauseMenu = menuController.GetComponent<PauseMenu>();
+
+
+        yield return new WaitForSeconds(2.5f);
+        pauseMenu.LoadGameOverMenu();
     }
 
     public void UpdatePlayer(int difficulty)

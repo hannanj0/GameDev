@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
 
     public float slopeCheckDistance = 1.0f;
 
+    public AudioSource[] playerAudio;
+    private AudioSource[] jumpSounds;
+
     // Add this variable to control whether the script is active
     private bool isScriptActive = false;
 
@@ -40,6 +44,10 @@ public class PlayerMovement : MonoBehaviour
         controls.Gameplay.Sprint.canceled += OnSprintCanceled;
         controls.Gameplay.Jump.performed += OnJumpPerformed;
         playerState = GetComponent<PlayerState>();
+
+        playerAudio = transform.Find("PlayerAudio").GetComponents<AudioSource>();
+        jumpSounds = new AudioSource[3];
+        Array.Copy(playerAudio, 1, jumpSounds, 0, 3);
     }
 
     void OnEnable()
@@ -87,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
         if (isJumping)
         {
             if (IsGrounded())
-            {
+            {   
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
                 isJumping = false;
             }
@@ -152,6 +160,10 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded())
         {
             Debug.Log("Attempting to jump"); // Confirm the jump is attempted
+
+            int randomInt = UnityEngine.Random.Range(0, 3);
+            jumpSounds[randomInt].Play();
+
             animator.SetBool("isJumping", true);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange); // Apply the jump force
             isJumping = true;
