@@ -99,7 +99,7 @@ AnimatorStateMachine:
     m_Position: {x: 520, y: 310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6275484210314251450}
-    m_Position: {x: 520, y: 360, z: 0}
+    m_Position: {x: 670, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3232128084696054918}
     m_Position: {x: 530, y: -70, z: 0}
@@ -743,6 +743,18 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: Death
     m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: isAttacking
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Blend
+    m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0

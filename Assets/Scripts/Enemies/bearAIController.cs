@@ -9,6 +9,7 @@ using UnityEngine.AI;
 public class bearAIController : MonoBehaviour
 {
     public NavMeshAgent navMeshAgent;
+    private float attackRange = 2.0f;
     public float startWaitTime = 4;
     public float timeToRotate = 2;
     public float speedWalk = 6;
@@ -41,6 +42,7 @@ public class bearAIController : MonoBehaviour
     private float attackCooldown = 2f; // Cooldown time between attacks
     private float timeSinceLastAttack = 0f; // Time since last attack
     private MobEnemyState mobEnemyState; // Reference to the MobEnemyState component
+    public float rotationSpeed = 5f;
 
 
     /// <summary>
@@ -117,6 +119,7 @@ public class bearAIController : MonoBehaviour
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null && Vector3.Distance(transform.position, playerObject.transform.position) <= attackRange)
         {
+            TriggerAttackAnimation();
             PlayerState playerState = playerObject.GetComponent<PlayerState>();
             if (playerState != null)
             {
@@ -126,52 +129,76 @@ public class bearAIController : MonoBehaviour
         }
     }
 
+    private void TriggerAttackAnimation()
+    {
+        // You can introduce logic to select different attacks based on certain conditions
+        // For example, random selection
+        int attackNumber = Random.Range(1, 4); // Generates 1, 2, or 3
+
+        switch (attackNumber)
+        {
+            case 1:
+                animator.SetTrigger("Attack1");
+                break;
+            case 2:
+                animator.SetTrigger("Attack2");
+                break;
+            case 3:
+                animator.SetTrigger("Attack3");
+                break;
+            default:
+                Debug.LogError("Invalid attack number");
+                break;
+        }
+    }
+
 
     /// <summary>
     /// When chasing, it calculates the distance between the enemy and the player, setting the movement to running speed and stops when the player is close. Also, if the player gains distance, there will be a point where the enemy will return back to patrolling
     /// </summary>
     private void Chasing()
-{
-    m_PlayerNear = false;
-    playerLastPosition = Vector3.zero;
-
-    if (!m_CaughtPlayer)
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerPosition);
-        float minDistanceToPlayer = 3f;
+        m_PlayerNear = false;
+        playerLastPosition = Vector3.zero;
+        SmoothRotateTowards(m_PlayerPosition);
 
-        if (distanceToPlayer > minDistanceToPlayer)
+        if (!m_CaughtPlayer)
         {
-            Move(speedRun);
-            navMeshAgent.SetDestination(m_PlayerPosition);
-        }
-        else
-        {
-            Stop();
-        }
-    }
+            float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerPosition);
+            float minDistanceToPlayer = 3f;
 
-    if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
-    {
-        if (m_WaitTime <= 0 && !m_CaughtPlayer && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f)
-        {
-            m_IsPatrol = true;
-            m_PlayerNear = false;
-            Move(speedWalk);
-            m_TimeToRotate = timeToRotate;
-            m_WaitTime = startWaitTime;
-            navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
-        }
-        else
-        {
-            if (Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 2.5f)
+            if (distanceToPlayer > minDistanceToPlayer)
+            {
+                Move(speedRun);
+                navMeshAgent.SetDestination(m_PlayerPosition);
+            }
+            else
             {
                 Stop();
-                m_WaitTime -= Time.deltaTime;
+            }
+        }
+
+        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+        {
+            if (m_WaitTime <= 0 && !m_CaughtPlayer && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f)
+            {
+                m_IsPatrol = true;
+                m_PlayerNear = false;
+                Move(speedWalk);
+                m_TimeToRotate = timeToRotate;
+                m_WaitTime = startWaitTime;
+                navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+            }
+            else
+            {
+                if (Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 2.5f)
+                {
+                    Stop();
+                    m_WaitTime -= Time.deltaTime;
+                }
             }
         }
     }
-}
 
     /// <summary>
     /// When in patrol mode, the enemy will move, wait and rotate, and move to the next waypoint
@@ -210,6 +237,36 @@ public class bearAIController : MonoBehaviour
                     m_WaitTime -= Time.deltaTime;
                 }
             }
+        }
+
+        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+        {
+            if (m_WaitTime <= 0)
+            {
+                // Smoothly rotate towards the next waypoint
+                Vector3 directionToNextWaypoint = (waypoints[m_CurrentWaypointIndex].position - transform.position).normalized;
+                if (directionToNextWaypoint != Vector3.zero)
+                {
+                    Quaternion lookRotation = Quaternion.LookRotation(directionToNextWaypoint);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+                }
+
+                // Existing logic to move to the next waypoint
+            }
+            else
+            {
+                // Existing logic for waiting at the waypoint
+            }
+        }
+    }
+
+    void SmoothRotateTowards(Vector3 targetPoint)
+    {
+        Vector3 directionToTarget = (targetPoint - transform.position).normalized;
+        if (directionToTarget != Vector3.zero)
+        {
+            Quaternion lookRotation = Quaternion.LookRotation(directionToTarget);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
         }
     }
 
@@ -261,6 +318,7 @@ public class bearAIController : MonoBehaviour
     /// </summary>
     void LookingPlayer(Vector3 player)
     {
+        SmoothRotateTowards(player);
         navMeshAgent.SetDestination(player);
         if (Vector3.Distance(transform.position, player) <= 0.3)
         {
