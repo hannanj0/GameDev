@@ -27,8 +27,8 @@ public class AIDasher : MonoBehaviour
     bool m_PlayerInRange;
     bool m_IsChasing; // New variable to track chasing state
     bool m_CaughtPlayer;
-    bool m_PlayerNear;
 
+    
     void Start()
     {
         m_PlayerPosition = Vector3.zero;
@@ -69,7 +69,7 @@ public class AIDasher : MonoBehaviour
 
     private void Chasing()
     {
-        m_PlayerNear = false;
+        
         playerLastPosition = Vector3.zero;
 
         if (!m_CaughtPlayer)

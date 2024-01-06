@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.6137943, g: 0.81372046, b: 0.8165863, a: 1}
+  m_IndirectSpecularColor: {r: 0.67551994, g: 0.8944279, b: 0.8977004, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -40462,7 +40462,6 @@ GameObject:
   - component: {fileID: 2042366698}
   - component: {fileID: 2042366697}
   - component: {fileID: 2042366696}
-  - component: {fileID: 2042366695}
   - component: {fileID: 2042366694}
   m_Layer: 9
   m_Name: NPCnew
@@ -40488,18 +40487,6 @@ PlayableDirector:
   m_SceneBindings: []
   m_ExposedReferences:
     m_References: []
---- !u!114 &2042366695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2042366693}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48f3473537ac943eea7c36bf188b998b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2042366696
 MonoBehaviour:
   m_ObjectHideFlags: 0
