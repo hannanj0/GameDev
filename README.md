@@ -150,7 +150,7 @@ Note: Most of these are sources used for inspiration and understanding concepts 
 #### Hannan's attributions
 
 Note: Most of these are sources used for inspiration and understanding concepts and bugs better, so no code is copied directly.
-Implementing the advanced enemy movement AI in AIController.cs is more closely followed on the other hand.
+Implementing the advanced enemy movement AI in AIController.cs, and the interactions between the player and NPC in Interaction.cs + InteractableObject.cs + InteractionInterface.cs is more closely followed on the other hand.
 
 1. MainMenu.cs
 
