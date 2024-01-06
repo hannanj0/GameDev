@@ -21,6 +21,7 @@ public class ThirdPersonCameraController : MonoBehaviour
     public float distanceFromTarget = 2;
     public float cameraHeightOffset = 2.5f;
     public Vector2 pitchMinMax = new Vector2(-35, 80);
+    public PlayerControls playerControls;
 
     public TMP_Text compassText;
 
@@ -35,6 +36,8 @@ public class ThirdPersonCameraController : MonoBehaviour
 
     void Start()
     {
+        playerControls = new PlayerControls();
+        playerControls.Gameplay.Enable();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
@@ -53,6 +56,11 @@ public class ThirdPersonCameraController : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        playerControls.Gameplay.Disable();
+    }
+
     IEnumerator EnableScriptAfterDelay()
     {
         yield return new WaitForSeconds(14f);
@@ -61,8 +69,20 @@ public class ThirdPersonCameraController : MonoBehaviour
 
     void Update()
     {
-        currentMouseDelta = Mouse.current.delta.ReadValue();
+        // Check if gamepad is connected and use its right stick input
+        if (Gamepad.current != null)
+        {
+            Vector2 gamepadInput = playerControls.Gameplay.CameraControl.ReadValue<Vector2>();
+            currentMouseDelta = new Vector2(gamepadInput.x, -gamepadInput.y); // Inverting Y for gamepad to match typical gamepad controls
+        }
+        else
+        {
+            // Use mouse input if no gamepad is detected
+            currentMouseDelta = Mouse.current.delta.ReadValue();
+        }
+
     }
+
 
     void LateUpdate()
     {
