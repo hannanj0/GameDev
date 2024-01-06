@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using UnityEngine.Playables;
 
+/// <summary>
+/// This script is used for the player camera itself, which is attached to the main camera, and used throughout the game, with the exception of cutscenes, where it gets temporarily disabled
+/// </summary>
 public class ThirdPersonCameraController : MonoBehaviour
 {
     public Slider sensitivitySlider;
@@ -21,8 +24,8 @@ public class ThirdPersonCameraController : MonoBehaviour
 
     public TMP_Text compassText;
 
-    private float yaw;
-    private float pitch;
+    private float yaw; // This is the horizontal rotation of the object
+    private float pitch; // This is the vertical rotation of the object
     private Vector2 currentMouseDelta = Vector2.zero;
 
     // Add this variable to control the camera logic
@@ -90,16 +93,26 @@ public class ThirdPersonCameraController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// The two below is used for the compass in-game, getting the Cardinal Direction based on 360 degrees, with if-else statements
+    /// </summary>
+
+    /// <summary>
+    /// This is used to update the text displaying the compass direction, and gets the cardinal direction based on the compass direction
+    /// </summary>
     void UpdateCompassText()
     {
         if (compassText != null)
         {
-            float compassDirection = (yaw + 360) % 360;
+            float compassDirection = (yaw + 360) % 360; // makes sure the compass direction is between 0 and 360
             string cardinalDirection = GetCardinalDirection(compassDirection);
             compassText.text = cardinalDirection;
         }
     }
 
+    /// <summary>
+    /// This is used to convert the angle to a cardinal direction, using if-else statements to deduce what it should display
+    /// </summary>
     string GetCardinalDirection(float angle)
     {
         if (angle >= 337.5f || angle < 22.5f)
@@ -121,7 +134,10 @@ public class ThirdPersonCameraController : MonoBehaviour
 
         return "";
     }
-
+    
+    /// <summary>
+    /// This is the change the sensitivity of the compass rotation
+    /// </summary>
     public void ChangeSensitivity(float newSensitivity)
     {
         sensitivity = newSensitivity;

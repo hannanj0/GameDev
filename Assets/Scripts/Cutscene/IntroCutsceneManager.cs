@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// This script temporarily disables the UI elements during the intro cutscene, which lasts 14 seconds, and then enables them
+/// </summary>
+
 public class IntroCutsceneManager : MonoBehaviour
 {
     public GameObject[] uiElements;

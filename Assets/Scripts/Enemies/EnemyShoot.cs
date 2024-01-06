@@ -2,8 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This is the script enemy that shoots, which outlines that when in chase mode, it will shoot the bullets at the player, from a specific spawn point
+/// </summary>
+
 public class EnemyShoot : MonoBehaviour
 {
+    /// <summary>
+    /// The public variables accessible through the Unity Inspector
+    /// </summary>
     public UnityEngine.AI.NavMeshAgent enemy;
     public Transform player;
 
@@ -14,12 +21,12 @@ public class EnemyShoot : MonoBehaviour
     public Transform spawnPoint;
     public float enemySpeed;
 
-    private GameObject bulletObj; // Declare bulletObj at the class level
+    private GameObject bulletObj;
     private bool isPatrolling = true;
 
     void Start()
     {
-        bulletTime = timer;
+        bulletTime = timer; // this initialises the bullet with a timer value
     }
 
     void Update()
@@ -34,11 +41,14 @@ public class EnemyShoot : MonoBehaviour
         }
         else
         {
-            enemy.SetDestination(player.position);
-            ShootAtPlayer();
+            enemy.SetDestination(player.position); // Sets the destination to the player's position
+            ShootAtPlayer(); // Initiates the shooting
         }
     }
 
+    /// <summary>
+    /// This is what happens when the enemy begins shooting, instantiating, disabling, setting the initial velocity and a timer for when the object will be destroyed to prevent it from staying in the scene
+    /// </summary>
     public void StartShooting()
     {
         // Calculate the direction from the spawnPoint to the player
@@ -58,7 +68,9 @@ public class EnemyShoot : MonoBehaviour
         StartCoroutine(EnableAndDestroyBullet(bulletObj, 5f));
     }
 
-    // Coroutine to enable the bullet and destroy it after a delay
+    /// <summary>
+    /// Coroutine to enable the bullet and destory it after a delay
+    /// </summary>
     private IEnumerator EnableAndDestroyBullet(GameObject bullet, float delay)
     {  
         yield return new WaitForSeconds(delay);
@@ -72,7 +84,9 @@ public class EnemyShoot : MonoBehaviour
 
 
 
-    // Make ShootAtPlayer method public
+    /// <summary>
+    /// This is used for when the enemy is shooting at the player specifically, using checks and again destroying the object after a certain time
+    /// </summary>
     public void ShootAtPlayer()
     {
         bulletTime -= Time.deltaTime;
@@ -88,6 +102,9 @@ public class EnemyShoot : MonoBehaviour
         Destroy(bulletObj, 5f);
     }
 
+    /// <summary>
+    /// When the bullet collides with the player, it destroys the bullet object, which shows realistic aspects and sets patrolling to false
+    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")

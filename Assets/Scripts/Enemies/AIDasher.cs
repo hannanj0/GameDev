@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/// <summary>
+/// This script is for the dashing enemy, it is somewhat similar to the AIController script
+/// </summary>
 public class AIDasher : MonoBehaviour
 {
+    /// <summary>
+    /// These are the public variables that will be accessible in the Unity Inspector
+    /// </summary>
     public NavMeshAgent navMeshAgent;
     public float startWaitTime = 4;
     public float timeToRotate = 2;
@@ -25,10 +31,12 @@ public class AIDasher : MonoBehaviour
     float m_TimeToRotate;
     float m_DashCooldownTimer;
     bool m_PlayerInRange;
-    bool m_IsChasing; // New variable to track chasing state
+    bool m_IsChasing;
     bool m_CaughtPlayer;
 
-    
+    /// <summary>
+    /// Initialises the variables, setting up the Nav Agent and initial destination of first waypoint
+    /// </summary>
     void Start()
     {
         m_PlayerPosition = Vector3.zero;
@@ -52,7 +60,9 @@ public class AIDasher : MonoBehaviour
             Debug.LogWarning("No waypoints assigned to the AI controller.");
         }
     }
-
+    /// <summary>
+    /// This just checks whether the enemy will be in patrol mode or chase mode
+    /// </summary>
     void FixedUpdate()
     {
         EnvironmentView();
@@ -67,6 +77,9 @@ public class AIDasher : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This method deduces what will happen when it is chasing the player, which would be to dash towards the player given the distance, and depending on cooldown as well, otherwise, it will move towards the player.
+    /// </summary>
     private void Chasing()
     {
         
@@ -96,7 +109,7 @@ public class AIDasher : MonoBehaviour
 
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
         {
-            if (!m_CaughtPlayer && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f)
+            if (!m_CaughtPlayer && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f) // if the player is too far, the enemy will go back to patrol mode
             {
                 // Stop chasing and go back to patrol
                 m_IsChasing = false;
@@ -108,7 +121,9 @@ public class AIDasher : MonoBehaviour
             }
         }
     }
-
+    /// <summary>
+    /// This calculates the dashing direction and destination, using Vector3.Lerp to move from its initial position to the player position
+    /// </summary>
     private void Dash()
     {
         Vector3 dashDirection = (m_PlayerPosition - transform.position).normalized;
@@ -120,7 +135,9 @@ public class AIDasher : MonoBehaviour
         // Use MoveTowards in FixedUpdate for more consistent movement
         transform.position = Vector3.Lerp(transform.position, dashDestination, dashSpeed * Time.fixedDeltaTime);
     }
-
+    /// <summary>
+    /// This is when the enemy is in patrol mode, it is self-explanatory, going from point A to B
+    /// </summary>
     private void Patroling()
     {
         if (m_PlayerInRange)
@@ -157,18 +174,27 @@ public class AIDasher : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Used in the method above, movement of enemy
+    /// </summary>
     void Move(float speed)
     {
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speed;
     }
 
+    /// <summary>
+    /// Stopping between waypoints
+    /// </summary>
     void Stop()
     {
         navMeshAgent.isStopped = true;
         navMeshAgent.speed = 0;
     }
 
+    /// <summary>
+    /// This ensures the next point in the array is used for the enemy to move to
+    /// </summary>
     public void NextPoint()
     {
         if (waypoints.Length > 0)
@@ -182,6 +208,9 @@ public class AIDasher : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This checks whether the player is in view of the enemy, if so, transition to chasing state, and if not, set the playerInRange to false
+    /// </summary>
     void EnvironmentView()
     {
         Collider[] playerInRange = Physics.OverlapSphere(transform.position, viewRadius, playerMask);
