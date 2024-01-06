@@ -26,8 +26,11 @@ public class PlayerMovement : MonoBehaviour
 
     public float slopeCheckDistance = 1.0f;
 
-    public AudioSource[] playerAudio;
+    private AudioSource[] playerAudio;
     private AudioSource[] jumpSounds;
+    private AudioSource[] footstepSounds;
+    private bool onCooldown = false;
+    private float footstepCooldown = 0.3f;
 
     // Add this variable to control whether the script is active
     private bool isScriptActive = false;
@@ -48,6 +51,9 @@ public class PlayerMovement : MonoBehaviour
         playerAudio = transform.Find("PlayerAudio").GetComponents<AudioSource>();
         jumpSounds = new AudioSource[3];
         Array.Copy(playerAudio, 1, jumpSounds, 0, 3);
+        footstepSounds = new AudioSource[4];
+        Array.Copy(playerAudio, playerAudio.Length - 4, footstepSounds, 0, 4);
+
     }
 
     void OnEnable()
@@ -86,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
                 isRunning = false;
             }
         }
+        
     }
 
     private void FixedUpdate()
@@ -107,6 +114,32 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("isJumping", false);
             }
         }
+    }
+
+
+    private void PlayFootstepSFX()
+    {
+        if ((moveInput.magnitude > 0 || isRunning) && !onCooldown) 
+        {
+            int randomInt = UnityEngine.Random.Range(0, footstepSounds.Length);
+            footstepSounds[randomInt].Play();
+            StartCoroutine(FootstepTimer());
+        }
+    }
+
+    private IEnumerator FootstepTimer()
+    {
+        onCooldown = true;
+        if (!isRunning)
+        {
+            footstepCooldown = 0.5f;
+        }
+        else
+        {
+            footstepCooldown = 0.3f;
+        }
+        yield return new WaitForSeconds(footstepCooldown);
+        onCooldown = false;
     }
 
     private void UpdatePosition()
@@ -227,7 +260,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("MoveX", localMoveDirection.x);
         animator.SetFloat("MoveZ", localMoveDirection.z);
         animator.SetBool("isRunning", isRunning);
-
+        PlayFootstepSFX();
         // Check if we are falling (y velocity is negative and we are not on the ground)
         bool falling = rb.velocity.y < 0 && !IsGrounded();
         animator.SetBool("isFalling", falling);
