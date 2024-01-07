@@ -185,6 +185,12 @@ public class PlayerInteractions : MonoBehaviour
                 gameAudio.SetInVolcanicArea();
                 Debug.Log("in volcanic area");
             }
+            if (other.gameObject.name == "Spooky Terrain")
+            {
+                currentTerrain = other.gameObject.name;
+                gameAudio.SetInSpookyArea();
+                Debug.Log("in spooky area");
+            }
         }
         // The player cannot be attacked for the AttackCooldownDuration since they just got attacked.
     }

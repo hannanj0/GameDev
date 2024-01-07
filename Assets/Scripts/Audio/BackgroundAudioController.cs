@@ -9,6 +9,7 @@ public class BackgroundAudioController : MonoBehaviour
     private bool inForestArea;
     private bool inDesertArea;
     private bool inVolcanicArea;
+    private bool inSpookyArea;
 
     private bool fadingIn;
     private bool fadingOut;
@@ -18,6 +19,7 @@ public class BackgroundAudioController : MonoBehaviour
     private float forestMaxVolume = 0.3f;
     private float desertMaxVolume = 0.06f;
     private float volcanicMaxVolume = 0.1f;
+    private float spookyMaxVolume = 0.1f;
     private bool reassignSFX = false;
 
     public void SetInForestArea()
@@ -25,6 +27,7 @@ public class BackgroundAudioController : MonoBehaviour
         inForestArea = true;
         inDesertArea = false;
         inVolcanicArea = false;
+        inSpookyArea = false;
         reassignSFX = true;
     }
 
@@ -33,6 +36,7 @@ public class BackgroundAudioController : MonoBehaviour
         inForestArea = false;
         inDesertArea = true;
         inVolcanicArea = false;
+        inSpookyArea = false;
         reassignSFX = true;
     }
 
@@ -41,6 +45,16 @@ public class BackgroundAudioController : MonoBehaviour
         inForestArea = false;
         inDesertArea = false;
         inVolcanicArea = true;
+        inSpookyArea = false;
+        reassignSFX = true;
+    }
+
+    public void SetInSpookyArea()
+    {
+        inForestArea = false;
+        inDesertArea = false;
+        inVolcanicArea = false;
+        inSpookyArea = true;
         reassignSFX = true;
     }
 
@@ -50,6 +64,7 @@ public class BackgroundAudioController : MonoBehaviour
         inForestArea = false;
         inVolcanicArea = false;
         inDesertArea = false;
+        inSpookyArea = false;
         gameAudio = GetComponents<AudioSource>();
         currentSFX = gameAudio[0];
     }
@@ -70,6 +85,11 @@ public class BackgroundAudioController : MonoBehaviour
         if (inVolcanicArea && reassignSFX)
         {
             StartCoroutine(FadeOutAndReassign(gameAudio[2], volcanicMaxVolume));
+            reassignSFX = false;
+        }
+        if (inSpookyArea && reassignSFX)
+        {
+            StartCoroutine(FadeOutAndReassign(gameAudio[3], spookyMaxVolume));
             reassignSFX = false;
         }
 
