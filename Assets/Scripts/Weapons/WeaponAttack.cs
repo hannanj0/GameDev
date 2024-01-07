@@ -93,18 +93,15 @@ public class WeaponAttack : MonoBehaviour
             if (enemyCollider.gameObject.name == "Bear_4")
             {
                 enemyRenderer = enemyCollider.transform.Find("Meshes/Body").GetComponent<SkinnedMeshRenderer>();
+                enemyColor = enemyRenderer.material.color;
+                FlashEnemyStart();
             }
-            else if (enemyCollider.gameObject.name == "StoneMonster")
-            {
-                enemyRenderer = enemyCollider.transform.Find("StoneMonster").GetComponent<SkinnedMeshRenderer>();
-            }
-            else
-            {
-                enemyRenderer = enemyCollider.gameObject.GetComponent<MeshRenderer>();
-            }
+            // else
+            // {
+            //     enemyRenderer = enemyCollider.gameObject.GetComponent<MeshRenderer>();
+            // }
 
-            enemyColor = enemyRenderer.material.color;
-            FlashEnemyStart();
+            
 
             EnemyHealthBar enemyHealthBar = enemyCollider.transform.Find("HealthBarContainer/HealthBar").GetComponent<EnemyHealthBar>();
             enemyHealthBar.UpdateHealthBar(enemy.Health(), enemy.MaxHealth());
@@ -121,15 +118,23 @@ public class WeaponAttack : MonoBehaviour
         }
     }
 
-    void FlashEnemyStart()
+  void FlashEnemyStart()
     {
-        enemyRenderer.material.color = Color.red;
-        Invoke(nameof(FlashEnemyFinish), flashDuration);
+        // Check if the material has a color property before trying to change it
+        if (enemyRenderer.material.HasProperty("_Color"))
+        {
+            enemyRenderer.material.color = Color.red;
+            Invoke(nameof(FlashEnemyFinish), flashDuration);
+        }
     }
 
     void FlashEnemyFinish()
     {
-        enemyRenderer.material.color = enemyColor;
+        // Check if the material has a color property before trying to revert it
+        if (enemyRenderer.material.HasProperty("_Color"))
+        {
+            enemyRenderer.material.color = enemyColor;
+        }
     }
 
     public void ResetMeleeAttack()
