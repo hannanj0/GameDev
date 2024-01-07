@@ -12,6 +12,8 @@ public class CrosshairScript : MonoBehaviour
 
     private Material originalMaterial;
     private Transform lastHighlighted;
+    public float maxHighlightDistance = 10.0f; // Set the maximum distance at which items will be highlighted
+
 
     void Update()
     {
@@ -19,13 +21,15 @@ public class CrosshairScript : MonoBehaviour
         RaycastHit[] hits = Physics.SphereCastAll(crosshairWorldPosition, highlightRange, Camera.main.transform.forward, 100f);
 
         bool foundItem = false;
-        
+
         foreach (var hit in hits)
         {
             Transform hitTransform = hit.transform;
-            if (hitTransform.CompareTag("Item"))
+            float distanceToHit = Vector3.Distance(crosshairWorldPosition, hitTransform.position);
+
+            if (distanceToHit <= maxHighlightDistance && (hitTransform.CompareTag("Item") || hitTransform.CompareTag("Interactable")))
             {
-                if (!foundItem || Vector3.Distance(crosshairWorldPosition, hitTransform.position) < Vector3.Distance(crosshairWorldPosition, lastHighlighted.position))
+                if (!foundItem || distanceToHit < Vector3.Distance(crosshairWorldPosition, lastHighlighted.position))
                 {
                     foundItem = true;
                     HighlightItem(hitTransform);
@@ -33,32 +37,50 @@ public class CrosshairScript : MonoBehaviour
             }
         }
 
-        if (!foundItem && lastHighlighted != null)
+        if (!foundItem)
         {
-            ResetHighlight();
+            if (lastHighlighted != null)
+            {
+                ResetHighlight();
+            }
+            itemLabel.text = ""; // Clear the text if no item or interactable is found
         }
     }
+
 
     private void HighlightItem(Transform item)
     {
-        if (lastHighlighted != null && lastHighlighted != item)
+        if (item.CompareTag("Interactable"))
         {
-            ResetHighlight();
+            // Only show the message for interactable objects
+            itemLabel.text = "Press E to Interact";
+            // Don't highlight the interactable object
+            if (lastHighlighted != null && lastHighlighted != item)
+            {
+                ResetHighlight();
+            }
+            lastHighlighted = item; // Keep track of the last highlighted item
         }
-
-        if (lastHighlighted != item)
+        else if (item.CompareTag("Item"))
         {
-            originalMaterial = item.GetComponent<Renderer>().material;
-            item.GetComponent<Renderer>().material = highlightMaterial;
-            lastHighlighted = item;
+            // Continue with the normal highlighting process for other items
+            if (lastHighlighted != null && lastHighlighted != item)
+            {
+                ResetHighlight();
+            }
 
-            // Split the name by spaces and take the first part
-            string itemName = item.name.Split(' ')[0];
-            itemLabel.text = itemName; // Set the text of the TextMeshPro UI element to the item's name
-            Debug.Log("Highlighted Item: " + itemName);
+            if (lastHighlighted != item)
+            {
+                originalMaterial = item.GetComponent<Renderer>().material;
+                item.GetComponent<Renderer>().material = highlightMaterial;
+                lastHighlighted = item;
+
+                string itemName = item.name.Split(' ')[0];
+                itemLabel.text = itemName;
+                Debug.Log("Highlighted Item: " + itemName);
+            }
         }
     }
-
 
     private void ResetHighlight()
     {
@@ -66,9 +88,6 @@ public class CrosshairScript : MonoBehaviour
         {
             lastHighlighted.GetComponent<Renderer>().material = originalMaterial;
             lastHighlighted = null;
-
-            // Clear the text of the TextMeshPro UI element
-            itemLabel.text = "";
         }
     }
 }
