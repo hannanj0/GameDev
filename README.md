@@ -146,6 +146,14 @@ Note: Most of these are sources used for inspiration and understanding concepts 
 
 4. General C# Documentation Guidance.
    - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments assisted with proper C# documentation.
+  
+5. Weapon Attack
+6. crosshair script
+7. key rebinding script
+8. game controller implementation
+9. All Animations and importing prefabs
+10. inputmanager.cs
+11. collaberations with all instances of input
 
 #### Hannan's attributions
 
