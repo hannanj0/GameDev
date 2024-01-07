@@ -69,18 +69,20 @@ public class ThirdPersonCameraController : MonoBehaviour
 
     void Update()
     {
-        // Check if gamepad is connected and use its right stick input
+        // Determine the current input device and apply the corresponding sensitivity.
         if (Gamepad.current != null)
         {
             Vector2 gamepadInput = playerControls.Gameplay.CameraControl.ReadValue<Vector2>();
-            currentMouseDelta = new Vector2(gamepadInput.x, -gamepadInput.y); // Inverting Y for gamepad to match typical gamepad controls
+            // Gamepad sensitivity is five times that of the mouse sensitivity.
+            currentMouseDelta = gamepadInput * (sensitivity * 200f) * Time.deltaTime;
         }
         else
         {
-            // Use mouse input if no gamepad is detected
+            // Apply mouse sensitivity.
             currentMouseDelta = Mouse.current.delta.ReadValue();
         }
 
+        // Additional Update logic here (if any)
     }
 
 
