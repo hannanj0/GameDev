@@ -94,7 +94,7 @@ public class AIShooter2 : MonoBehaviour
             float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerPosition);
             
             // Get the direction to the player's upper body instead of feet.
-            Vector3 targetPosition = new Vector3(m_PlayerPosition.x, m_PlayerPosition.y + 1f, m_PlayerPosition.z); // Adjust 1.5f to the desired height
+            Vector3 targetPosition = new Vector3(m_PlayerPosition.x, m_PlayerPosition.y + 0.5f, m_PlayerPosition.z); // Adjust 1.5f to the desired height
             Vector3 directionToPlayer = (targetPosition - transform.position).normalized;
 
             float minDistanceToPlayer = 3f;
