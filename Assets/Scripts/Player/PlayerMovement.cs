@@ -56,24 +56,30 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    void OnEnable()
+    public void OnEnable()
     {
         controls.Gameplay.Enable();
     }
 
-    void OnDisable()
+    public void OnDisable()
     {
         controls.Gameplay.Disable();
     }
 
     private void Start()
     {
-        StartCoroutine(EnableScriptAfterDelay());
+        PlayerInputWait(14f);
     }
 
-    private IEnumerator EnableScriptAfterDelay()
+    public void PlayerInputWait(float duration)
     {
-        yield return new WaitForSeconds(14f); // Change the delay to 14 seconds
+        StartCoroutine(EnableScriptAfterDelay(duration));
+    }
+
+    private IEnumerator EnableScriptAfterDelay(float duration)
+    {
+        isScriptActive = false;
+        yield return new WaitForSeconds(duration); // Change the delay to 14 seconds
         isScriptActive = true; // Enable the entire script functionality
     }
 

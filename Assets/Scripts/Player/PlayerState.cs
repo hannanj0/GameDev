@@ -8,7 +8,8 @@ using UnityEngine.SceneManagement;
 public class PlayerState : MonoBehaviour
 {
     public bool playerDead = false;
-
+    public PlayerMovement playerMovement;
+                                                                                               
     PlayerData playerData;
     bool dataPending = false;
 
@@ -268,6 +269,7 @@ public class PlayerState : MonoBehaviour
     IEnumerator PlayerGameOver()
     {
         Time.timeScale = 1;
+        playerMovement.PlayerInputWait(4f);
         playerAudio[0].Play();
         playerAnimation.SetBool("Dead", true);
 
