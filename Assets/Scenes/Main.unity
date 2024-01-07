@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.68359965, g: 0.9057045, b: 0.9091936, a: 1}
+  m_IndirectSpecularColor: {r: 0.61545414, g: 0.81677204, b: 0.81986725, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9585,6 +9585,7 @@ MonoBehaviour:
   - {fileID: 1919592240}
   - {fileID: 1475670022}
   - {fileID: 1407723738}
+  - {fileID: 599407116}
 --- !u!4 &479451696
 Transform:
   m_ObjectHideFlags: 0
@@ -41679,6 +41680,13 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   cutsceneDirector: {fileID: 515056157}
+  uiElementsToDisable:
+  - {fileID: 123154175}
+  - {fileID: 749147479}
+  - {fileID: 1475670022}
+  - {fileID: 1919592240}
+  - {fileID: 1407723738}
+  - {fileID: 599407116}
 --- !u!136 &2042366697
 CapsuleCollider:
   m_ObjectHideFlags: 0
