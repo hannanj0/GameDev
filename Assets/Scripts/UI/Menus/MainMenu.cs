@@ -29,9 +29,9 @@ public class MainMenu : MonoBehaviour
     public Toggle fullScreenToggle;
     public Toggle muteToggle;
 
-    public GameObject mainMenuScreen; // Main menu screen object to hide and set visible.
-    public GameObject instructionsPage1; // Instructions page 1 object to hide and set visible.
-    public GameObject instructionsPage2; // Instructions page 2 object to hide and set visible.
+    public GameObject mainMenuScreen;
+    public GameObject instructionsPage1;
+    public GameObject instructionsPage2;
     public GameObject settingsPage;
 
     public GameObject newGameDialog;
@@ -60,6 +60,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
+        //colours for unselected and selected buttons
         unselected = new Color(0.7098f, 0.8509f, 0.6275f);
         selected = new Color(0.388f, 0.565f, 0.278f);
     }
@@ -67,9 +68,9 @@ public class MainMenu : MonoBehaviour
     public void ButtonClick()
     {
         buttonClick.Play();
-        Debug.Log("button click");
     }
 
+    //load saved game settings from the cloud
     public void LoadCloudSettings()
     {
         if (GameManager.Instance != null && GameManager.Instance.loadSettingsRequest)
@@ -87,6 +88,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    //new game dialog pop up
     public void NewGame()
     {
         mainMenuScreen.SetActive(false);
@@ -105,6 +107,8 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(StartGame());
     }
 
+
+    // fade into main scene game
     IEnumerator StartGame()
     {
         fadeScene.SetTrigger("FadeOut");
@@ -127,6 +131,7 @@ public class MainMenu : MonoBehaviour
         loadGameDialog.SetActive(true);
     }
 
+    //if user wants to load game, check if save found
     public async void LoadGame_Yes()
     {
         bool loadGameResult = await cloudSave.LoadGame();
@@ -153,6 +158,7 @@ public class MainMenu : MonoBehaviour
         mainMenuScreen.SetActive(true);
     }
 
+    //dialog to confirm no saves found
     public void ConfirmNoSavesFound()
     {
         noSavesFoundDialog.SetActive(false);
@@ -219,6 +225,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    // load all game settings
     public void LoadSettings()
     {
         mainMenuScreen.SetActive(false);
@@ -227,6 +234,7 @@ public class MainMenu : MonoBehaviour
         LoadGeneralSettings();
     }
 
+    //save player settings to the cloud
     public void SaveSettings()
     {
         cloudSave.SavePlayerSettings();
@@ -249,6 +257,7 @@ public class MainMenu : MonoBehaviour
         mainMenuScreen.SetActive(true);
     }
 
+    //load general settings for the game
     public void LoadGeneralSettings()
     {
         HideTabs();
@@ -257,6 +266,7 @@ public class MainMenu : MonoBehaviour
         generalSettings.SetActive(true);
     }
 
+    //load control settings for the game
     public void LoadControlsSettings()
     {
         HideTabs();
@@ -269,6 +279,7 @@ public class MainMenu : MonoBehaviour
         settingsBackButton.SetActive(true);
     }
 
+    // load graphics settings for the game
     public void LoadGraphicsSettings()
     {
         HideTabs();
@@ -277,6 +288,7 @@ public class MainMenu : MonoBehaviour
         graphicsSettings.SetActive(true);
     }
 
+    //load audio settings for the game
     public void LoadAudioSettings()
     {
         HideTabs();
@@ -285,6 +297,7 @@ public class MainMenu : MonoBehaviour
         audioSettings.SetActive(true);
     }
 
+    //load accessibility settings for the game
     public void LoadAccessibilitySettings()
     {
         HideTabs();
@@ -293,6 +306,7 @@ public class MainMenu : MonoBehaviour
         accessibilitySettings.SetActive(true);
     }
 
+    //hide all settings tabs and reset button colours
     public void HideTabs()
     {
         generalSettings.SetActive(false);
@@ -303,6 +317,7 @@ public class MainMenu : MonoBehaviour
         ResetButtons();
     }
 
+    //reset button colours
     private void ResetButtons()
     {
         generalButton.image.color = unselected;
@@ -317,6 +332,7 @@ public class MainMenu : MonoBehaviour
         selectedButton.image.color = selected;
     }
 
+    // toggle fullscreen mode
     public void ToggleFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
@@ -324,14 +340,15 @@ public class MainMenu : MonoBehaviour
         playerSettings.fullScreen = isFullScreen;
     }
 
+    //set the game difficulty
     public void SetGameDifficulty(int index)
     {
         GameManager.Instance.gameDifficulty = index;
-        //update variables?
         difficultyDropdown.value = index;
         playerSettings.gameDifficulty = index;
     }
 
+    //set graphics quality for the game
     public void SetGraphicsQuality(int index)
     {
         QualitySettings.SetQualityLevel(index);
@@ -339,6 +356,7 @@ public class MainMenu : MonoBehaviour
         playerSettings.graphicsSetting = index;
     }
 
+    //Set the master volume for the game
     public void SetMasterVolume(float volume)
     {
         audioMixer.SetFloat("masterVolume", volume);
@@ -346,6 +364,7 @@ public class MainMenu : MonoBehaviour
         playerSettings.masterVolume = volume;
     }
 
+    //Set the music volume for the game
     public void SetMusicVolume(float volume)
     {
         audioMixer.SetFloat("musicVolume", volume);
@@ -353,6 +372,7 @@ public class MainMenu : MonoBehaviour
         playerSettings.musicVolume = volume;
     }
 
+    //Set the SFX volume for the game
     public void SetSFXVolume(float volume)
     {
         audioMixer.SetFloat("sfxVolume", volume);
@@ -360,6 +380,7 @@ public class MainMenu : MonoBehaviour
         playerSettings.sfxVolume = volume;
     }
 
+    //Toggle mute for the entire game
     public void SetToggleMute(bool isMuted)
     {
         if (isMuted) 
@@ -374,12 +395,14 @@ public class MainMenu : MonoBehaviour
         playerSettings.isMuted = isMuted;
     }
 
+    // Change sensitivity
     public void ChangeSensitivity(System.Single newSensitivity)
     {
         sensitivitySlider.value = newSensitivity;
         playerSettings.sensitivity = newSensitivity;
     }
 
+    //Load bindings settings
     public void LoadBindingsSettings()
     {
         controlsSettingsPage1.SetActive(false);

@@ -96,6 +96,12 @@ public class WeaponAttack : MonoBehaviour
                 enemyColor = enemyRenderer.material.color;
                 FlashEnemyStart();
             }
+            else if (enemyCollider.gameObject.name == "Sand Spider")
+            {
+                enemyRenderer = enemyCollider.transform.Find("MeshRenderer").GetComponent<SkinnedMeshRenderer>();
+                enemyColor = enemyRenderer.material.color;
+                FlashEnemyStart();
+            }
             // else
             // {
             //     enemyRenderer = enemyCollider.gameObject.GetComponent<MeshRenderer>();
