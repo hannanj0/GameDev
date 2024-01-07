@@ -94,6 +94,10 @@ public class WeaponAttack : MonoBehaviour
             {
                 enemyRenderer = enemyCollider.transform.Find("Meshes/Body").GetComponent<SkinnedMeshRenderer>();
             }
+            else if (enemyCollider.gameObject.name == "StoneMonster")
+            {
+                enemyRenderer = enemyCollider.transform.Find("StoneMonster").GetComponent<SkinnedMeshRenderer>();
+            }
             else
             {
                 enemyRenderer = enemyCollider.gameObject.GetComponent<MeshRenderer>();
