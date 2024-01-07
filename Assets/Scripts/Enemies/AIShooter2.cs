@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AIShooter : MonoBehaviour
+public class AIShooter2 : MonoBehaviour
 {
     public NavMeshAgent navMeshAgent;
     public float startWaitTime = 4;
@@ -18,6 +18,7 @@ public class AIShooter : MonoBehaviour
     public int edgeIterations = 4;
     public float edgeDistance = 0.5f;
     public Transform[] waypoints;
+    private Animation_Test animationScript;
     int m_CurrentWaypointIndex;
     Vector3 playerLastPosition = Vector3.zero;
     Vector3 m_PlayerPosition;
@@ -48,6 +49,7 @@ public class AIShooter : MonoBehaviour
         navMeshAgent.speed = speedWalk;
         navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
         enemyShooter = GetComponent<EnemyShoot>();
+        animationScript = GetComponent<Animation_Test>();
     }
 
     void Update()
@@ -62,12 +64,23 @@ public class AIShooter : MonoBehaviour
                 if (m_PlayerInRange)
                 {
                     enemyShooter.ShootAtPlayer();
+                    animationScript.AttackAni(); // Play Attack animation during shooting
                 }
             }
             else if (isPatrolling)
             {
                 Patroling();
             }
+        }
+
+        // Play appropriate animation based on movement
+        if (navMeshAgent.velocity.magnitude > 0.1f && !m_CaughtPlayer)
+        {
+            animationScript.RunAni(); // Play Run animation
+        }
+        else
+        {
+            animationScript.IdleAni(); // Play Idle animation
         }
     }
 
@@ -119,6 +132,11 @@ public class AIShooter : MonoBehaviour
                     m_WaitTime -= Time.deltaTime;
                 }
             }
+        }
+
+        if (Vector3.Distance(transform.position, m_PlayerPosition) < 3f)
+        {
+            animationScript.AttackAni();
         }
     }
 
@@ -218,6 +236,7 @@ public class AIShooter : MonoBehaviour
     {
         m_CaughtPlayer = true;
         isPatrolling = false;
+        animationScript.DeathAni();
     }
 
     
