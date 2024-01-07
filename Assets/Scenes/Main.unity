@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.6740459, g: 0.8926659, b: 0.8958376, a: 1}
+  m_IndirectSpecularColor: {r: 0.64593256, g: 0.85666215, b: 0.8598196, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8485,9 +8485,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 397576823}
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 963194227}
   target: {fileID: 657777165}
-  barOffset: {x: 0, y: 1.5, z: 0}
+  barOffset: {x: 0, y: 2, z: 0}
   visibilityDistance: 30
 --- !u!114 &397576823
 MonoBehaviour:
@@ -9316,9 +9316,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 437122132}
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 963194227}
   target: {fileID: 1637258701}
-  barOffset: {x: 0, y: 1.5, z: 0}
+  barOffset: {x: 0, y: 2, z: 0}
   visibilityDistance: 30
 --- !u!114 &437122132
 MonoBehaviour:
@@ -11045,7 +11045,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 963194227}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -17997,7 +17997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7962199819078159310, guid: f5b41ba4c79702547a89de7544b80656, type: 3}
       propertyPath: m_Name
-      value: Bear_4 (1)
+      value: Bear_4
       objectReference: {fileID: 0}
     - target: {fileID: 7962199819078159310, guid: f5b41ba4c79702547a89de7544b80656, type: 3}
       propertyPath: m_TagString
@@ -23041,7 +23041,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 963194227}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -29749,7 +29749,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 963194227}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -30099,9 +30099,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1330596632}
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 963194227}
   target: {fileID: 1056372341}
-  barOffset: {x: 0, y: 1.5, z: 0}
+  barOffset: {x: 0, y: 2, z: 0}
   visibilityDistance: 30
 --- !u!114 &1330596632
 MonoBehaviour:
@@ -33142,7 +33142,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 963194227}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -44456,9 +44456,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 2127627159}
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 963194227}
   target: {fileID: 957769265}
-  barOffset: {x: 0, y: 1.5, z: 0}
+  barOffset: {x: 0, y: 2, z: 0}
   visibilityDistance: 30
 --- !u!114 &2127627159
 MonoBehaviour:
