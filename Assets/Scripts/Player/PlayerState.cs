@@ -21,6 +21,7 @@ public class PlayerState : MonoBehaviour
     public Animator playerAnimation;
 
     private AudioSource[] playerAudio;
+    public BackgroundAudioController gameAudio;
 
     public Vector3 spawnPosition = new Vector3(300f, 4f, 315f);
 
@@ -88,6 +89,7 @@ public class PlayerState : MonoBehaviour
 
     public void WinGame()
     {
+        gameAudio.StartFadeOut();
         StartCoroutine(LoadWinMenu());
     }
 

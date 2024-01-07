@@ -32,6 +32,10 @@ public class PlayerInteractions : MonoBehaviour
     private GameSavedInfo popupInfo;
     private Canvas craftingTable;
 
+    private string currentTerrain = "";
+    public BackgroundAudioController gameAudio;
+
+
     public bool CraftingMenuOpen() {  return craftingMenuOpen; }
 
     void Awake()
@@ -160,6 +164,27 @@ public class PlayerInteractions : MonoBehaviour
         {
             enemyState = other.gameObject.GetComponent<EnemyState>();
             inContact = true;
+        }
+        if (other.gameObject.name != currentTerrain)
+        {
+            if (other.gameObject.name == "Forest Terrain")
+            {
+                currentTerrain = other.gameObject.name;
+                gameAudio.SetInForestArea();
+                Debug.Log("in forest area");
+            }
+            if (other.gameObject.name == "Arid Terrain")
+            {
+                currentTerrain = other.gameObject.name;
+                gameAudio.SetInDesertArea();
+                Debug.Log("in arid area");
+            }
+            if (other.gameObject.name == "Volcanic Terrain")
+            {
+                currentTerrain = other.gameObject.name;
+                gameAudio.SetInVolcanicArea();
+                Debug.Log("in volcanic area");
+            }
         }
         // The player cannot be attacked for the AttackCooldownDuration since they just got attacked.
     }

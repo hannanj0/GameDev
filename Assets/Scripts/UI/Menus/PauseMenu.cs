@@ -17,6 +17,7 @@ public class PauseMenu : MonoBehaviour
     public AudioSource buttonClick;
 
     public Animator fadeScene;
+    public BackgroundAudioController gameAudio;
 
     public Slider sensitivitySlider;
     public Slider masterVolumeSlider;
@@ -220,6 +221,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         GameManager.Instance.inGame = false;
+        gameAudio.StartFadeOut();
         StartCoroutine(GoToMenu());
     }
 
@@ -234,13 +236,14 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadGameOverMenu() 
     {
+        Time.timeScale = 1;
         GameManager.Instance.inGame = false;
+        gameAudio.StartFadeOut();
         StartCoroutine(GameOverMenu()); 
     }
 
     IEnumerator GameOverMenu()
     {
-        Time.timeScale = 1;
         fadeScene.SetTrigger("FadeOut");
 
         yield return new WaitForSeconds(1.5f);
@@ -260,6 +263,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame_Yes()
     {
+        gameAudio.StartFadeOut();
         Application.Quit();
     }
 

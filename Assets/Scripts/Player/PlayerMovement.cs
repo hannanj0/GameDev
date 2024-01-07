@@ -125,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayFootstepSFX()
     {
-        if ((moveInput.magnitude > 0 || isRunning) && !onCooldown) 
+        if ((moveInput.magnitude > 0 || isRunning) && !onCooldown && IsGrounded())
         {
             int randomInt = UnityEngine.Random.Range(0, footstepSounds.Length);
             footstepSounds[randomInt].Play();
