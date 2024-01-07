@@ -75,33 +75,26 @@ public class AIShooter : MonoBehaviour
         m_PlayerNear = false;
         playerLastPosition = Vector3.zero;
 
-        float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerPosition);
-
-        
-
         if (!m_CaughtPlayer)
         {
+            float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerPosition);
+            
+            // Get the direction to the player's upper body instead of feet.
+            Vector3 targetPosition = new Vector3(m_PlayerPosition.x, m_PlayerPosition.y + 1f, m_PlayerPosition.z); // Adjust 1.5f to the desired height
+            Vector3 directionToPlayer = (targetPosition - transform.position).normalized;
+
             float minDistanceToPlayer = 3f;
             float chasingRadius = 10f;  // Adjust this value based on your game's needs
 
-            float currentDistance = distanceToPlayer;
-
-            Vector3 directionToPlayer = (m_PlayerPosition - transform.position).normalized;
-
-            if (currentDistance > minDistanceToPlayer && currentDistance > chasingRadius)
+            if (distanceToPlayer > minDistanceToPlayer && distanceToPlayer < chasingRadius)
             {
                 Move(speedRun);
                 navMeshAgent.SetDestination(m_PlayerPosition);
-
-                // Rotate to face the player's current position
-                // Directly set rotation to face the player's current position
                 transform.rotation = Quaternion.LookRotation(directionToPlayer);
             }
             else
             {
                 StopMovement();
-
-                // Update rotation to continuously face the player's current position
                 transform.rotation = Quaternion.LookRotation(directionToPlayer);
             }
         }
@@ -127,6 +120,32 @@ public class AIShooter : MonoBehaviour
             }
         }
     }
+
+    void LookAtPlayer(Vector3 player)
+    {
+        // Get the player's upper body position.
+        Vector3 targetPosition = new Vector3(player.x, player.y + 1.5f, player.z); // Adjust 1.5f to the desired height
+        navMeshAgent.SetDestination(player);
+        transform.LookAt(targetPosition);
+
+        if (Vector3.Distance(transform.position, player) <= 0.3)
+        {
+            if (m_WaitTime <= 0)
+            {
+                m_PlayerNear = false;
+                Move(speedWalk);
+                navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+                m_WaitTime = startWaitTime;
+                m_TimeToRotate = timeToRotate;
+            }
+            else
+            {
+                StopMovement();
+                m_WaitTime -= Time.deltaTime;
+            }
+        }
+    }
+
 
 
     private void Patroling()
@@ -200,27 +219,7 @@ public class AIShooter : MonoBehaviour
         isPatrolling = false;
     }
 
-    void LookAtPlayer(Vector3 player)
-    {
-        navMeshAgent.SetDestination(player);
-        if (Vector3.Distance(transform.position, player) <= 0.3)
-        {
-            if (m_WaitTime <= 0)
-            {
-                m_PlayerNear = false;
-                Move(speedWalk);
-                navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
-                m_WaitTime = startWaitTime;
-                m_TimeToRotate = timeToRotate;
-            }
-            else
-            {
-                StopMovement();
-                m_WaitTime -= Time.deltaTime;
-            }
-        }
-    }
-
+    
     void EnvironmentView()
     {
         Collider[] playerInRange = Physics.OverlapSphere(transform.position, viewRadius, playerMask);
