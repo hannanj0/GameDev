@@ -9,7 +9,6 @@ using UnityEngine.AI;
 public class bearAIController : MonoBehaviour
 {
     public NavMeshAgent navMeshAgent;
-    private float attackRange = 2.0f;
     public float startWaitTime = 4;
     public float timeToRotate = 2;
     public float speedWalk = 6;
