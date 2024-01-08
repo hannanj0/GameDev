@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public bool loadSettingsRequest = false;
     public bool inGame = false;
     public int gameDifficulty = 1;
+    public bool signedIn = false;
 
     public PlayerData playerData;
 

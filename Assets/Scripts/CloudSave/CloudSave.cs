@@ -27,27 +27,14 @@ public class CloudSave : MonoBehaviour
     // Start is called before the first frame update
     async void Start()
     {
-        await SetupSignIn();
-        await LoadSettings();
+        //await SetupSignIn();
+        //await LoadSettings();
 
     }
 
     void Update()
     {
-        // Check for "k" key press
-        if (Keyboard.current.kKey.wasPressedThisFrame)
-        {
-            PreparePlayerSettings();
-            SaveSettingsFile();
-            Debug.Log("saved");
-        }
 
-        // Check for "l" key press
-        if (Keyboard.current.lKey.wasPressedThisFrame)
-        {
-            LoadSettings();
-            Debug.Log("loaded");
-        }
     }
 
     async Task SetupSignIn()
@@ -56,6 +43,7 @@ public class CloudSave : MonoBehaviour
 
         if (!AuthenticationService.Instance.IsSignedIn) { 
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            GameManager.Instance.signedIn = true;
         }
     }
 
