@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; // might not need this
+using UnityEngine.UI;
 using TMPro;
 
 public class IdolsCollectedCount : MonoBehaviour

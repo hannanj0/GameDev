@@ -30,7 +30,9 @@ public class GameOver : MonoBehaviour
         Time.timeScale = 1;
         StartCoroutine(Retry());
     }
-
+    /// <summary>
+    /// Starts the game again
+    /// </summary>
     IEnumerator Retry()
     {
         fadeScene.SetTrigger("FadeOut");
@@ -39,6 +41,9 @@ public class GameOver : MonoBehaviour
 
         SceneManager.LoadSceneAsync(1);
     }
+    /// <summary>
+    /// Takes the player to the main menu
+    /// </summary>
     IEnumerator MainMenu()
     {
         fadeScene.SetTrigger("FadeOut");
@@ -47,7 +52,6 @@ public class GameOver : MonoBehaviour
 
         SceneManager.LoadSceneAsync(0);
     }
-
     public void LoadMainMenu()
     {
         mainMenuDialog.SetActive(true);
@@ -64,7 +68,9 @@ public class GameOver : MonoBehaviour
     {
         mainMenuDialog.SetActive(false);
     }
-
+    /// <summary>
+    /// Quits the game
+    /// </summary>
     public void QuitGame()
     {
         quitGameDialog.SetActive(true);
