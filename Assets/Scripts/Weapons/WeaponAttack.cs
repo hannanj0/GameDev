@@ -12,6 +12,7 @@ public class WeaponAttack : MonoBehaviour
     public AudioSource playerHit;
 
     public PlayerState playerState; // Use player state script to read player's current damage.
+    public PauseMenu pauseMenu;
 
     void Awake()
     {
@@ -57,15 +58,15 @@ public class WeaponAttack : MonoBehaviour
         // Trigger the attack animation and set the player as having attacked
         TriggerAttackAnimation();
         playerAttacked = true;
-        playerHit.Play();
     }
 
     private void TriggerAttackAnimation()
     {
-        if (animator != null)
+        if (animator != null && !pauseMenu.GameIsPaused())
         {
             // Set the isMeleeAttack trigger to start the animation
             animator.SetTrigger("isMeleeAttack");
+            playerHit.Play();
         }
     }
 
