@@ -25,6 +25,9 @@ public class EnemyHealthBar : MonoBehaviour
         }
     }
 
+
+    // Update is called once per frame
+    // This method is used to update the health bar's position and rotation
     void Update()
     {
         if (mainCamera != null && target != null)

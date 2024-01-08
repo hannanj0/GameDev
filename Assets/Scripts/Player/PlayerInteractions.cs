@@ -15,17 +15,16 @@ public class PlayerInteractions : MonoBehaviour
 
     public GameObject menuController;
 
-    private bool inContact; // check if the player is in contact with an enemy.
-    private bool craftingMenuOpen; // Check if the crafting menu is open.
-    private float enemyAttackCooldown = 0.0f; // Counter to see how often the enemy can attack the player.
-    private float enemyAttackCooldownDuration = 1.5f; // Duration the enemy has to wait before attacking again.
-
-    private PlayerState playerState; // Player stats inside script.
-    private EnemyState enemyState; // EnemyState script to read their damage.
-    private Inventory inventory; // Player manages their inventory.
-    private PlayerControls playerControls; // Add this to reference the input system
-    private InputAction useItemAction; // No longer manually instantiated
-    private InputAction openCMenu; // No longer manually instantiated
+    private bool inContact; 
+    private bool craftingMenuOpen; 
+    private float enemyAttackCooldown = 0.0f; 
+    private float enemyAttackCooldownDuration = 1.5f; 
+    private PlayerState playerState; 
+    private EnemyState enemyState; 
+    private Inventory inventory; 
+    private PlayerControls playerControls;
+    private InputAction useItemAction; 
+    private InputAction openCMenu;
 
     private ItemDescription background;
     private GameSavedInfo popupInfo;
@@ -65,14 +64,6 @@ public class PlayerInteractions : MonoBehaviour
 
         Transform craftingPlayer = transform.Find("Crafting");
         craftingTable = craftingPlayer.GetComponent<Canvas>();
-        // // Set up input action for "UseItem"
-        // useItemAction = new InputAction("UseItem", binding: "<Keyboard>/f");
-        // useItemAction.performed += UseItem;
-        // useItemAction.Enable();
-        // // Set up input action for "OpenCraftingMenu"
-        // openCMenu = new InputAction("OpenCraftingMenu", binding:"<Keyboard>/tab");
-        // openCMenu.performed += OpenCraftingMenu;
-        // openCMenu.Enable();
     }
 
     private void OnEnable()

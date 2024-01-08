@@ -93,10 +93,7 @@ public class AIShooter2 : MonoBehaviour
         {
             float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerPosition);
 
-            // Adjust the target position to the height of the player's transform.
-            // This assumes the player's transform is at the base of the player.
-            Vector3 targetPosition = new Vector3(m_PlayerPosition.x, m_PlayerPosition.y + 1.5f, m_PlayerPosition.z); // Adjust the y value to the height you want to target.
-
+            Vector3 targetPosition = new Vector3(m_PlayerPosition.x, m_PlayerPosition.y + 1.5f, m_PlayerPosition.z); 
             if (distanceToPlayer > 3f && distanceToPlayer < viewRadius)
             {
                 Move(speedRun);
@@ -216,6 +213,9 @@ public class AIShooter2 : MonoBehaviour
         navMeshAgent.speed = 0;
     }
 
+    /// <summary>
+    /// This ensures the next point in the array is used for the enemy to move to
+    /// </summary>
     public void NextPoint()
     {
         if (waypoints.Length > 0)
@@ -238,6 +238,11 @@ public class AIShooter2 : MonoBehaviour
     }
 
     
+    /// <summary>
+    ///     This method is used to check if the player is within the enemy's view.
+    ///     If the player is within the enemy's view, the enemy will chase the player.
+    /// </summary>
+
     void EnvironmentView()
     {
         Collider[] playerInRange = Physics.OverlapSphere(transform.position, viewRadius, playerMask);

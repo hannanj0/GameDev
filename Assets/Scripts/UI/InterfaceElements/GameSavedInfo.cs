@@ -4,6 +4,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// The GameSavedInfo script is used to display a message when the game is saved.
+/// </summary>
 public class GameSavedInfo : MonoBehaviour
 {
     private string message;

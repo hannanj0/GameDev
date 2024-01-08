@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// The InputManager script is used to handle the player's input.
+/// </summary>
+
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance { get; private set; }

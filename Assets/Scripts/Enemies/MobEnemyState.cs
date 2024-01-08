@@ -12,7 +12,7 @@ public class MobEnemyState : EnemyState
     /// </summary>
     void Start()
     {
-        speed = 3.0f; // Mob movement speed.
+        speed = 3.0f; 
         maxHealth = 100.0f;  // Mob maximum health.
         health = maxHealth;  // Set the current health to the max health when enemies are initialised.
         attackDamage = 10.0f; // Mob attack damage.

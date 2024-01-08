@@ -9,12 +9,12 @@ using TMPro;
 /// </summary>
 public class HealthBar : MonoBehaviour
 {
-    private Slider slider; // This is a reference to the UI slider
-    public TextMeshProUGUI healthCount; // This is a reference to the TMP text which displays the health count
+    private Slider slider; 
+    public TextMeshProUGUI healthCount; 
 
-    public GameObject playerState; // This is a reference to the player's state script
+    public GameObject playerState; 
 
-    private float currentHealth, maxHealth; // Variables to store the current and max health values
+    private float currentHealth, maxHealth; 
 
     /// <summary>
     /// This initialises the slider by getting it from the GameObject

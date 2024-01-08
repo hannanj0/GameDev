@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// The NPCSystem script is used to detect the player's proximity to an NPC, and to initiate a conversation with the NPC.
+/// </summary>
 public class NPCSystem : MonoBehaviour
 {
     bool playerDetection = false;

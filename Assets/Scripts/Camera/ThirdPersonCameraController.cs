@@ -25,14 +25,13 @@ public class ThirdPersonCameraController : MonoBehaviour
 
     public TMP_Text compassText;
 
-    private float yaw; // This is the horizontal rotation of the object
-    private float pitch; // This is the vertical rotation of the object
+    private float yaw; 
+    private float pitch; 
     private Vector2 currentMouseDelta = Vector2.zero;
 
-    // Add this variable to control the camera logic
     private bool enableCameraLogic = false;
 
-    private PlayableDirector playableDirector; // Add this variable
+    private PlayableDirector playableDirector; 
 
     void Start()
     {
@@ -64,7 +63,7 @@ public class ThirdPersonCameraController : MonoBehaviour
     IEnumerator EnableScriptAfterDelay()
     {
         yield return new WaitForSeconds(14f);
-        enableCameraLogic = true; // Enable the camera logic
+        enableCameraLogic = true; 
     }
 
     void Update()
@@ -73,16 +72,15 @@ public class ThirdPersonCameraController : MonoBehaviour
         if (Gamepad.current != null)
         {
             Vector2 gamepadInput = playerControls.Gameplay.CameraControl.ReadValue<Vector2>();
-            // Gamepad sensitivity is five times that of the mouse sensitivity.
+            // Gamepad sensitivity is higher
             currentMouseDelta = gamepadInput * (sensitivity * 200f) * Time.deltaTime;
         }
         else
         {
-            // Apply mouse sensitivity.
+            // mouse sensitivity.
             currentMouseDelta = Mouse.current.delta.ReadValue();
         }
 
-        // Additional Update logic here (if any)
     }
 
 

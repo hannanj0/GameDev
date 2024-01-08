@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro; // Add this namespace to use TextMeshPro
+using TMPro; 
 
+/// <summary>
+/// The CrosshairScript script is used to highlight items and interactables in the game.
+/// </summary>
 public class CrosshairScript : MonoBehaviour
 {
-    public Transform crosshair; // Assign your crosshair UI element here
-    public Material highlightMaterial; // Assign a material for highlighting
-    public float highlightRange = 1.0f; // Set the range within which items will be highlighted
-    public TextMeshProUGUI itemLabel; // Assign your TextMeshPro UI element here
+    public Transform crosshair; 
+    public Material highlightMaterial; 
+    public float highlightRange = 1.0f; 
+    public TextMeshProUGUI itemLabel; 
 
     private Material originalMaterial;
     private Transform lastHighlighted;
-    public float maxHighlightDistance = 10.0f; // Set the maximum distance at which items will be highlighted
+    public float maxHighlightDistance = 10.0f; 
 
 
     void Update()

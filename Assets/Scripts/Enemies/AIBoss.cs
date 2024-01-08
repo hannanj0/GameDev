@@ -8,7 +8,7 @@ public class AIBoss : MonoBehaviour
     public float viewAngle = 360;
     public LayerMask playerMask;
     public LayerMask obstacleMask;
-    public float speedRun = 9; // Chasing speed of AI
+    public float speedRun = 9; 
     public float attackRange = 10f;
 
 
@@ -21,7 +21,7 @@ public class AIBoss : MonoBehaviour
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        navMeshAgent.isStopped = true; // Start with the dragon being idle
+        navMeshAgent.isStopped = true; 
         
 
         animator = GetComponent<Animator>();
@@ -31,6 +31,7 @@ public class AIBoss : MonoBehaviour
         }
     }
 
+    // Update is called once per frame
     void Update()
     {
         if (!m_CaughtPlayer)
@@ -93,6 +94,9 @@ public class AIBoss : MonoBehaviour
         navMeshAgent.speed = speed;
     }
 
+    /// <summary>
+    /// This method deduces what will happen when it is chasing the player, which would be to dash towards the player given the distance, and depending on cooldown as well, otherwise, it will move towards the player.    
+    /// </summary>
     void EnvironmentView()
     {
         Collider[] playerInRange = Physics.OverlapSphere(transform.position, viewRadius, playerMask);

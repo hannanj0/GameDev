@@ -244,7 +244,6 @@ public class AIDasher : MonoBehaviour
             }
         }
 
-        // Update dash cooldown timer
         m_DashCooldownTimer = Mathf.Max(0, m_DashCooldownTimer - Time.fixedDeltaTime);
     }
 }

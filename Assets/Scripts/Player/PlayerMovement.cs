@@ -3,6 +3,11 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using System;
 
+/// <summary>
+/// The PlayerMovement script defines the player's movement.
+/// The player can move, sprint and jump.
+/// </summary>
+
 public class PlayerMovement : MonoBehaviour
 {
     private PlayerState playerState;

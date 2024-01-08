@@ -6,11 +6,10 @@ using TMPro;
 
 public class KeyRebinder : MonoBehaviour
 {
-    [SerializeField] private InputActionReference actionReference; // Reference to the action to rebind
-    [SerializeField] private TextMeshProUGUI assignedKeyText; // Display the currently assigned key
-    [SerializeField] private int bindingIndex; // Index of the specific binding to rebind
+    [SerializeField] private InputActionReference actionReference; 
+    [SerializeField] private TextMeshProUGUI assignedKeyText; 
+    [SerializeField] private int bindingIndex;
 
-    // Call this method via a UI button, passing the action to rebind and the binding index
     public void StartRebindingProcess()
     {
         // Let the user know to press a new key

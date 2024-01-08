@@ -2,6 +2,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Playables;
 
+/// <summary>
+/// The InteractableObject script is used to keep track of the objects that can be interacted with.
+/// </summary>
+
 namespace StarterAssets.Interactions
 {
     public class InteractableObject : MonoBehaviour, InteractionInterface

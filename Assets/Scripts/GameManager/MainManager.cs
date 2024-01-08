@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The MainManager script is used to load the player's data from the cloud save.
+/// </summary>
+/// 
 public class MainManager : MonoBehaviour
 {
     public CloudSave cloudSave;
