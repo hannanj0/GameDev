@@ -40,7 +40,7 @@ public class bearAIController : MonoBehaviour
 
     private float attackCooldown = 2f; // Cooldown time between attacks
     private float timeSinceLastAttack = 0f; // Time since last attack
-    private MobEnemyState mobEnemyState; // Reference to the MobEnemyState component
+    private EnemyState mobEnemyState; // Reference to the MobEnemyState component
     public float rotationSpeed = 5f;
     public AudioSource bearAttack;
 
@@ -58,7 +58,7 @@ public class bearAIController : MonoBehaviour
 
         m_CurrentWaypointIndex = 0;
         navMeshAgent = GetComponent<NavMeshAgent>();
-        mobEnemyState = GetComponent<MobEnemyState>(); // Make sure to attach MobEnemyState script to the bear GameObject
+        mobEnemyState = GetComponent<EnemyState>(); // Make sure to attach MobEnemyState script to the bear GameObject
 
         animator = GetComponent<Animator>();
         if (animator == null)
