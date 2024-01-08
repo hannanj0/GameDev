@@ -92,27 +92,25 @@ public class AIShooter2 : MonoBehaviour
         if (!m_CaughtPlayer)
         {
             float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerPosition);
-            
-            // Get the direction to the player's upper body instead of feet.
-            Vector3 targetPosition = new Vector3(m_PlayerPosition.x, m_PlayerPosition.y + 0.5f, m_PlayerPosition.z); // Adjust 1.5f to the desired height
-            Vector3 directionToPlayer = (targetPosition - transform.position).normalized;
 
-            float minDistanceToPlayer = 3f;
-            float chasingRadius = 10f;  // Adjust this value based on your game's needs
+            // Adjust the target position to the height of the player's transform.
+            // This assumes the player's transform is at the base of the player.
+            Vector3 targetPosition = new Vector3(m_PlayerPosition.x, m_PlayerPosition.y + 1.5f, m_PlayerPosition.z); // Adjust the y value to the height you want to target.
 
-            if (distanceToPlayer > minDistanceToPlayer && distanceToPlayer < chasingRadius)
+            if (distanceToPlayer > 3f && distanceToPlayer < viewRadius)
             {
                 Move(speedRun);
-                navMeshAgent.SetDestination(m_PlayerPosition);
-                transform.rotation = Quaternion.LookRotation(directionToPlayer);
+                navMeshAgent.SetDestination(targetPosition);
+                transform.LookAt(targetPosition);
             }
-            else
+            else if (distanceToPlayer <= 3f)
             {
+                // Attack the player if within attack range.
+                // You may want to call a method to handle attacking here.
                 StopMovement();
-                transform.rotation = Quaternion.LookRotation(directionToPlayer);
+                transform.LookAt(targetPosition);
             }
         }
-
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
         {
             if (m_WaitTime <= 0 && !m_CaughtPlayer && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f)

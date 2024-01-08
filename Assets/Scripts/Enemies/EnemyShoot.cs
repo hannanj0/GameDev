@@ -91,26 +91,33 @@ public class EnemyShoot : MonoBehaviour
     {
         bulletTime -= Time.deltaTime;
 
-        if (bulletTime > 0) return;
+        if (bulletTime <= 0)
+        {
+            bulletTime = timer;
 
-        bulletTime = timer;
-
-        // Assign the instantiated bullet object to the class-level variable
-        bulletObj = Instantiate(enemyBullet, spawnPoint.transform.position, spawnPoint.transform.rotation) as GameObject;
-        Rigidbody bulletRig = bulletObj.GetComponent<Rigidbody>();
-        bulletRig.AddForce(bulletRig.transform.forward * enemySpeed);
-        Destroy(bulletObj, 5f);
+            // Only instantiate a new bullet if the previous one doesn't exist anymore.
+            if (bulletObj == null)
+            {
+                bulletObj = Instantiate(enemyBullet, spawnPoint.transform.position, spawnPoint.transform.rotation) as GameObject;
+                Rigidbody bulletRig = bulletObj.GetComponent<Rigidbody>();
+                bulletRig.AddForce(bulletRig.transform.forward * enemySpeed);
+            }
+        }
     }
 
-    /// <summary>
-    /// When the bullet collides with the player, it destroys the bullet object, which shows realistic aspects and sets patrolling to false
-    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             isPatrolling = false;
-            Destroy(bulletObj);
+            // Check if the bulletObj is not null before attempting to destroy it.
+            if (bulletObj != null)
+            {
+                Destroy(bulletObj);
+                bulletObj = null; // Set bulletObj to null after destroying the object.
+            }
         }
     }
+
+
 }
