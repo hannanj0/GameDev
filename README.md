@@ -12,6 +12,12 @@
 
 ## Introduction
 
+****NOTE: THE GAME'S BEST-FINISHED VERSION CAN BE FOUND IN THIS COMMIT VERSION: commit 77e0f60.****
+This version is our work's best version, representing the game's best capabilities and functionalities. Please contact Dr. Raluca for further information regarding this matter. We are extremely sorry for the inconvenience and unforeseen circumstances which arose.
+We greatly appreciate your kindness, time and consideration. We hope you enjoy our game!
+
+--------------------------------------------------
+
 Welcome to group AI's game prototype! This project explores concept #1 which is a survival, crafting game.
 The player must face difficult enemies on their journey to the final boss and beat it to win the game.
 Many core concepts were used to make up this game prototype, as you will see in the next section.
