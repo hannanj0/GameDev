@@ -70,46 +70,103 @@ Here are some key concepts and features included in our prototype:
    - Attribution: Image by Anna (https://pixabay.com/users/kropekk_pl-114936/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=285776) from Pixabay (https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=285776).
    - Acquired from: https://pixabay.com/vectors/apple-fruit-apples-green-apple-285776/.
 
-9. INSERT WEAPON
+9. Player Death Sound
 
-10. INSERT ENVIRONMENT
+   - male_grunts (death): Sound Effect from https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=100281 Pixabay
+   - https://pixabay.com/sound-effects/male-grunts-100281/
 
-11. INSERT BEAR
+10. Player Jumping Sound
 
-12. INSERT NPC
+- Sound Effect from https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=65494 Pixabay
+- https://pixabay.com/sound-effects/jumps-65494/v
 
-13. INSERT MOB 2
+11. Footsteps SFX
 
-14. INSERT BOSS 1
+- Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6748">Pixabay</a>
+- https://pixabay.com/sound-effects/stone-steps-6748/
 
-15. INSERT BOSS 2
+12. Forest SFX
 
-16. INSERT PLAYER
+- Forest wind and birds (forest sfx) Sound Effect from https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6881 Pixabay
+- https://pixabay.com/sound-effects/forest-wind-and-birds-6881/
 
-17. Forest and Arid Environment
-    
-   - https://assetstore.unity.com/packages/3d/environments/fantasy/green-forest-22762
-     
-18. Volcano Environment
-    
+13. Arid Terrain SFX
+
+- Ambiance4 (desert sfx) Sound Effect from https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=31974 Pixabay
+- https://pixabay.com/sound-effects/ambiance4-31974/
+
+14. Volcano Terrain SFX
+
+- Volcano (volcanic area sfx) Sound Effect from https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=71156 Pixabay
+- https://pixabay.com/sound-effects/volcano-71156/
+
+15. Ghost Area SFX
+
+- Ghost voices (tombstone area) Sound Effect from https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=63201 Pixabay
+- https://pixabay.com/sound-effects/ghost-voices-63201/
+
+16. Bear Growl SFX
+
+- bear growl fx Sound Effect by https://pixabay.com/users/efrein_amato-38409384/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=175165 Efrein_Amato from https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=175165 Pixabay
+- https://pixabay.com/sound-effects/bear-growl-fx-175165/
+
+17. Spider SFX
+
+- hiss3 Sound Effect from https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=103123 Pixabay
+- https://pixabay.com/sound-effects/hiss3-103123/
+
+18. Fireball SFX
+
+- fireball whoosh 2 Sound Effect by https://pixabay.com/users/floraphonic-38928062/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=179126 floraphonic from https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=179126 Pixabay
+- https://pixabay.com/sound-effects/fireball-whoosh-2-179126/
+
+19. Dragon SFX
+
+- dragon hurt Sound Effect from https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=47161 Pixabay
+- https://pixabay.com/sound-effects/dragon-hurt-47161/
+
+20. Sword Attack
+
+- whoosh 2 Sound Effect from https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6471 Pixabay
+- https://pixabay.com/sound-effects/woosh-2-6471/
+
+21. INSERT WEAPON
+
+22. INSERT ENVIRONMENT
+
+23. INSERT BEAR
+
+24. INSERT SPIDER
+
+25. INSERT DRAGON
+
+26. INSERT LAVA MINION
+
+27. INSERT PLAYER
+
+28. Forest and Arid Environment
+
+- https://assetstore.unity.com/packages/3d/environments/fantasy/green-forest-22762
+
+29. Volcano Environment
+
     - https://assetstore.unity.com/packages/2d/textures-materials/stylized-lava-materials-180943
-    
-19. Graveyard Environment
+
+30. Graveyard Environment
 
     - https://assetstore.unity.com/packages/3d/environments/fantasy/spooky-graveyard-pack-156860
-    
-20. Potion
-    
+
+31. Potion
+
     - https://assetstore.unity.com/packages/3d/props/potions-115115
 
-21. Apples
+32. Apples
 
     - https://assetstore.unity.com/packages/3d/props/food/low-poly-fruit-pickups-98135
 
-22. Leaf effects
+33. Leaf effects
 
     - https://assetstore.unity.com/packages/vfx/particles/ultimate-particle-pack-265409
-
 
 ### Code Snippets
 
@@ -168,19 +225,30 @@ Note: Most of these are sources used for inspiration and understanding concepts 
    - Videos on QMplus (guided on the initial creation)
 
 4. General C# Documentation Guidance.
+
    - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments assisted with proper C# documentation.
-  
+
 5. Weapon Attack
+
 - https://www.youtube.com/watch?v=aNZw588BQBo
+
 7. crosshair script
+
 - https://www.youtube.com/watch?v=lcgeOjR_QXo
 - https://www.youtube.com/watch?v=lP8Y5eNg6oI
+
 8. key rebinding script
+
 - https://www.youtube.com/watch?v=WAKXn2SKJDU
+
 9. game controller implementation
+
 - https://www.youtube.com/watch?v=HmXU4dZbaMw&pp=ygUdaW5wdXQgc2V0dGluZ3MgdW5pdHkgdHV0b3JpYWw%3D
+
 10. All Animations and importing prefabs
+
 - https://www.youtube.com/watch?v=Vsj_UpnLFF8
+
 11. inputmanager.cs
 12. collaberations with all instances of input
 
@@ -206,27 +274,27 @@ Implementing the advanced enemy movement AI in AIController.cs, and the interact
    - https://www.youtube.com/watch?v=6Ai0xg6xTUk - This helped with ensuring the enemy is looking the correct way with the eyes.
    - https://www.youtube.com/watch?v=ieyHlYp5SLQ - This assisted with the enemy patrolling, viewing angles and when to chase the player as well as avoiding obstacles.
    - I also used the module resources to help with the NavMesh stuff needed for the patrolling and movement of enemy AI.
-  
+
 4. AIShooter.cs + BulletScript.cs + EnemyShoot.cs
 
    - https://www.youtube.com/watch?v=k1kOtaM2NJg - Helped with the implementation and understanding of a shooting enemy, and linkage between both the bullet and the enemy itself.
    - AIController.cs - This was used because it used pretty much the same concept in terms of patrolling and chasing.
-  
+
 5. AIDasher.cs
 
    - https://docs.unity3d.com/ScriptReference/Vector3.Lerp.html - Used to recongise how to smoothly interpolate from one point to the other, resulting in the dash mechanism, apart from that, it was pretty much setting dashing variables, increasing the speed so that it can be explicitly seen.
    - AIController.cs - This was used because it used pretty much the same concept in terms of patrolling and chasing.
-  
+
 6. Interaction.cs + InteractableObject.cs + InteractionInterface.cs
 
    - https://www.youtube.com/watch?v=ZNiEbRL85Vc - This was very useful to help understand and implement the interaction system using the new input system with an object, in my case, the NPC.
    - https://docs.unity3d.com/ScriptReference/Quaternion.LookRotation.html - Assisted with ensuring the enemy is looking at the player and with direction of bullets toward the player.
-  
+
 7. IntroCutsceneManager.cs + Timeline Usage for Cutscenes
 
    - https://www.youtube.com/watch?v=NnPDJfvLeWQ - This aided me in understanding how to create cutscenes using Unity Timeline.
    - https://www.youtube.com/watch?v=Ms10GAMAydA&t=536s - Used to understand the difference between Activation and Animation, when using Unity Timeline.
-  
+
 8. ThirdPersonCameraController.cs (For Cardinal Directions Part)
 
    - https://study.com/academy/lesson/cardinal-intermediate-directions-definition-meaning.html#:~:text=The%20four%20cardinal%20directions%2C%20in,and%20sets%20in%20the%20west. - This was helpful to understand the degrees needed for spanning the camera across, and in which direction what Cardinal Direction should be displayed, using if-else statements.
