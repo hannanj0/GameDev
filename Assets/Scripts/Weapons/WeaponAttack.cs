@@ -90,28 +90,6 @@ public class WeaponAttack : MonoBehaviour
             enemy.TakeDamage(playerState.AttackDamage());
             Debug.Log(playerState.AttackDamage());
 
-            if (enemyCollider.gameObject.name == "Bear_4")
-            {
-                enemyRenderer = enemyCollider.transform.Find("Meshes/Body").GetComponent<SkinnedMeshRenderer>();
-            }
-            else if (enemyCollider.gameObject.name == "Sand Spider")
-            {
-                enemyRenderer = enemyCollider.transform.Find("MeshRenderer").GetComponent<SkinnedMeshRenderer>();
-            }
-            else if (enemyCollider.gameObject.name == "RedDragon")
-            {
-                enemyRenderer = enemyCollider.transform.Find("Dragon").GetComponent<SkinnedMeshRenderer>();
-            }
-
-            enemyColor = enemyRenderer.material.color;
-            FlashEnemyStart();
-            // else
-            // {
-            //     enemyRenderer = enemyCollider.gameObject.GetComponent<MeshRenderer>();
-            // }
-
-
-
             EnemyHealthBar enemyHealthBar = enemyCollider.transform.Find("HealthBarContainer/HealthBar").GetComponent<EnemyHealthBar>();
             enemyHealthBar.UpdateHealthBar(enemy.Health(), enemy.MaxHealth());
 
@@ -124,6 +102,30 @@ public class WeaponAttack : MonoBehaviour
                 }
                 enemyCollider.gameObject.SetActive(false);
             }
+
+            if (enemyCollider.gameObject.name == "Bear_4")
+            {
+                enemyRenderer = enemyCollider.transform.Find("Meshes/Body").GetComponent<SkinnedMeshRenderer>();
+            }
+            else if (enemyCollider.gameObject.name == "Sand Spider")
+            {
+                enemyRenderer = enemyCollider.transform.Find("MeshRenderer").GetComponent<SkinnedMeshRenderer>();
+            }
+            else if (enemyCollider.gameObject.name == "RedDragon")
+            {
+                enemyRenderer = enemyCollider.transform.Find("Dragon").GetComponent<SkinnedMeshRenderer>();
+            }
+            else
+            {
+                return;
+            }
+
+            enemyColor = enemyRenderer.material.color;
+            FlashEnemyStart();
+            // else
+            // {
+            //     enemyRenderer = enemyCollider.gameObject.GetComponent<MeshRenderer>();
+            // }
         }
     }
 
