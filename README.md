@@ -86,7 +86,30 @@ Here are some key concepts and features included in our prototype:
 
 16. INSERT PLAYER
 
-17.
+17. Forest and Arid Environment
+    
+   - https://assetstore.unity.com/packages/3d/environments/fantasy/green-forest-22762
+     
+18. Volcano Environment
+    
+    - https://assetstore.unity.com/packages/2d/textures-materials/stylized-lava-materials-180943
+    
+19. Graveyard Environment
+
+    - https://assetstore.unity.com/packages/3d/environments/fantasy/spooky-graveyard-pack-156860
+    
+20. Potion
+    
+    - https://assetstore.unity.com/packages/3d/props/potions-115115
+
+21. Apples
+
+    - https://assetstore.unity.com/packages/3d/props/food/low-poly-fruit-pickups-98135
+
+22. Leaf effects
+
+    - https://assetstore.unity.com/packages/vfx/particles/ultimate-particle-pack-265409
+
 
 ### Code Snippets
 
