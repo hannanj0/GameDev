@@ -171,12 +171,18 @@ Note: Most of these are sources used for inspiration and understanding concepts 
    - https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments assisted with proper C# documentation.
   
 5. Weapon Attack
-6. crosshair script
-7. key rebinding script
-8. game controller implementation
-9. All Animations and importing prefabs
-10. inputmanager.cs
-11. collaberations with all instances of input
+- https://www.youtube.com/watch?v=aNZw588BQBo
+7. crosshair script
+- https://www.youtube.com/watch?v=lcgeOjR_QXo
+- https://www.youtube.com/watch?v=lP8Y5eNg6oI
+8. key rebinding script
+- https://www.youtube.com/watch?v=WAKXn2SKJDU
+9. game controller implementation
+- https://www.youtube.com/watch?v=HmXU4dZbaMw&pp=ygUdaW5wdXQgc2V0dGluZ3MgdW5pdHkgdHV0b3JpYWw%3D
+10. All Animations and importing prefabs
+- https://www.youtube.com/watch?v=Vsj_UpnLFF8
+11. inputmanager.cs
+12. collaberations with all instances of input
 
 #### Hannan's attributions
 
