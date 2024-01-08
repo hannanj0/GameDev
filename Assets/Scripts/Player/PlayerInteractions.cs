@@ -27,7 +27,6 @@ public class PlayerInteractions : MonoBehaviour
     private InputAction useItemAction; // No longer manually instantiated
     private InputAction openCMenu; // No longer manually instantiated
 
-    private WeaponRotation weaponRotation; // Player rotates their weapon to attack.
     private ItemDescription background;
     private GameSavedInfo popupInfo;
     private Canvas craftingTable;
@@ -55,8 +54,6 @@ public class PlayerInteractions : MonoBehaviour
         Transform inventoryPlayer = transform.Find("Inventory");
         inventory = inventoryPlayer.GetComponent<Inventory>();
         inventory.SelectSlot(0);
-
-        weaponRotation = transform.Find("WeaponSlot/SwordPivot").GetComponent<WeaponRotation>();
 
         playerState = GetComponent<PlayerState>();
 
@@ -237,14 +234,6 @@ public class PlayerInteractions : MonoBehaviour
             other.gameObject.SetActive(false);
 
         }
-    }
-
-    /// <summary>
-    /// Initiate player's attack rotation.
-    /// </summary>
-    private void OnAttack()
-    {
-        //weaponRotation.BeginAttack();
     }
 
     private void OnDestroy()

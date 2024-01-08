@@ -9,6 +9,7 @@ public class WeaponAttack : MonoBehaviour
     private Renderer enemyRenderer; // Enemy's mesh renderer to make the enemy flash red.
     private Color enemyColor; // Red colour to flash enemy material - visual feedback for attacks.
     private float flashDuration = 0.1f; // Red colour flashes for this duration.
+    public AudioSource playerHit;
 
     public PlayerState playerState; // Use player state script to read player's current damage.
 
@@ -56,6 +57,7 @@ public class WeaponAttack : MonoBehaviour
         // Trigger the attack animation and set the player as having attacked
         TriggerAttackAnimation();
         playerAttacked = true;
+        playerHit.Play();
     }
 
     private void TriggerAttackAnimation()
