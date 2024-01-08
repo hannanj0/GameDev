@@ -43,7 +43,7 @@ public class bearAIController : MonoBehaviour
     private float timeSinceLastAttack = 0f; // Time since last attack
     private MobEnemyState mobEnemyState; // Reference to the MobEnemyState component
     public float rotationSpeed = 5f;
-
+    public AudioSource bearAttack;
 
     /// <summary>
     /// This initialises the variables and starts the patrol mode for enemy, the current waypoint index and sets the enemy speed and destination
@@ -133,6 +133,7 @@ public class bearAIController : MonoBehaviour
     {
         // You can introduce logic to select different attacks based on certain conditions
         // For example, random selection
+        bearAttack.Play();
         int attackNumber = Random.Range(1, 4); // Generates 1, 2, or 3
 
         switch (attackNumber)
