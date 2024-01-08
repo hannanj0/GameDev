@@ -280,6 +280,9 @@ public class PlayerState : MonoBehaviour
         Time.timeScale = 1;
         playerMovement.PlayerInputWait(4f);
         playerAudio[0].Play();
+        playerAnimation.SetBool("isMeleeAttack", false);
+        playerAnimation.SetBool("isJumping", false);
+        playerAnimation.SetBool("isRunning", false);
         playerAnimation.SetBool("Dead", true);
 
         Cursor.lockState = CursorLockMode.None;
