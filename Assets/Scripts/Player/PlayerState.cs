@@ -30,6 +30,9 @@ public class PlayerState : MonoBehaviour
     private int totalGameBosses = 2;
     private List<string> bossesKilled = new List<string>();
 
+    private int totalIdols = 3;
+    private int idolsCollected = 0;
+
     // Player Health
     public float currentHealth;
     public float maxHealth;
@@ -72,9 +75,13 @@ public class PlayerState : MonoBehaviour
     public float SpawnZ() {  return spawnPosition.z; }
     public int TotalGameBosses() { return totalGameBosses; }
 
+    public int TotalIdols() { return totalIdols; }
 
     public int BossesKilledCount() { return bossesKilled.Count; }
 
+    public int IdolsCollectedCount() { return idolsCollected; }
+
+    public void IncrementIdols() { idolsCollected++; }
     public void ResetSpawnPosition() { spawnPosition = new Vector3(300f, 4f, 315f); }
 
     public void BossKilled(string bossName)

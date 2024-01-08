@@ -12,6 +12,7 @@ TagManager:
   - Checkpoint
   - NPC
   - Interactable
+  - Idol
   layers:
   - Default
   - TransparentFX

@@ -216,7 +216,6 @@ public class PlayerInteractions : MonoBehaviour
         if (other.gameObject.CompareTag("Item"))
         {
             GameItem I = other.gameObject.GetComponent<GameItem>();
-            Debug.Log("Item Picked Up");
             inventory.Add(I.item);
             other.gameObject.SetActive(false);
 
@@ -230,6 +229,13 @@ public class PlayerInteractions : MonoBehaviour
 
             cloudSave.SaveGame();
             popupInfo.DisplayDescription();
+        }
+
+        else if (other.tag == "Idol")
+        {
+            playerState.IncrementIdols();
+            other.gameObject.SetActive(false);
+
         }
     }
 
