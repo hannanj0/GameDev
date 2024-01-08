@@ -33,6 +33,7 @@ public class AIDasher : MonoBehaviour
     bool m_PlayerInRange;
     bool m_IsChasing;
     bool m_CaughtPlayer;
+    public AudioSource spiderAttack;
 
     /// <summary>
     /// Initialises the variables, setting up the Nav Agent and initial destination of first waypoint
@@ -134,6 +135,7 @@ public class AIDasher : MonoBehaviour
 
         // Use MoveTowards in FixedUpdate for more consistent movement
         transform.position = Vector3.Lerp(transform.position, dashDestination, dashSpeed * Time.fixedDeltaTime);
+        spiderAttack.Play();
     }
     /// <summary>
     /// This is when the enemy is in patrol mode, it is self-explanatory, going from point A to B

@@ -715,7 +715,7 @@ GameObject:
   - component: {fileID: 2464945385024009055}
   - component: {fileID: 5707252116404731415}
   m_Layer: 0
-  m_Name: Sand Spider
+  m_Name: SandSpider
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -798,6 +798,7 @@ MonoBehaviour:
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
+  spiderAttack: {fileID: 5707252116404731415}
 --- !u!195 &453397450443724375
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -893,9 +894,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -4507162855332673378, guid: 8274881d364e165479cabaf27c813ec6, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ea26ddc3621abaf4cbdd10172bef288a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

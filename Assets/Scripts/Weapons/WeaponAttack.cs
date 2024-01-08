@@ -109,11 +109,11 @@ public class WeaponAttack : MonoBehaviour
             {
                 enemyRenderer = enemyCollider.transform.Find("Meshes/Body").GetComponent<SkinnedMeshRenderer>();
             }
-            else if (enemyCollider.gameObject.name == "Sand Spider")
+            else if (enemyCollider.gameObject.name == "SandSpider")
             {
                 enemyRenderer = enemyCollider.transform.Find("MeshRenderer").GetComponent<SkinnedMeshRenderer>();
             }
-            else if (enemyCollider.gameObject.name == "RedDragon")
+            else if (enemyCollider.gameObject.name == "RedDragon" || enemyCollider.gameObject.name == "AlbinoDragon")
             {
                 enemyRenderer = enemyCollider.transform.Find("Dragon").GetComponent<SkinnedMeshRenderer>();
             }

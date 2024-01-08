@@ -16,6 +16,7 @@ public class AIBoss : MonoBehaviour
     private Vector3 m_PlayerPosition;
     private bool m_PlayerInRange;
     private bool m_CaughtPlayer;
+    public AudioSource dragonAttack;
 
     void Start()
     {
@@ -66,6 +67,7 @@ public class AIBoss : MonoBehaviour
                 navMeshAgent.isStopped = true;
                 animator.SetBool("Walk", false);
                 animator.SetBool("Attack", true);
+                dragonAttack.Play();
             }
         }
         else
