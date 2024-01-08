@@ -18,8 +18,8 @@ public class BackgroundAudioController : MonoBehaviour
     private float currentMaxVolume = 0.3f;
     private float forestMaxVolume = 0.3f;
     private float desertMaxVolume = 0.06f;
-    private float volcanicMaxVolume = 0.1f;
-    private float spookyMaxVolume = 0.1f;
+    private float volcanicMaxVolume = 0.2f;
+    private float spookyMaxVolume = 0.15f;
     private bool reassignSFX = false;
 
     public void SetInForestArea()

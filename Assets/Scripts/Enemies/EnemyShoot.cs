@@ -23,6 +23,7 @@ public class EnemyShoot : MonoBehaviour
 
     private GameObject bulletObj;
     private bool isPatrolling = true;
+    public AudioSource LavaMinionAttack;
 
     void Start()
     {
@@ -43,6 +44,7 @@ public class EnemyShoot : MonoBehaviour
         {
             enemy.SetDestination(player.position); // Sets the destination to the player's position
             ShootAtPlayer(); // Initiates the shooting
+            LavaMinionAttack.Play();
         }
     }
 
